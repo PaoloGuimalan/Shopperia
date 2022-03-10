@@ -1,0 +1,112 @@
+#div_dashboard{
+    width: 100%;
+    height: 100%;
+}
+
+#nav_dashboard{
+    background: linear-gradient(#e10013, #D60789);
+    width: 50%;
+    max-width: 250px;
+    height: 100%;
+    position: fixed;
+    text-align: left;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 10px;
+    z-index: 2;
+}
+
+#nav_menus{
+    width: 100%;
+    max-width: 250px;
+    /* background-color: aliceblue; */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 0px;
+}
+
+#nav_links{
+    list-style-type: none;
+    width: 70%;
+}
+
+.links_dash{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
+#shopname{
+    font-size: 17px;
+    color: white;
+    margin-bottom: 60px;
+    margin-top: 50px;
+    text-decoration: underline;
+}
+
+.li_links{
+    margin-bottom: 30px;
+}
+
+#menu_btn{
+    position: absolute;
+    right: 0;
+    padding: 2px;
+}
+
+.logout_btn_menu{
+    margin-top: 80%;
+}
+
+.logout_btn_menu_closed{
+    margin-top: 22vh;
+}
+
+#btn_lgt{
+    font-size: 15px;
+    width: 100%;
+    background-color: red;
+    border: none;
+    height: 25px;
+    color: white;
+    border-radius: 5px;
+    border: solid 1px white;
+    cursor: pointer;
+}
+
+#btn_menu{
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    width: 50px;
+}
+
+.links_dash_icons{
+    width: 50px;
+    color: white;
+}
+
+#nav_links_closed{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+#btn_lgt_closed{
+    font-size: 15px;
+    width: 100%;
+    background-color: red;
+    height: 30px;
+    color: white;
+    border-radius: 5px;
+    border: solid 1px white;
+    cursor: pointer;
+    margin-left: -5px;
+}
+
+/* .titletag_link{
+    margin-top: -50px;
+    display: inline-block;
+} */

@@ -1,0 +1,146 @@
+#home_div{
+    width: 100%;
+    height: auto;
+}
+
+#navigation_div{
+    background: linear-gradient(#e10013, #D60789);
+    /* background-color: #e10013; */
+    width: 100%;
+    height: auto;
+}
+
+#navbar{
+    list-style-type: none;
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* flex-direction: row; */
+    width: auto;
+    padding: 10px 10px 10px 10px;
+    justify-content: center;
+}
+
+#home_logo{
+    max-width: 220px;
+    width: 90%;
+}
+
+/* .li_home{
+    border: solid 1px black; 
+} */
+
+#search{
+    /* max-width: 500px; */
+    width: 90%;
+    height: 45%;
+    margin-top: 15px;
+    border: none;
+    border-radius: 2px 0px 0px 2px;
+    min-height: 28px;
+}
+
+.searchbar{
+    width: 100%;
+    max-width: 600px;
+    padding-left: 20px;
+}
+
+#btn_search{
+    height: 48%;
+    margin-top: 15px;
+    width: 50px;
+    border: none;
+    border-radius: 0px 2px 2px 0px;
+    margin-left: 1px;
+    background-color: white;
+    cursor: pointer;
+    min-height: 30px;
+}
+
+#div_search_form{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.navs{
+    font-size: 15px;
+    text-decoration: none;
+    margin-top: 15px;
+    height: 48%;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: white;
+    margin-right: 5px;
+    min-height: 30px;
+}
+
+#img_container{
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+    border-radius: 40px;
+}
+
+#menu_dropdown{
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0px 2px 20px -5px black;
+    height: auto;
+    overflow-y: hidden;
+}
+
+#ul_main{
+    list-style-type: none;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* display: none; */
+    font-size: 15px;
+    justify-content: center;
+}
+
+.menu_item_ul{
+    list-style-type: none;
+    width: 250px;
+    text-align: left;
+}
+
+.links_list{
+    list-style-type: none;
+}
+
+.links{
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (max-width: 720px) {
+    .searchbar{
+        padding-left: 5px;
+    }
+
+    .li_home{
+        margin-right: 5px;
+    }
+
+    .navs{
+        height: 50%;
+    }
+
+    #btn_search{
+        height: 49%;
+    }
+
+    #ul_main{
+        justify-content: left;
+    }
+
+    .hidder{
+        display: none;
+    }
+}
