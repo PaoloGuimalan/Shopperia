@@ -19,6 +19,7 @@ import ProductsDashboard from './ProductsDashboard';
 import OrdersDashboard from './OrdersDashboard';
 import MessageDashboard from './MessageDashboard';
 import AccountDashboard from './AccountDashboard';
+import ProductInfo from './innerComponents/jsx/ProductInfo';
 
 function Dashboard() {
 
@@ -141,8 +142,9 @@ function Dashboard() {
               </ul>
             </motion.div>
             <Routes>
-              <Route path='/' element={<HomeDashboard />} />
+              <Route exact path='/' element={<HomeDashboard />} />
               <Route path='/shopadmin' element={<ProductsDashboard />} />
+              <Route path='/shopadmin/:product_id' element={<ProductInfo />} />
               <Route path='/orders' element={<OrdersDashboard />} />
               <Route path='/messages' element={<MessageDashboard />} />
               <Route path='/account' element={<AccountDashboard />} />

@@ -148,6 +148,8 @@
     /* border: solid 1px black; */
     width: 220px;
     height: auto;
+    min-height: 400px;
+    max-height: 400px;
     margin: 5px;
     border-radius: 0px;
     box-shadow: 0px 0px 5px black;
@@ -188,6 +190,12 @@
 
 .first_nav{
     /* border-top: solid 1px grey; */
+}
+
+.link_products{
+    text-decoration: none;
+    width: auto;
+    color: black;
 }
 
 @media screen and (max-width: 720px) {

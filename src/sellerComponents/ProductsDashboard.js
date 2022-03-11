@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_PRODUCTS } from '../Redux/types/types';
+import { Link } from 'react-router-dom';
 
 function ProductsDashboard() {
 
@@ -194,13 +195,13 @@ function ProductsDashboard() {
       inputSizeName.id = `size_${numbersizes}_${i}`;
 
       var inputSizeVariety = document.createElement('input');
-      inputSizeVariety.type = 'text';
+      inputSizeVariety.type = 'number';
       inputSizeVariety.placeholder = `Variety ${numbersizes}`;
       inputSizeVariety.name = `vareity_${numbersizes}_${i}`;
       inputSizeVariety.id = `variety_${numbersizes}_${i}`;
 
       var inputSizePrice = document.createElement('input');
-      inputSizePrice.type = 'text';
+      inputSizePrice.type = 'number';
       inputSizePrice.placeholder = `Price`;
       inputSizePrice.name = `price_${numbersizes}_${i}`;
       inputSizePrice.id = `price_${numbersizes}_${i}`;
@@ -215,43 +216,11 @@ function ProductsDashboard() {
     }
   }
 
-  const DataProducts = () => {
-    return(
-      <div id='div_content_products'>
-        <motion.ul
-        style={{
-          filter: blur? "blur(5px)" : "blur(0px)"
-        }} 
-        id='ul_content_products'>
-          {proDs.map((items) => {
-            return(
-            <motion.li
-            className='under_li' key={items.product_id}>
-              <motion.nav
-              className='nav_products'>
-                <li>
-                  <img src={items.base_preview} className='imgs_handler' alt={items.product_id}/>
-                </li>
-                <li className='above_li'>
-                  <p><b>{items.prname} | {items.product_id}</b></p>
-                </li>
-                <li className='above_li'>
-                  <p>{items.prbrand}</p>
-                </li>
-                <li className='above_li'>
-                  <p>{items.prcat}</p>
-                </li>
-                <li className='above_li'>
-                  <p>{items.date_posted}</p>
-                </li>
-              </motion.nav>
-            </motion.li>
-            )
-          })}
-        </motion.ul>
-      </div>
-    )
-  }
+  // const DataProducts = () => {
+  //   return(
+      
+  //   )
+  // }
 
   return (
     <div id='div_productsdash'>
@@ -315,10 +284,47 @@ function ProductsDashboard() {
           whileHover={{
             scale: 1.1
           }}
-          id='add_btn' onClick={() => {initiateProd()}}>Add Product</motion.button>
+          id='add_btn' onClick={() => {initiateProd()}}>{inputsprod? "Add Product" : "Cancel"}</motion.button>
         </li>
       </nav>
-      <DataProducts />
+      <div id='div_content_products'>
+        <ul
+        style={{
+          filter: blur? "blur(5px)" : "blur(0px)"
+        }} 
+        id='ul_content_products'>
+          {proDs.map((items) => {
+            return(
+              <Link className='link_products' key={items.product_id} to={`/dashboard/shopadmin/${items.product_id}`} >
+                <li
+                className='under_li' key={items.product_id}>
+                  <nav
+                  className='nav_products'>
+                    <li>
+                      <img src={items.base_preview} className='imgs_handler' alt={items.product_id}/>
+                    </li>
+                    <li className='above_li'>
+                      <p><b>{items.prname} | {items.product_id}</b></p>
+                    </li>
+                    <li className='above_li'>
+                      <p><b>&#8369;{items.minPrice} - &#8369;{items.maxPrice}</b></p>
+                    </li>
+                    <li className='above_li'>
+                      <p>{items.prbrand}</p>
+                    </li>
+                    <li className='above_li'>
+                      <p>{items.prcat}</p>
+                    </li>
+                    <li className='above_li'>
+                      <p>{items.date_posted}</p>
+                    </li>
+                  </nav>
+                </li>
+              </Link>
+              )
+          })}
+        </ul>
+      </div>
     </div>
   )
 }
