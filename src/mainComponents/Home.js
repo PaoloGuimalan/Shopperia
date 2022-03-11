@@ -11,15 +11,19 @@ import CartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MessagesIcon from '@material-ui/icons/MessageOutlined';
 import { motion } from 'framer-motion';
 import Axios from 'axios';
-import { SET_PRODUCTS } from '../Redux/types/types';
+import { SET_PRODUCTS, SET_SEARCH } from '../Redux/types/types';
 
 function Home() {
 
   const userName = useSelector(state => state.userID);
   const redirector = useSelector(state => state.statusLogin);
+  const searchvalue = useSelector(state => state.searchvalue);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const [menu, setmenu] = useState(false);
+  // const [searchvalue, setsearchvalue] = useState("");
 
   const proDs = useSelector(state => state.products);
 
@@ -31,6 +35,12 @@ function Home() {
     })
   }, [proDs]);
 
+  const searchbtnTrigger = () => {
+      // alert(searchvalue);
+      const searchUrl = searchvalue.split(" ").join("%")
+      navigate(`/search/${searchUrl}`);
+  }
+
   return (
     <div id='home_div'>
         <div id='navigation_div'>
@@ -40,8 +50,8 @@ function Home() {
             </li>
             <li className='li_home searchbar'>
               <div id='div_search_form'>
-                <input type='text' name='search' id='search'/>
-                <button id='btn_search'><SearchIcon /></button>
+                <input type='text' name='search' id='search' value={searchvalue} onChange={(e) => {dispatch({type: SET_SEARCH, searchstate: e.target.value})}} placeholder='Search for a Product Name, Code, Category and Brands' />
+                <button id='btn_search' onClick={searchbtnTrigger} disabled={searchvalue == ""? true : false}><SearchIcon /></button>
               </div>
             </li>
             <li className='li_home'>

@@ -1,0 +1,30 @@
+#div_search{
+    width: 100%;
+}
+
+.nav_search{
+    background: linear-gradient(#e10013, #D60789);
+    justify-content: left;
+    list-style-type: none;
+    display: flex;
+}
+
+#label_searchval{
+    color: white;
+}
+
+#btn_back{
+    /* position: fixed; */
+    margin-top: 15px;
+    border: solid 1px white;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.search_label{
+    /* background-color: aqua; */
+    width: 100%;
+    text-align: right;
+    margin-right: 20px;
+}

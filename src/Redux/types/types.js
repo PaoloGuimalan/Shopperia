@@ -7,3 +7,5 @@ export const SET_ID_SELLER = 'SET_ID_SELLER';
 export const SET_DASHBOARD = 'SET_DASHBOARD';
 
 export const SET_PRODUCTS = 'SET_PRODUCTS';
+
+export const SET_SEARCH = 'SET_SEARCH';
