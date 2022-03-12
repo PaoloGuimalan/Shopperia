@@ -23,13 +23,14 @@ import ProductInfo from './innerComponents/jsx/ProductInfo';
 
 function Dashboard() {
 
-  const shopID = useSelector(state => state.sellerID);
+  const shopID = useSelector(state => state.sellerID.shopID);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const redirector = useSelector(state => state.statusLoginSeller);
   const userName = useSelector(state => state.userID);
   const dashstats = useSelector(state => state.dashboardstatus);
+  const sellerID = useSelector(state => state.sellerID);
 
   useEffect(() => {
     Axios.get("http://localhost:3001/loginsession", {
@@ -40,8 +41,9 @@ function Dashboard() {
     //   console.log(response.data);
       if(response.data.status){
         dispatch({type: SET_LOGIN_SELLER, loginstatusseller: response.data.status});
-        dispatch({type: SET_ID_SELLER, sellerID: response.data.userName});
+        dispatch({type: SET_ID_SELLER, sellerID: {shopID: response.data.userName, shopName: response.data.shopName}});
         // navigate("/dashboard");
+        // console.log(sellerID);
       }
       else{
         dispatch({type: SET_LOGIN_SELLER, loginstatusseller: response.data.status});

@@ -37,7 +37,7 @@ function Home() {
 
   const searchbtnTrigger = () => {
       // alert(searchvalue);
-      const searchUrl = searchvalue.split(" ").join("%")
+      const searchUrl = searchvalue.split(" ").join("_")
       navigate(`/search/${searchUrl}`);
   }
 

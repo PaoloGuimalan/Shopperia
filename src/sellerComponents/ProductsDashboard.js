@@ -19,6 +19,7 @@ function ProductsDashboard() {
   const [prbrand, setprbrand] = useState("");
 
   const proDs = useSelector(state => state.products);
+  const shopID = useSelector(state => state.sellerID);
   const dispatch = useDispatch();
 
   const [blur, setblur] = useState(false);
@@ -70,6 +71,7 @@ function ProductsDashboard() {
     form.append('prcat', prcat);
     form.append('prbrand', prbrand);
     form.append('product_id', product_id);
+    form.append('shopname', shopID.shopName);
 
     // console.log("Sizes: "+numbersizes+" | "+"Types: "+numbertypes);
 

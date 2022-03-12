@@ -10,6 +10,7 @@ import { SET_LOGIN, SET_ID, SET_LOGIN_SELLER, SET_ID_SELLER, SET_PRODUCTS } from
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
 import Search from '../src/userComponents/Search';
+import ProductsView from './userComponents/ProductsView';
 
 function App() {
 
@@ -90,6 +91,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/dashboard/*' element={<Dashboard />} />
         <Route path='/search/:query' element={<Search/>} />
+        <Route path='/productsView/:queryID' element={<ProductsView />} />
       </Routes>
     </div>
   );
