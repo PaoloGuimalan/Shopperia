@@ -7,6 +7,8 @@ import { sellerdashboard } from "../actions/sellerdashboard";
 import { setProducts } from "../actions/setProducts";
 import { setsearchvalue } from "../actions/setsearch";
 import { setprodsresultsstate } from "../actions/setprodresults";
+import { setbrowsedprod } from "../actions/setbrowsedprod";
+import { setvariety } from "../actions/setVariety";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -16,7 +18,9 @@ const combiner = combineReducers({
     dashboardstatus: sellerdashboard,
     products: setProducts,
     searchvalue: setsearchvalue,
-    resultsprods: setprodsresultsstate
+    resultsprods: setprodsresultsstate,
+    browsedprod: setbrowsedprod,
+    prodvarieties: setvariety
 })
 
 const store = createStore(combiner);

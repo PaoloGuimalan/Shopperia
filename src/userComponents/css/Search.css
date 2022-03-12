@@ -20,6 +20,7 @@
     background-color: transparent;
     color: white;
     cursor: pointer;
+    margin-left: 15px;
 }
 
 .search_label{
@@ -44,10 +45,11 @@
 }
 
 #li_first_res{
-    width: 50%;
+    width: 30%;
     max-width: 300px;
-    background-color: beige;
-    box-shadow: 0px 0px 10px grey;
+    min-width: 100px;
+    /* background-color: beige; */
+    /* box-shadow: 0px 0px 10px grey; */
 }
 
 .under_li_res{
@@ -76,4 +78,10 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+@media screen and (max-width: 720px) {
+    #li_first_res{
+        display: none;
+    }
 }

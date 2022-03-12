@@ -90,6 +90,7 @@ function App() {
         <Route path='/home/*' element={<Home />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/dashboard/*' element={<Dashboard />} />
+        <Route path='/search' element={<Search/>} />
         <Route path='/search/:query' element={<Search/>} />
         <Route path='/productsView/:queryID' element={<ProductsView />} />
       </Routes>
