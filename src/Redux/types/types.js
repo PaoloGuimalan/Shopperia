@@ -20,3 +20,4 @@ export const SET_COMMENTS = 'SET_COMMENTS';
 export const SET_USER_CREDS = 'SET_USER_CREDS';
 
 export const SET_ADDRESSES = 'SET_ADDRESSES';
+export const SET_ADDRESSES_VIEW = 'SET_ADDRESSES_VIEW';

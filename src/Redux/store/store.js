@@ -12,6 +12,7 @@ import { setvariety } from "../actions/setVariety";
 import { setcomments } from "../actions/setComments";
 import { setUserCreds } from "../actions/setuser_creds";
 import { setaddresses } from "../actions/setaddresses";
+import { setaddressesview } from "../actions/setaddressesview";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -26,7 +27,8 @@ const combiner = combineReducers({
     prodvarieties: setvariety,
     commentsProd: setcomments,
     user_creds: setUserCreds,
-    addresses: setaddresses
+    addresses: setaddresses,
+    addressView: setaddressesview
 })
 
 const store = createStore(combiner);

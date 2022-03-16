@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import Axios from 'axios';
-import { SET_BROWSED_PROD, SET_COMMENTS, SET_VARIETY } from '../Redux/types/types';
+import { SET_ADDRESSES, SET_ADDRESSES_VIEW, SET_BROWSED_PROD, SET_COMMENTS, SET_VARIETY } from '../Redux/types/types';
 
 function ProductsView() {
 
@@ -22,6 +22,7 @@ function ProductsView() {
   const currentprodcomments = useSelector(state => state.commentsProd);
   const searchprodresult = useSelector(state => state.resultsprods);
   const userName = useSelector(state => state.userID);
+  const addresses = useSelector(state => state.addressView);
 
   const queryback = searchvalue.split(" ").join("_");
 
@@ -33,6 +34,17 @@ function ProductsView() {
   const setStar = (number) => {
     setstarnum(number);
   }
+
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/getAddressesView/${userName}`, {
+        headers: {
+          "x-access-token": localStorage.getItem("token")
+        },
+      }).then((response) => {
+        dispatch({type: SET_ADDRESSES_VIEW, addressView: response.data});
+        // console.log(addresses);
+    }).catch(err => console.log(err));
+  }, [userName, addresses])
 
   useEffect(() => {
     let mounted = true;
@@ -113,7 +125,25 @@ function ProductsView() {
         borderImage: floatbuy? "none" : "linear-gradient(#e10013, #D60789) 1"
       }} 
       id='float_menu_buy'>
-        <p onClick={() => {setfloatbuy(true); setfloatvalue("");}}>Hello from {floatvalue}</p>
+        {/* <p onClick={() => {setfloatbuy(true); setfloatvalue("");}}>Hello from {floatvalue}</p> */}
+        <ul id='ul_main'>
+          <li>
+            {addresses.map((def) => {
+              return(
+                <ul key={def.id} id='def_add'>
+                  <li><p><b>{def.receiver}</b></p></li>
+                  <li><b>Full Address:</b> {def.full_address}</li>
+                  <li><b>Province:</b> {def.province}</li>
+                  <li><b>Postal Code:</b> {def.postalCode}</li>
+                </ul>
+              )
+            })}
+          </li>
+          <li>
+            <button className='btns_float'>Confirm {floatvalue != ''? floatvalue == 'add_cart'? "Cart" : "Order" : "..."}</button>
+            <button onClick={() => {setfloatbuy(true); setfloatvalue("");}} className='btns_float'>Cancel</button>
+          </li>
+        </ul>
       </motion.div>
       <div id='pr_content'
       style={{

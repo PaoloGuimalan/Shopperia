@@ -34,6 +34,9 @@
 
 #img_prof{
     width: 50%;
+    max-width: 200px;
+    height: 50%;
+    max-height: 200px;
     margin-top: 30px;
     margin-bottom: 20px;
     border-radius: 50%;

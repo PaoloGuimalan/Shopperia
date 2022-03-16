@@ -265,6 +265,32 @@ ul{
     display: none;
 }
 
+#def_add{
+    background-color: white;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: 0px 0px 5px black;
+    padding: 5px 10px 15px 15px;
+    border-radius: 5px;
+}
+
+#ul_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.btns_float{
+    width: 150px;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 720px) {
     #div_ratings{
         width: calc(100% - 20px);
