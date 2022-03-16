@@ -1,0 +1,85 @@
+#prfff_div{
+    /* background-color: aqua; */
+    width: 100%;
+    height: 100vh;
+}
+
+#nav_prfff{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+    width: 100%;
+    height: 100vh;
+    /* background-color: aqua; */
+}
+
+#li_creds{
+    width: 25%;
+    min-width: 300px;
+    border-right: solid 1px black;
+    background: linear-gradient(#e10013, #D60789);
+    height: 100%;
+    overflow-y: auto;
+    /* background-color: blue; */
+}
+
+#li_creds_two{
+    width: 75%;
+    min-width: 400px;
+    height: 100%;
+    overflow-y: auto;
+    /* background-color: aqua; */
+}
+
+#img_prof{
+    width: 50%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+#label_username_prfff{
+    font-family: Arial;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+}
+
+.btns_prfff{
+    width: 80%;
+    max-width: 200px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: transparent;
+    font-size: 15px;
+    border: solid 1px white;
+    height: 30px;
+    cursor: pointer;
+}
+
+.lgt_btn{
+    margin-top: 40px;
+    width: 80%;
+    max-width: 200px;
+    color: white;
+    background-color: red;
+    font-size: 15px;
+    border: solid 1px white;
+    height: 30px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 720px) {
+    #nav_prfff{
+        flex-direction: column;
+    }
+
+    #li_creds{
+        min-width: 100%;
+    }
+    
+    #li_creds_two{
+        min-width: 100%;
+    }
+}

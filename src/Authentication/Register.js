@@ -115,7 +115,8 @@ const SellerInputs = ({setmessageAlert, setalertcontentresult, setalertcontent})
     const [middleName, setmiddleName] = useState("");
     const [lastName, setlastName] = useState("");
 
-    const [age, setage] = useState("")
+    const [age, setage] = useState("");
+    const [gender, setgender] = useState("");
 
     const credentialsprompt = (prompt) => {
         // alert("Registered!");
@@ -140,6 +141,7 @@ const SellerInputs = ({setmessageAlert, setalertcontentresult, setalertcontent})
                     middleName: middleName,
                     lastName: lastName,
                     age: age,
+                    gender: gender,
                     email: email,
                     password: password
                 }).then((response) => {
@@ -187,6 +189,14 @@ const SellerInputs = ({setmessageAlert, setalertcontentresult, setalertcontent})
         </li>
         <li>
             <input type='number' name='age' id='age' className='inputs_login' placeholder='Age' value={age} onChange={(e) => {setage(e.target.value)}} />
+        </li>
+        <li>
+            <select id='inputs_dropdown' onChange={(e) => {setgender(e.target.value)}}>
+                <option default value={null}>Select Gender</option>
+                <option value='Male'>Male</option>
+                <option value='Female'>Female</option>
+                <option value='Other'>Other</option>
+            </select>
         </li>
         <li>
             <input type='text' name='email' id='email' className='inputs_login' placeholder='Email Address' value={email} onChange={(e) => {setemail(e.target.value)}} />

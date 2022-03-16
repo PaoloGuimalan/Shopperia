@@ -88,7 +88,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/home/*' element={<Home />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile/*' element={<Profile />} />
         <Route path='/dashboard/*' element={<Dashboard />} />
         <Route path='/search' element={<Search/>} />
         <Route path='/search/:query' element={<Search/>} />

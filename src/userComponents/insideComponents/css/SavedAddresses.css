@@ -1,0 +1,69 @@
+#div_addresses{
+    /* background-color: aqua; */
+    width: 100%;
+}
+
+#float_menu{
+    border-radius: 5px;
+    position: fixed;
+    width: 80%;
+    max-width: 800px;
+    min-width: 200px;
+    height: 0px;
+    max-height: 80%;
+    left: 60%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: white;
+    border: none;
+    border-image: none;
+    z-index: 1;
+}
+
+#conf_btn{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 200px;
+    height: 30px;
+}
+
+#ul_addresses_res{
+    box-shadow: 0px 0px 5px black;
+    width: 80%;
+    border-radius: 5px;
+    padding: 2px 5px 10px 20px;
+    margin-bottom: 15px;
+}
+
+#status_check{
+    background-color: none;
+    margin-top: 20px;
+    width: 200px;
+    text-align: center;
+    height: 25px;
+    color: white;
+    border-radius: 5px;
+}
+
+.inputs_add{
+    width: 300px;
+    text-align: center;
+    height: 25px;
+}
+
+#ul_add{
+    text-align: left;
+}
+
+.p_tagger_add{
+    font-size: 15px;
+}
+
+@media screen and (max-width: 720px) {
+    #float_menu{
+        left: 50%
+    }
+}

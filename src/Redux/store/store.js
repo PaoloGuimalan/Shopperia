@@ -9,6 +9,9 @@ import { setsearchvalue } from "../actions/setsearch";
 import { setprodsresultsstate } from "../actions/setprodresults";
 import { setbrowsedprod } from "../actions/setbrowsedprod";
 import { setvariety } from "../actions/setVariety";
+import { setcomments } from "../actions/setComments";
+import { setUserCreds } from "../actions/setuser_creds";
+import { setaddresses } from "../actions/setaddresses";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -20,7 +23,10 @@ const combiner = combineReducers({
     searchvalue: setsearchvalue,
     resultsprods: setprodsresultsstate,
     browsedprod: setbrowsedprod,
-    prodvarieties: setvariety
+    prodvarieties: setvariety,
+    commentsProd: setcomments,
+    user_creds: setUserCreds,
+    addresses: setaddresses
 })
 
 const store = createStore(combiner);

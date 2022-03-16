@@ -292,7 +292,7 @@ function ProductsDashboard() {
       <div id='div_content_products'>
         <ul
         style={{
-          filter: blur? "blur(5px)" : "blur(0px)"
+          filter: blur? "blur(20px)" : "blur(0px)"
         }} 
         id='ul_content_products'>
           {proDs.map((items) => {
