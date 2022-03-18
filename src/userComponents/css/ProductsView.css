@@ -171,6 +171,29 @@ ul{
     background-color: limegreen;
 }
 
+#cancel_pr_btn{
+    border: solid 1px red;
+    color: red;
+    background-color: white;
+}
+
+#cancel_pr_btn:hover{
+    border: solid 1px red;
+    color: white;
+    background-color: red;
+}
+
+#address_status{
+    font-family: Arial;
+    font-style: italic;
+    color: grey;
+    text-decoration: underline;
+}
+
+#li_btns{
+    margin-top: 40px;
+}
+
 #tr_btns{
     text-align: left;
     height: 100px;
@@ -277,7 +300,7 @@ ul{
     border-radius: 5px;
 }
 
-#ul_main{
+#ul_main_pr{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -289,6 +312,57 @@ ul{
     height: 30px;
     margin: 5px;
     cursor: pointer;
+}
+
+.btns_var{
+    margin: 2px;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+}
+
+#var_resp{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: left;
+    min-width: 200px;
+    width: 90%;
+    padding-left: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px black;
+}
+
+#img_view_var{
+    padding: 0px 0px 0px 20px;
+}
+
+#details_var{
+    padding-top: 0px;
+    /* background-color: aqua; */
+    height: 100%;
+    margin-top: -21px;
+}
+
+#display_count{
+    /* border: solid 1px black; */
+    height: 100%;
+    width: 50px;
+    text-align: center;
+}
+
+.btns_var_num{
+    cursor: pointer;
+}
+
+#var_prev{
+    max-width: 150px;
+    max-height: 150px;
 }
 
 @media screen and (max-width: 720px) {

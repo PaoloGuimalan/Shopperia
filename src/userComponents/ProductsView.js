@@ -30,6 +30,13 @@ function ProductsView() {
   const [floatvalue, setfloatvalue] = useState("");
   const [starnum, setstarnum] = useState(0);
   const [textar, settextar] = useState("")
+  const [varieties, setvarieties] = useState({result: [], result2: []});
+
+  const [typeselector, settypeselector] = useState("");
+  const [sizeselector, setsizeselector] = useState("");
+
+  const [varietyresponse, setvarietyresponse] = useState([]);
+  const [varietycount, setvarietycount] = useState(0);
 
   const setStar = (number) => {
     setstarnum(number);
@@ -74,6 +81,36 @@ function ProductsView() {
     }).catch((err) => console.log(err))
   }, [currentprodcomments]);
 
+  useEffect(() => {
+    const id = currentprod.map((ids) => ids.product_id);
+    Axios.get(`http://localhost:3001/gettypes/${id}`, {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      },
+    }).then((response) => {
+      // console.log(varieties);
+      // console.log(response.data.result.map((res1) => res1.var_typename));
+      // console.log(response.data.result2.map((res2) => res2.var_size))
+      setvarieties(response.data);
+      // console.log(varieties);
+    }).catch(err => console.log(err));
+  }, [currentprod]);
+
+  useEffect(() => {
+    if(typeselector != "" && sizeselector != ""){
+      const id = currentprod.map((ids) => ids.product_id);
+      Axios.get(`http://localhost:3001/getselectedvariety/${id}/${typeselector}/${sizeselector}`, {
+        headers: {
+          "x-access-token": localStorage.getItem("token")
+        },
+      }).then((response) => {
+        // console.log(response.data);
+        setvarietyresponse(response.data);
+      }).catch(err => console.log(err));
+    }
+  }, [typeselector, sizeselector, currentprod]);
+  
+
   const hoverstartimg = (link) => {
     setTimeout(() => {
       const main_preview = document.getElementById('base_prev_img');
@@ -101,6 +138,16 @@ function ProductsView() {
     })
   }
 
+  const product_Counter = (type) => {
+    // alert(type);
+    settypeselector(type);
+  }
+
+  const product_Size = (size) => {
+    // alert(size);
+    setsizeselector(size);
+  }
+
   return (
     <div id='div_pr_view'>
       <motion.button id='back_btn' title='Back'
@@ -126,11 +173,12 @@ function ProductsView() {
       }} 
       id='float_menu_buy'>
         {/* <p onClick={() => {setfloatbuy(true); setfloatvalue("");}}>Hello from {floatvalue}</p> */}
-        <ul id='ul_main'>
+        <ul id='ul_main_pr'>
           <li>
             {addresses.map((def) => {
               return(
                 <ul key={def.id} id='def_add'>
+                  <li><p id='address_status'>Default Address</p></li>
                   <li><p><b>{def.receiver}</b></p></li>
                   <li><b>Full Address:</b> {def.full_address}</li>
                   <li><b>Province:</b> {def.province}</li>
@@ -140,8 +188,66 @@ function ProductsView() {
             })}
           </li>
           <li>
-            <button className='btns_float'>Confirm {floatvalue != ''? floatvalue == 'add_cart'? "Cart" : "Order" : "..."}</button>
-            <button onClick={() => {setfloatbuy(true); setfloatvalue("");}} className='btns_float'>Cancel</button>
+            <h4>Types</h4>
+            {varieties.result.map((res1) => {
+              return(
+                <button onClick={() => {product_Counter(res1.var_typename)}} className='btns_var'>{res1.var_typename}</button>
+              )
+            })}
+          </li>
+          <li>
+            <h4>Sizes</h4>
+            {varieties.result2.map((res2) => {
+              return(
+                <button onClick={() => {product_Size(res2.var_size)}} className='btns_var'>{res2.var_size}</button>
+              )
+            })}
+          </li>
+          <li>
+            <h4>Variety</h4>
+            <div>
+              <span><button onClick={() => {setvarietycount(varietycount + 1)}} className='btns_var_num'>+</button></span>
+              <span><input id='display_count' type='number' value={varietycount} /></span>
+              <span><button onClick={() => {setvarietycount(varietycount == 0? varietycount:varietycount - 1)}} className='btns_var_num'>-</button></span>
+            </div>
+          </li>
+          <li>
+            <h4>Order Summary</h4>
+            {varietyresponse.map((details) => {
+              return(
+                <ul id='var_resp'>
+                  <li>
+                    <ul id='img_view_var'>
+                      <li>
+                        <img id='var_prev' src={details.var_preview} />
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul id='details_var'>
+                      <li><h4>{details.pr_id} | {details.var_id}</h4></li>
+                      <li><span>Type: </span>{details.var_typename}</li>
+                      <li>
+                        <span>Size: </span>{details.var_size}
+                      </li>
+                      <li>
+                        <span>Available Stocks: </span>{details.var_stocks}
+                      </li>
+                      <li>
+                        <p><span>Price: </span><span>&#8369;{details.var_price}</span></p>
+                      </li>
+                      <li>
+                        <p><span>Total Price: </span><span>&#8369;{details.var_price * varietycount}</span></p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              )
+            })}
+          </li>
+          <li id='li_btns'>
+            <button id={floatvalue != ''? floatvalue == 'add_cart'? "add_cart_btn" : "buy_pr_btn" : "..."} className='btns_float'>Confirm {floatvalue != ''? floatvalue == 'add_cart'? "Cart" : "Order" : "..."}</button>
+            <button id='cancel_pr_btn' onClick={() => {setfloatbuy(true); setfloatvalue("");}} className='btns_float'>Cancel</button>
           </li>
         </ul>
       </motion.div>
