@@ -148,6 +148,27 @@ function ProductsView() {
     setsizeselector(size);
   }
 
+  const order_submit = (order_value) => {
+    Axios.post("http://localhost:3001/postorder", {
+      user_id: userName,
+      receiver: addresses.map((rec) => rec.receiver)[0],
+      full_address: addresses.map((rec) => rec.full_address)[0],
+      province: addresses.map((rec) => rec.province)[0],
+      postalCode: addresses.map((rec) => rec.postalCode)[0],
+      product_id: currentprod.map((pid) => pid.product_id)[0],
+      var_id: varietyresponse.map((vid) => vid.var_id)[0],
+      variety: varietycount,
+      status: order_value != ""? order_value == "add_cart"? "Cart" : "Pending" : "Cart",
+      order_total: varietyresponse.map((vid) => vid.var_price)[0] * varietycount
+    }, {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      },
+    }).then((response) => {
+      console.log(response.data);
+    }).catch((err) => console.log(err));
+  }
+
   return (
     <div id='div_pr_view'>
       <motion.button id='back_btn' title='Back'
@@ -246,7 +267,7 @@ function ProductsView() {
             })}
           </li>
           <li id='li_btns'>
-            <button id={floatvalue != ''? floatvalue == 'add_cart'? "add_cart_btn" : "buy_pr_btn" : "..."} className='btns_float'>Confirm {floatvalue != ''? floatvalue == 'add_cart'? "Cart" : "Order" : "..."}</button>
+            <button onClick={() => {order_submit(floatvalue)}} id={floatvalue != ''? floatvalue == 'add_cart'? "add_cart_btn" : "buy_pr_btn" : "..."} className='btns_float'>Confirm {floatvalue != ''? floatvalue == 'add_cart'? "Cart" : "Order" : "..."}</button>
             <button id='cancel_pr_btn' onClick={() => {setfloatbuy(true); setfloatvalue("");}} className='btns_float'>Cancel</button>
           </li>
         </ul>
