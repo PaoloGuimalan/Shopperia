@@ -365,6 +365,25 @@ ul{
     max-height: 150px;
 }
 
+#alert_div{
+    position: fixed;
+    left: 50%;
+    top: -30px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: white;
+    border: solid 1px white;
+    color: white;
+    width: 40%;
+    min-width: 300px;
+    max-width: 500px;
+    border-radius: 50px;
+    height: 30px;
+    padding: 5px;
+    padding-top: 10px;
+    /* box-shadow: 0px 0px 5px rgb(255, 12, 12); */
+}
+
 @media screen and (max-width: 720px) {
     #div_ratings{
         width: calc(100% - 20px);

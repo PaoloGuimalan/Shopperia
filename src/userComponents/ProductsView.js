@@ -38,6 +38,10 @@ function ProductsView() {
   const [varietyresponse, setvarietyresponse] = useState([]);
   const [varietycount, setvarietycount] = useState(0);
 
+  const [alertprod, setalertprod] = useState("Message Sample");
+  const [alertprodstatus, setalertprodstatus] = useState(false);
+  const [alertprodtrigger, setalertprodtrigger] = useState(false);
+
   const setStar = (number) => {
     setstarnum(number);
   }
@@ -165,12 +169,28 @@ function ProductsView() {
         "x-access-token": localStorage.getItem("token")
       },
     }).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
+      setalertprod(response.data.message);
+      setalertprodstatus(response.data.status);
+      setTimeout(() => {
+        setalertprodtrigger(true);
+      }, 1000);
+      setTimeout(() => {
+        setalertprodtrigger(false);
+      }, 5000);
+      // setalertprod("");
+      setalertprodstatus(false);
     }).catch((err) => console.log(err));
   }
 
   return (
     <div id='div_pr_view'>
+      <motion.div
+      animate={{
+        top: alertprodtrigger? "30px" : "-30px",
+        backgroundColor: alertprodstatus == null? "white" : alertprodstatus? "lime" : "red"
+      }} 
+      id='alert_div'><span>{alertprod}</span></motion.div>
       <motion.button id='back_btn' title='Back'
       whileHover={{
         scale: 1.1
@@ -225,7 +245,7 @@ function ProductsView() {
             })}
           </li>
           <li>
-            <h4>Variety</h4>
+            <h4>Quantity</h4>
             <div>
               <span><button onClick={() => {setvarietycount(varietycount + 1)}} className='btns_var_num'>+</button></span>
               <span><input id='display_count' type='number' value={varietycount} /></span>
