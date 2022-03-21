@@ -1,0 +1,94 @@
+#pocket_div{
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+#nav_pocket{
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: linear-gradient(#e10013, #D60789);
+}
+
+#label_pocket{
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+}
+
+#nav_btns_pocket{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    justify-content: right;
+    margin-top: 12px;
+    /* margin-left: 10px; */
+    /* padding-right: 40px; */
+    /* background-color: aqua; */
+}
+
+#li_nav_one{
+    width: 200px;
+}
+
+#li_nav_two{
+    width: calc(100% - 200px);
+    /* background-color: aqua; */
+}
+
+.btns_pocket_nav{
+    width: 100px;
+    height: 30px;
+    border: solid 1px white;
+    margin: 2px;
+    background-color: transparent;
+    color: white;
+    font-family: Arial;
+    cursor: pointer;
+}
+
+#nav_btns_pocket li:last-of-type button{
+    margin-right: 50px;
+}
+
+/* #btn_cart{
+    background-color: darkorange;
+}
+
+#btn_pending{
+    background-color: orange;
+}
+
+#btn_ondelivery{
+    background-color: lime;
+}
+
+#btn_received{
+    background-color: limegreen;
+}
+
+#btn_cancelled{
+    background-color: red;
+} */
+
+#btn_home{
+    margin-left: 30px;
+}
+
+@media screen and (max-width: 720px) {
+    .btns_pocket_nav{
+        margin-right: 50px;
+    }
+    
+    #nav_btns_pocket li:last-of-type button{
+        margin-bottom: 20px;
+    }
+
+    #btn_home{
+        margin-left: 2px;
+        margin-top: 30px;
+    }
+}

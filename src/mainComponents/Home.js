@@ -11,7 +11,7 @@ import CartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MessagesIcon from '@material-ui/icons/MessageOutlined';
 import { motion } from 'framer-motion';
 import Axios from 'axios';
-import { SET_PRODUCTS, SET_SEARCH } from '../Redux/types/types';
+import { SET_ID, SET_LOGIN, SET_PRODUCTS, SET_SEARCH } from '../Redux/types/types';
 
 function Home() {
 
@@ -30,10 +30,30 @@ function Home() {
   useEffect(() => {
     Axios.get('http://localhost:3001/getProducts').then((response) => {
       dispatch({type: SET_PRODUCTS, products: response.data});
+      // console.log(redirector);
     }).catch((err) => {
       console.log(err);
     })
   }, [proDs]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/loginsession", {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      },
+    }).then((response) => {
+      // console.log(response.data);
+      if(response.data.status){
+        dispatch({type: SET_LOGIN, loginstatus: response.data.status});
+        dispatch({type: SET_ID, userID: response.data.userName});
+        // navigate("/profile");
+      }
+      else{
+        dispatch({type: SET_LOGIN, loginstatus: response.data.status});
+        // navigate("/login");
+      }
+    })
+  }, [redirector, userName]);
 
   const searchbtnTrigger = () => {
       // alert(searchvalue);
@@ -65,7 +85,7 @@ function Home() {
               <Link to='/notifications'><button className='navs hidder'><Notifs /></button></Link>
             </li>
             <li>
-              <Link to='/pocket/cart'><button className='navs hidder'><CartIcon /></button></Link>
+              <Link to='/profile/pocket/cart'><button className='navs hidder'><CartIcon /></button></Link>
             </li>
             <li>
               <Link to='/profile'><button className='navs hidder'>{redirector? userName : ("Login | Sign up")}</button></Link>
@@ -106,16 +126,16 @@ function Home() {
                   <p><b>My Pocket</b></p>
                   <ul className='links_list'>
                     <li>
-                      <Link to='/pocket/cart' className='links'><p>Cart</p></Link>
+                      <Link to='/profile/pocket/cart' className='links'><p>Cart</p></Link>
                     </li>
                     <li>
-                      <Link to='/pocket/pending' className='links'><p>Pending</p></Link>
+                      <Link to='/profile/pocket/pending' className='links'><p>Pending</p></Link>
                     </li>
                     <li>
-                      <Link to='/pocket/onDelivery' className='links'><p>On Delivery</p></Link>
+                      <Link to='/profile/pocket/onDelivery' className='links'><p>On Delivery</p></Link>
                     </li>
                     <li>
-                      <Link to='/pocket/received' className='links'><p>Received</p></Link>
+                      <Link to='/profile/pocket/received' className='links'><p>Received</p></Link>
                     </li>
                   </ul>
                 </li>

@@ -377,8 +377,16 @@ function ProductsView() {
                 })}
                 <tr id='tr_btns'>
                   <td id='td_btns'>
-                    <button className='buy_btns' onClick={() => {setfloatbuy(false); setfloatvalue("add_cart")}} id='add_cart_btn'>Add to Cart</button>
-                    <button className='buy_btns' onClick={() => {setfloatbuy(false); setfloatvalue("buy_prod")}} id='buy_pr_btn'>Buy</button>
+                  {userName == ""? (
+                      <>
+                        You are not Logged In! <button onClick={() => navigate("/login")}>Login</button> | <button onClick={() => navigate("/register")}>Sign Up</button>
+                      </>
+                    ):(
+                      <>
+                        <button className='buy_btns' onClick={() => {setfloatbuy(false); setfloatvalue("add_cart")}} id='add_cart_btn'>Add to Cart</button>
+                        <button className='buy_btns' onClick={() => {setfloatbuy(false); setfloatvalue("buy_prod")}} id='buy_pr_btn'>Buy</button>
+                      </>
+                    )}
                   </td>
                 </tr>
               </tbody>

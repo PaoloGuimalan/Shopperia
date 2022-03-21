@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
 import Search from '../src/userComponents/Search';
 import ProductsView from './userComponents/ProductsView';
+import Pocket from './userComponents/Pocket';
 
 function App() {
 

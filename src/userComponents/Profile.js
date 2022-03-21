@@ -7,6 +7,7 @@ import './css/Profile.css';
 import SavedAddresses from './insideComponents/SavedAddresses';
 import ContactDetails from './insideComponents/ContactDetails';
 import ProfileMain from './insideComponents/ProfileMain';
+import Pocket from './Pocket';
 
 function Profile() {
 
@@ -76,7 +77,7 @@ function Profile() {
                 <Link className='links des_links' to='/profile'><button className='btns_prfff'>Profile</button></Link>
               </li>
               <li>
-                <Link className='links des_links' to='/pocket/cart'><button className='btns_prfff'>Cart</button></Link>
+                <Link className='links des_links' to='/profile/pocket/cart'><button className='btns_prfff'>Cart</button></Link>
               </li>
               <li>
                 <Link className='links des_links' to='/profile/contactdetails'><button className='btns_prfff'>Contact Details</button></Link>
@@ -97,6 +98,7 @@ function Profile() {
               <Route path='/' element={<ProfileMain />}/>
               <Route path='/addresses' element={<SavedAddresses />}/>
               <Route path='/contactdetails' element={<ContactDetails />}/>
+              <Route path='/pocket/*' element={<Pocket />} />
             </Routes>
           </li>
         </nav>

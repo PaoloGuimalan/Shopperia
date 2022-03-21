@@ -13,6 +13,7 @@ import { setcomments } from "../actions/setComments";
 import { setUserCreds } from "../actions/setuser_creds";
 import { setaddresses } from "../actions/setaddresses";
 import { setaddressesview } from "../actions/setaddressesview";
+import { setcart } from "../actions/setcart";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -28,7 +29,8 @@ const combiner = combineReducers({
     commentsProd: setcomments,
     user_creds: setUserCreds,
     addresses: setaddresses,
-    addressView: setaddressesview
+    addressView: setaddressesview,
+    cart: setcart
 })
 
 const store = createStore(combiner);
