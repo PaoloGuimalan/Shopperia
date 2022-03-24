@@ -27,3 +27,5 @@ export const SET_PENDING = 'SET_PENDING';
 export const SET_ON_DELIVERY = 'SET_ON_DELIVERY';
 export const SET_RECEIVED = 'SET_RECEIVED';
 export const SET_CANCELLED = 'SET_CANCELLED';
+
+export const SET_SHOP_RESULT = 'SET_SHOP_RESULT';

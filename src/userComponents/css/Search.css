@@ -7,10 +7,15 @@
     justify-content: left;
     list-style-type: none;
     display: flex;
+    /* position: sticky; */
 }
 
 #label_searchval{
     color: white;
+}
+
+.img_shop{
+
 }
 
 #btn_back{
@@ -46,10 +51,38 @@
 
 #li_first_res{
     width: 30%;
+    /* height: 100%; */
     max-width: 300px;
     min-width: 100px;
+    border-top: solid 1px white;
+    border-right: solid 1px grey;
+    /* background: linear-gradient(0deg, #e10013, #D60789); */
+    /* color: white; */
     /* background-color: beige; */
     /* box-shadow: 0px 0px 10px grey; */
+}
+
+.img_shop{
+    width: 100%;
+    height: 100%;
+    max-width: 170px;
+    max-height: 170px;
+    border-radius: 100%;
+    box-shadow: 0px 0px 5px black;
+}
+
+#tag_shopname{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-top: 0px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.div_shop{
+    /* box-shadow: 0px 0px 5px black; */
+    margin: 10px;
 }
 
 .under_li_res{

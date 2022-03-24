@@ -18,6 +18,7 @@ import { setpending } from "../actions/setpending";
 import { setondelivery } from "../actions/setondelivery";
 import { setreceived } from "../actions/setreceived";
 import { setcancelled } from "../actions/setcancelled";
+import { setshopresult } from "../actions/setshopresults";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -38,7 +39,8 @@ const combiner = combineReducers({
     pending: setpending,
     ondelivery: setondelivery,
     received: setreceived,
-    cancelled: setcancelled
+    cancelled: setcancelled,
+    shopresult: setshopresult
 })
 
 const store = createStore(combiner);
