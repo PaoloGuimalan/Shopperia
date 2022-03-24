@@ -36,16 +36,22 @@ function Cart() {
               return(
                 <nav id='nav_list' key={res.product_id}>
                   <li>
-                    <h4>{res.order_id} | {res.product_id}</h4>
+                    <img src={res.var_img} className='pr_var_prev'/>
                   </li>
-                  <li>
-                    <span>Quantity: {res.variety}</span>
-                  </li>
-                  <li>
-                    <span>Status: {res.status}</span>
-                  </li>
-                  <li>
-                    <h4>Order Total: {res.order_total}</h4>
+                  <li id='li_main_last'>
+                    <li>
+                      <h4 id='name_var'>{res.order_id} | {res.product_id}</h4>
+                      <span id='span_var'>{res.shopname}</span>
+                    </li>
+                    <li>
+                      <span>Quantity: {res.variety}</span>
+                    </li>
+                    <li>
+                      <span>Status: {res.status}</span>
+                    </li>
+                    <li>
+                      <h4 id='total_var'>Order Total: {res.order_total}</h4>
+                    </li>
                   </li>
                 </nav>
               )

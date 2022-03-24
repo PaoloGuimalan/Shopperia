@@ -23,3 +23,7 @@ export const SET_ADDRESSES = 'SET_ADDRESSES';
 export const SET_ADDRESSES_VIEW = 'SET_ADDRESSES_VIEW';
 
 export const SET_CART = 'SET_CART';
+export const SET_PENDING = 'SET_PENDING';
+export const SET_ON_DELIVERY = 'SET_ON_DELIVERY';
+export const SET_RECEIVED = 'SET_RECEIVED';
+export const SET_CANCELLED = 'SET_CANCELLED';

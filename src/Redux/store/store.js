@@ -14,6 +14,10 @@ import { setUserCreds } from "../actions/setuser_creds";
 import { setaddresses } from "../actions/setaddresses";
 import { setaddressesview } from "../actions/setaddressesview";
 import { setcart } from "../actions/setcart";
+import { setpending } from "../actions/setpending";
+import { setondelivery } from "../actions/setondelivery";
+import { setreceived } from "../actions/setreceived";
+import { setcancelled } from "../actions/setcancelled";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -30,7 +34,11 @@ const combiner = combineReducers({
     user_creds: setUserCreds,
     addresses: setaddresses,
     addressView: setaddressesview,
-    cart: setcart
+    cart: setcart,
+    pending: setpending,
+    ondelivery: setondelivery,
+    received: setreceived,
+    cancelled: setcancelled
 })
 
 const store = createStore(combiner);
