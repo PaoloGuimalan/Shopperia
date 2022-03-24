@@ -30,7 +30,7 @@ function OnDelivery() {
     <div id='cart_div'>
       <nav id='nav_cart'>
         <li>
-        {cart.length == 1? (
+        {cart.length >= 1? (
             cart.map((res) => {
               return(
                 <nav id='nav_list' key={res.product_id}>
@@ -46,8 +46,8 @@ function OnDelivery() {
                       <span>Quantity: {res.variety}</span>
                     </li>
                     <li>
-                      <span>Status: {res.status}</span>
-                    </li>
+                        <span>Status: <span id='ondelivery_text'><p className='p_tag_status'>{res.status}</p></span></span>
+                      </li>
                     <li>
                       <h4 id='total_var'>Order Total: {res.order_total}</h4>
                     </li>

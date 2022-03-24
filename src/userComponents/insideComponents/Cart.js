@@ -31,7 +31,7 @@ function Cart() {
     <div id='cart_div'>
       <nav id='nav_cart'>
         <li>
-        {cart.length == 1? (
+        {cart.length >= 1? (
             cart.map((res) => {
               return(
                 <nav id='nav_list' key={res.product_id}>
@@ -39,19 +39,19 @@ function Cart() {
                     <img src={res.var_img} className='pr_var_prev'/>
                   </li>
                   <li id='li_main_last'>
-                    <li>
-                      <h4 id='name_var'>{res.order_id} | {res.product_id}</h4>
-                      <span id='span_var'>{res.shopname}</span>
-                    </li>
-                    <li>
-                      <span>Quantity: {res.variety}</span>
-                    </li>
-                    <li>
-                      <span>Status: {res.status}</span>
-                    </li>
-                    <li>
-                      <h4 id='total_var'>Order Total: {res.order_total}</h4>
-                    </li>
+                      <li>
+                        <h4 id='name_var'>{res.order_id} | {res.product_id}</h4>
+                        <span id='span_var'>{res.shopname}</span>
+                      </li>
+                      <li>
+                        <span>Quantity: {res.variety}</span>
+                      </li>
+                      <li>
+                        <span>Status: <span id='cart_text'><p className='p_tag_status'>{res.status}</p></span></span>
+                      </li>
+                      <li>
+                        <h4 id='total_var'>Order Total: {res.order_total}</h4>
+                      </li>
                   </li>
                 </nav>
               )

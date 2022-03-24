@@ -205,7 +205,7 @@ function ProductsView() {
       whileHover={{
         scale: 1.1
       }}
-      onClick={() => {navigate(`/pocket/cart`)}} ><CartIcon style={{color: 'white'}} /></motion.button>
+      onClick={() => {navigate(`/profile/pocket/cart`)}} ><CartIcon style={{color: 'white'}} /></motion.button>
       <motion.div
       animate={{
         height: floatbuy? "0px" : "auto",

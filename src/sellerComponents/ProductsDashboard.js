@@ -32,7 +32,11 @@ function ProductsDashboard() {
   const [btnstatustype, setbtnstatustype] = useState(false);
 
   useEffect(() => {
-    Axios.get('http://localhost:3001/getProducts').then((response) => {
+    Axios.get(`http://localhost:3001/getProducts/${shopID.shopName}`, {
+      headers: {
+        "x-access-tokenseller": localStorage.getItem("tokenseller")
+      },
+    }).then((response) => {
       dispatch({type: SET_PRODUCTS, products: response.data});
       // console.log(response.data);
     }).catch((err) => {
