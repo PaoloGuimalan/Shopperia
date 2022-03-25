@@ -1,0 +1,66 @@
+#div_order{
+    /* background-color: aqua; */
+    padding-left: 50px;
+    width: calc(100% - 50px);
+}
+
+#nav_order{
+    display: flex;
+    list-style-type: none;
+    flex-direction: column;
+}
+
+.li_class_all_orders{
+    width: calc(100% - 2px);
+    /* border: solid 1px black; */
+}
+
+#li_order_one{
+    text-align: left;
+}
+
+#label_order{
+    margin-left: 20px;
+    /* font-size: 20px;
+    font-family: Arial; */
+}
+
+#span_uno{
+    font-size: 20px;
+    font-family: Arial;
+}
+
+#span_sec{
+    font-family: 15px;
+    /* display: inline-block; */
+    /* margin-top: -100px; */
+}
+
+#nav_buttons_orders{
+    display: flex;
+    /* width: 500px; */
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 80%;
+    height: 40px;
+    gap: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    /* background-color: aqua; */
+}
+
+.btns_nav_orders{
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#li_label_status{
+    text-align: left;
+}
+
+#label_statusifier{
+    margin-left: 15px;
+    font-size: 20px;
+    font-family: Arial;
+}

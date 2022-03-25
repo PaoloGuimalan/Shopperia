@@ -19,6 +19,8 @@ import { setondelivery } from "../actions/setondelivery";
 import { setreceived } from "../actions/setreceived";
 import { setcancelled } from "../actions/setcancelled";
 import { setshopresult } from "../actions/setshopresults";
+import { setsellerinfo } from "../actions/setsellerinfo";
+import { setordersadmin } from "../actions/setordersadmin";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -40,7 +42,9 @@ const combiner = combineReducers({
     ondelivery: setondelivery,
     received: setreceived,
     cancelled: setcancelled,
-    shopresult: setshopresult
+    shopresult: setshopresult,
+    sellerinfo: setsellerinfo,
+    ordersadmin: setordersadmin
 })
 
 const store = createStore(combiner);

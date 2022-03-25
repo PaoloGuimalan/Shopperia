@@ -1,0 +1,58 @@
+#div_account{
+    width: calc(100% - 50px);
+    padding-left: 50px;
+    /* background-color: aqua; */
+}
+
+#nav_account{
+    width: 100%;
+    flex-direction: column;
+    list-style-type: none;
+    display: flex;
+}
+
+#nav_account li{
+    width: 100%;
+    /* background-color: rebeccapurple; */
+}
+
+/* #nav_account li:first-of-type{
+    background-color: aqua;
+} */
+
+#ul_account_prev{
+    /* background-color: blue; */
+    margin-left: -45px;
+}
+
+.div_account_prev{
+    margin-left: auto;
+    max-width: 200px;
+    /* height: 100%; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    max-height: 400px;
+    /* margin-left: -50px; */
+    margin-right: auto;
+    /* padding: 0; */
+    /* background-color: blue; */
+    box-shadow: 0px 0px 5px black;
+    border-radius: 5px;
+}
+
+.li_lever_account_inputs{
+    text-align: left;
+    /* padding-left: 20px; */
+    /* width: 0px; */
+    /* background-color: aqua; */
+}
+
+#label_account_info{
+    margin-left: 20px;
+}
+
+/* #ul_account_prev_inputs{
+    background-color: blue;
+    margin-left: -45px;
+    width: 80%;
+} */

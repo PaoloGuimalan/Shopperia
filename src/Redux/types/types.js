@@ -29,3 +29,7 @@ export const SET_RECEIVED = 'SET_RECEIVED';
 export const SET_CANCELLED = 'SET_CANCELLED';
 
 export const SET_SHOP_RESULT = 'SET_SHOP_RESULT';
+
+export const SET_SELLER_INFO = 'SET_SELLER_INFO';
+
+export const SET_ORDERS_ADMIN = 'SET_ORDERS_ADMIN';

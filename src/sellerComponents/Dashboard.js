@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import { SET_DASHBOARD, SET_ID_SELLER, SET_LOGIN_SELLER, SET_PRODUCTS } from '../Redux/types/types';
+import { SET_DASHBOARD, SET_ID_SELLER, SET_LOGIN_SELLER, SET_PRODUCTS, SET_SELLER_INFO } from '../Redux/types/types';
 import { useNavigate, Link, Route, Routes } from 'react-router-dom';
 import Axios from 'axios';
 import './css/Dashboard.css';
@@ -31,6 +31,18 @@ function Dashboard() {
   const userName = useSelector(state => state.userID);
   const dashstats = useSelector(state => state.dashboardstatus);
   const sellerID = useSelector(state => state.sellerID);
+  const sellerinfo = useSelector(state => state.sellerinfo);
+
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/getsellerinfo/${shopID}`, {
+      headers: {
+        "x-access-tokenseller": localStorage.getItem("tokenseller")
+      },
+    }).then((response) => {
+      dispatch({type: SET_SELLER_INFO, sellerinfo: response.data});
+      // console.log(sellerinfo);
+    }).catch((err) => console.log(err));
+  }, [sellerinfo]);
 
   useEffect(() => {
     Axios.get("http://localhost:3001/loginsession", {
@@ -88,121 +100,6 @@ function Dashboard() {
     )
   }
 
-  const ClosedMenu = () => {
-    return(
-      <ul id='nav_links_closed'>
-        <li id={dashstats? "openned" : "closed"}>
-          <p id='shopname'><StarIcon /></p>
-        </li>
-        <li id={dashstats? "openned" : "closed"} className='li_links'>
-          <Link className='links_dash_icons' to='/dashboard'><HomeIcon /></Link>
-        </li>
-        <li id={dashstats? "openned" : "closed"} className='li_links'>
-          <Link className='links_dash_icons' to='/dashboard/shopadmin'><ProductsIcon /></Link>
-        </li>
-        <li id={dashstats? "openned" : "closed"} className='li_links'>
-          <Link className='links_dash_icons' to='/dashboard/orders'><OrdersIcon /></Link>
-        </li>
-        <li id={dashstats? "openned" : "closed"} className='li_links'>
-          <Link className='links_dash_icons' to='/dashboard/messages'><MessagesIcon /></Link>
-        </li>
-        <li id={dashstats? "openned" : "closed"} className='li_links'>
-          <Link className='links_dash_icons' to='/dashboard/account'><AccountIcon /></Link>
-        </li>
-        <li id={dashstats? "openned" : "closed"} className='li_links logout_btn_menu_closed'>
-          <button id='btn_lgt_closed' onClick={logout}><LogoutIcon /></button>
-        </li>
-
-        <li id={dashstats? "closed" : "openned"}>
-          <p id='shopname'><StarIcon />
-          <motion.span
-          id='span_id'
-          animate={{
-            fontSize: dashstats? "0px" : "17px"
-          }}
-
-          transition={{
-            delay: dashstats? 0 : 0
-          }}
-          >{shopID}</motion.span></p>
-        </li>
-        <li id={dashstats? "closed" : "openned"} className='li_links'>
-          <Link className='links_dash' to='/dashboard'><HomeIcon/>
-          <motion.span
-          id='span_id'
-          animate={{
-            fontSize: dashstats? "0px" : "15px"
-          }}
-
-          transition={{
-            delay: dashstats? 0 : 0.1
-          }}
-          >Home</motion.span>
-          </Link>
-        </li>
-        <li id={dashstats? "closed" : "openned"} className='li_links'>
-          <Link className='links_dash' to='/dashboard/shopadmin'><ProductsIcon />
-          <motion.span
-          id='span_id'
-          animate={{
-            fontSize: dashstats? "0px" : "15px"
-          }}
-
-          transition={{
-            delay: dashstats? 0 : 0.2
-          }}
-          >Products</motion.span>
-          </Link>
-        </li>
-        <li id={dashstats? "closed" : "openned"} className='li_links'>
-          <Link className='links_dash' to='/dashboard/orders'><OrdersIcon />
-          <motion.span
-          id='span_id'
-          animate={{
-            fontSize: dashstats? "0px" : "15px"
-          }}
-
-          transition={{
-            delay: dashstats? 0 : 0.3
-          }}
-          >Orders</motion.span>
-          </Link>
-        </li>
-        <li id={dashstats? "closed" : "openned"} className='li_links'>
-          <Link className='links_dash' to='/dashboard/messages'><MessagesIcon />
-          <motion.span
-          id='span_id'
-          animate={{
-            fontSize: dashstats? "0px" : "15px"
-          }}
-
-          transition={{
-            delay: dashstats? 0 : 0.4
-          }}
-          >Messages</motion.span>
-          </Link>
-        </li>
-        <li id={dashstats? "closed" : "openned"} className='li_links'>
-          <Link className='links_dash' to='/dashboard/account'><AccountIcon />
-          <motion.span
-          id='span_id'
-          animate={{
-            fontSize: dashstats? "0px" : "15px"
-          }}
-
-          transition={{
-            delay: dashstats? 0 : 0.5
-          }}
-          >Account</motion.span>
-          </Link>
-        </li>
-        <li id={dashstats? "closed" : "openned"} className='li_links logout_btn_menu_closed'>
-          <button id='btn_lgt' onClick={logout}>Logout</button>
-        </li>
-      </ul>
-    )
-  }
-
   // const DashboardComponents = () => {
   //   if(redirector){
   //       return(
@@ -226,7 +123,116 @@ function Dashboard() {
               </div>
               <ul id='nav_menus'>
                 <li>
-                  <ClosedMenu />
+                  <ul id='nav_links_closed'>
+                    <li id={dashstats? "openned" : "closed"}>
+                      <p id='shopname'><StarIcon /></p>
+                    </li>
+                    <li id={dashstats? "openned" : "closed"} className='li_links'>
+                      <Link className='links_dash_icons' to='/dashboard'><HomeIcon /></Link>
+                    </li>
+                    <li id={dashstats? "openned" : "closed"} className='li_links'>
+                      <Link className='links_dash_icons' to='/dashboard/shopadmin'><ProductsIcon /></Link>
+                    </li>
+                    <li id={dashstats? "openned" : "closed"} className='li_links'>
+                      <Link className='links_dash_icons' to='/dashboard/orders'><OrdersIcon /></Link>
+                    </li>
+                    <li id={dashstats? "openned" : "closed"} className='li_links'>
+                      <Link className='links_dash_icons' to='/dashboard/messages'><MessagesIcon /></Link>
+                    </li>
+                    <li id={dashstats? "openned" : "closed"} className='li_links'>
+                      <Link className='links_dash_icons' to='/dashboard/account'><AccountIcon /></Link>
+                    </li>
+                    <li id={dashstats? "openned" : "closed"} className='li_links logout_btn_menu_closed'>
+                      <button id='btn_lgt_closed' onClick={logout}><LogoutIcon /></button>
+                    </li>
+
+                    <li id={dashstats? "closed" : "openned"}>
+                      <p id='shopname'><StarIcon />
+                      <motion.span
+                      id='span_id'
+                      animate={{
+                        fontSize: dashstats? "0px" : "17px"
+                      }}
+
+                      transition={{
+                        delay: dashstats? 0 : 0
+                      }}
+                      >{shopID}</motion.span></p>
+                    </li>
+                    <li id={dashstats? "closed" : "openned"} className='li_links'>
+                      <Link className='links_dash' to='/dashboard'><HomeIcon/>
+                      <motion.span
+                      id='span_id'
+                      animate={{
+                        fontSize: dashstats? "0px" : "15px"
+                      }}
+
+                      transition={{
+                        delay: dashstats? 0 : 0.1
+                      }}
+                      >Home</motion.span>
+                      </Link>
+                    </li>
+                    <li id={dashstats? "closed" : "openned"} className='li_links'>
+                      <Link className='links_dash' to='/dashboard/shopadmin'><ProductsIcon />
+                      <motion.span
+                      id='span_id'
+                      animate={{
+                        fontSize: dashstats? "0px" : "15px"
+                      }}
+
+                      transition={{
+                        delay: dashstats? 0 : 0.2
+                      }}
+                      >Products</motion.span>
+                      </Link>
+                    </li>
+                    <li id={dashstats? "closed" : "openned"} className='li_links'>
+                      <Link className='links_dash' to='/dashboard/orders'><OrdersIcon />
+                      <motion.span
+                      id='span_id'
+                      animate={{
+                        fontSize: dashstats? "0px" : "15px"
+                      }}
+
+                      transition={{
+                        delay: dashstats? 0 : 0.3
+                      }}
+                      >Orders</motion.span>
+                      </Link>
+                    </li>
+                    <li id={dashstats? "closed" : "openned"} className='li_links'>
+                      <Link className='links_dash' to='/dashboard/messages'><MessagesIcon />
+                      <motion.span
+                      id='span_id'
+                      animate={{
+                        fontSize: dashstats? "0px" : "15px"
+                      }}
+
+                      transition={{
+                        delay: dashstats? 0 : 0.4
+                      }}
+                      >Messages</motion.span>
+                      </Link>
+                    </li>
+                    <li id={dashstats? "closed" : "openned"} className='li_links'>
+                      <Link className='links_dash' to='/dashboard/account'><AccountIcon />
+                      <motion.span
+                      id='span_id'
+                      animate={{
+                        fontSize: dashstats? "0px" : "15px"
+                      }}
+
+                      transition={{
+                        delay: dashstats? 0 : 0.5
+                      }}
+                      >Account</motion.span>
+                      </Link>
+                    </li>
+                    <li id={dashstats? "closed" : "openned"} className='li_links logout_btn_menu_closed'>
+                      <button id='btn_lgt' onClick={logout}>Logout</button>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </motion.div>
