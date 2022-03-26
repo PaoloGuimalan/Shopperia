@@ -47,7 +47,7 @@ function OrdersDashboard() {
               <button className='btns_nav_orders' onClick={() => setstatusifier("OnDelivery")}>On Delivery</button>
             </li>
             <li>
-              <button className='btns_nav_orders' onClick={() => setstatusifier("Received")}>Received</button>
+              <button className='btns_nav_orders' onClick={() => setstatusifier("Received")}>Delivered</button>
             </li>
             <li>
               <button className='btns_nav_orders' onClick={() => setstatusifier("Cancelled")}>Cancelled</button>
@@ -55,16 +55,52 @@ function OrdersDashboard() {
           </nav>
         </li>
         <li id='li_label_status'>
-          <p id='label_statusifier'>{statusifier} Orders</p>
+          <p id='label_statusifier'>{statusifier == "Received"? "Delivered" : statusifier} Orders</p>
         </li>
         <li>
-          {ordersadmin.map((items) => {
-            return(
-              <div>
-                <p>{items.user_id} | {items.product_id} | {items.status}</p>
-              </div>
-            )
-          })}
+          <table id='table_orders'>
+            <tbody>
+              <tr>
+                <th id='th_one'>
+                  Order ID
+                </th>
+                <th id='th_two'>
+                  Receiver | Address
+                </th>
+                <th id='th_three'>
+                  Order Information<br />(Type, Size, Quantity, Price)
+                </th>
+                <th id='th_four'>
+                  Date Ordered
+                </th>
+                <th id='th_five'>
+                  Set Order
+                </th>
+              </tr>
+                {ordersadmin.map((items) => {
+                  return(
+                    <tr key={items.order_id} className='tr_orders'>
+                      <td>
+                        {items.order_id}
+                      </td>
+                      <td>
+                        ....Testing
+                      </td>
+                      <td>
+                        ....Type | ....Size | {items.variety} | &#8369;{items.order_total}
+                      </td>
+                      <td>
+                        ....Date Ordered
+                      </td>
+                      <td>
+                        <button className='btns_order' id='btn_conf'>Confirm Order</button>
+                        <button className='btns_order' id='btn_can'>Deny Order</button>
+                      </td>
+                    </tr>
+                  )
+                })}
+            </tbody>
+          </table>
         </li>
       </nav>
     </div>

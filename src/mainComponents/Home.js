@@ -123,7 +123,7 @@ function Home() {
             <li>
               <ul className='menu_item_ul'>
                 <li>
-                  <p><b>My Pocket</b></p>
+                  <p><b>My Orders</b></p>
                   <ul className='links_list'>
                     <li>
                       <Link to='/profile/pocket/cart' className='links'><p>Cart</p></Link>

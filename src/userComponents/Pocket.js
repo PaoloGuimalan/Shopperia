@@ -41,7 +41,7 @@ function Pocket() {
     <div id='pocket_div'>
         <nav id='nav_pocket'>
             <li id='li_nav_one'>
-                <h3 id='label_pocket'>My Pocket</h3>
+                <h3 id='label_pocket'>My Orders</h3>
             </li>
             <li id='li_nav_two'>
                 <nav id='nav_btns_pocket'>
