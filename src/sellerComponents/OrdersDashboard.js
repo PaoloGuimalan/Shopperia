@@ -32,6 +32,19 @@ function OrdersDashboard() {
     }).catch((err) => console.log(err));
   }, [ordersadmin, statusifier]);
 
+  const confOrder = (order_id ,newstatus) => {
+    Axios.post('http://localhost:3001/updateOrderStatus', {
+      order_id: order_id, 
+      status: newstatus
+    }, {
+      headers: {
+        "x-access-tokenseller": localStorage.getItem("tokenseller")
+      },
+    }).then((response) => {
+
+    }).catch(err => console.log(err));
+  }
+
   return (
     <div id='div_order'>
       <nav id='nav_order'>
@@ -79,24 +92,28 @@ function OrdersDashboard() {
               </tr>
                 {ordersadmin.map((items) => {
                   return(
-                    <tr key={items.order_id} className='tr_orders'>
+                    <motion.tr
+                    whileHover={{
+                      boxShadow: "0px 0px 5px black"
+                    }} 
+                    key={items.order_id} className='tr_orders'>
                       <td>
-                        {items.order_id}
+                        <Link to={`/dashboard/orders/${items.order_id}`} className='link_orders'>{items.order_id}</Link>
                       </td>
                       <td>
-                        ....Testing
+                        <b>{items.receiver}</b> <br /> {items.fulladdress}
                       </td>
                       <td>
-                        ....Type | ....Size | {items.variety} | &#8369;{items.order_total}
+                        {items.var_typename} | {items.var_size} | {items.variety} item/s | &#8369;{items.order_total}
                       </td>
                       <td>
-                        ....Date Ordered
+                        {items.date_ordered}
                       </td>
                       <td>
-                        <button className='btns_order' id='btn_conf'>Confirm Order</button>
-                        <button className='btns_order' id='btn_can'>Deny Order</button>
+                        <button style={{display: items.status == "Cancelled" || items.status == "Received"? "none" : "block"}} className='btns_order' id='btn_conf' onClick={() => {confOrder(items.order_id , items.status == "OnDelivery"? "Received":"OnDelivery")}}>{items.status == "OnDelivery"? "Mark as Delivered":"Confirm Order"}</button>
+                        <button style={{display: items.status != "Pending"? "none" : "block"}} className='btns_order' id='btn_can' onClick={() => {confOrder(items.order_id, "Cancelled")}}>Deny Order</button>
                       </td>
-                    </tr>
+                    </motion.tr>
                   )
                 })}
             </tbody>

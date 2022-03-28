@@ -74,7 +74,9 @@
 }
 
 #th_one, #th_two, #th_three, #th_four, #th_five{
-    border: solid 1px black;
+    background: linear-gradient(#e10013, #D60789);
+    color: white;
+    font-size: 15px;
 }
 
 #th_one{
@@ -109,9 +111,14 @@
 }
 
 .tr_orders{
-    background-color: grey;
+    /* background-color: rgb(199, 199, 199); */
     padding-top: 5px;
-    color: white;
+    color: black;
+    /* box-shadow: 0px 0px 5px black; */
+    /* border-bottom: solid 1px black; */
+    /* margin-top: 5px; */
+    cursor: pointer;
+    font-size: 15px;
 }
 
 #btn_conf{
@@ -125,6 +132,12 @@
     background-color: red;
     border: none;
     color: white;
+}
+
+.link_orders{
+    text-align: left;
+    text-decoration: underline;
+    color: black;
 }
 
 @media screen and (max-width: 720px) {

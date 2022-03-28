@@ -76,6 +76,7 @@ function ProductsDashboard() {
     form.append('prbrand', prbrand);
     form.append('product_id', product_id);
     form.append('shopname', shopID.shopName);
+    form.append('shopID', shopID.shopID)
 
     // console.log("Sizes: "+numbersizes+" | "+"Types: "+numbertypes);
 

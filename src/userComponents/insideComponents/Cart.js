@@ -27,15 +27,28 @@ function Cart() {
     }).catch((err) => console.log(err));
   }, [userName, cart]);
 
+  const confirmOrder = (order_id, newstatus) => {
+    Axios.post('http://localhost:3001/updateOrderStatus', {
+      order_id: order_id, 
+      status: newstatus
+    }, {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      },
+    }).then((response) => {
+
+    }).catch(err => console.log(err));
+  }
+
   return (
     <div id='cart_div'>
       <nav id='nav_cart'>
-        <li>
+        <li className='li_main_orders'>
         {cart.length >= 1? (
             cart.map((res) => {
               return(
-                <nav id='nav_list' key={res.product_id}>
-                  <li>
+                <nav id='nav_list' key={res.order_id}>
+                  <li className='li_image_container'>
                     <img src={res.var_img} className='pr_var_prev'/>
                   </li>
                   <li id='li_main_last'>
@@ -51,6 +64,10 @@ function Cart() {
                       </li>
                       <li>
                         <h4 id='total_var'>Order Total: {res.order_total}</h4>
+                      </li>
+                      <li className='btn_handler_confirm'>
+                        <button className='btn_confirm_from_cart' onClick={() => (confirmOrder(res.order_id, "Pending"))}>Confirm Order</button>
+                        <button className='btn_confirm_from_cart' onClick={() => (confirmOrder(res.order_id, "Removed"))}>Remove Product</button>
                       </li>
                   </li>
                 </nav>

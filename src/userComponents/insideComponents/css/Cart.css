@@ -10,6 +10,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
+    /* background-color: aqua; */
 }
 
 #nav_cart li:first-of-type{
@@ -36,6 +37,7 @@
     text-align: left;
     height: auto;
     margin-bottom: 10px;
+    /* background-color: aqua; */
 }
 
 #nav_list li:first-of-type{
@@ -111,6 +113,8 @@
 
 #li_main_last{
     padding-left: 20px;
+    /* background-color: aqua; */
+    width: 70%;
 }
 
 #name_var{
@@ -131,8 +135,8 @@
 .pr_var_prev{
     width: 100%;
     height: 100%;
-    max-width: 160px;
-    max-height: 160px;
+    max-width: 200px;
+    max-height: 205px;
     margin: 0;
     padding: 0;
 }
@@ -141,3 +145,51 @@
     /* background-color: aqua; */
     text-align: left;
 }
+
+.btn_confirm_from_cart{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 30px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.btn_confirm_from_cart:first-of-type{
+    background-color: white;
+    border: solid 1px orange;
+    color: orange;
+}
+
+.btn_confirm_from_cart:first-of-type:hover{
+    background-color: orange;
+    border: solid 1px orange;
+    color: white;
+}
+
+.btn_confirm_from_cart:last-of-type{
+    background-color: white;
+    border: solid 1px red;
+    color: red;
+}
+
+.btn_confirm_from_cart:last-of-type:hover{
+    background-color: red;
+    border: solid 1px red;
+    color: white;
+}
+
+.btn_handler_confirm{
+    /* background-color: aqua; */
+    /* width: 100%; */
+    text-align: right;
+}
+
+/* .li_image_container{
+    width: 30%;
+    background-color: aqua;
+} */
+
+/* .li_main_orders{
+    background-color: aqua;
+} */
