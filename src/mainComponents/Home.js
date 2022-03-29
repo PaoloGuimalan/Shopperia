@@ -12,6 +12,7 @@ import MessagesIcon from '@material-ui/icons/MessageOutlined';
 import { motion } from 'framer-motion';
 import Axios from 'axios';
 import { SET_ID, SET_LOGIN, SET_PRODUCTS, SET_SEARCH } from '../Redux/types/types';
+import Messages from '../userComponents/Messages';
 
 function Home() {
 
@@ -23,6 +24,7 @@ function Home() {
   const navigate = useNavigate();
 
   const [menu, setmenu] = useState(false);
+  const [messagespanel, setmessagespanel] = useState(false);
   // const [searchvalue, setsearchvalue] = useState("");
 
   const proDs = useSelector(state => state.products);
@@ -79,7 +81,7 @@ function Home() {
               {/* <div id='menu_dropdown'>Hellokasjdhkashdkjahsdkj</div> */}
             </li>
             <li>
-              <Link to='/messages'><button className='navs hidder'><MessagesIcon /></button></Link>
+              <button className='navs hidder' onClick={() => setmessagespanel(!messagespanel)}><MessagesIcon /></button>
             </li>
             <li>
               <Link to='/notifications'><button className='navs hidder'><Notifs /></button></Link>
@@ -92,6 +94,13 @@ function Home() {
             </li>
           </nav>
         </div>
+        <motion.div id='messages_panel'
+        animate={{
+          height: messagespanel? "auto" : "0px"
+        }}
+        >
+          <Messages />
+        </motion.div>
         <motion.div
         animate={{
           height: menu? "auto" : "0px"

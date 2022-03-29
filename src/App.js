@@ -12,6 +12,8 @@ import Axios from 'axios';
 import Search from '../src/userComponents/Search';
 import ProductsView from './userComponents/ProductsView';
 import Pocket from './userComponents/Pocket';
+import Messages from './userComponents/Messages';
+import ShopView from './userComponents/ShopView';
 
 function App() {
 
@@ -94,6 +96,7 @@ function App() {
         <Route path='/search' element={<Search/>} />
         <Route path='/search/:query' element={<Search/>} />
         <Route path='/productsView/:queryID' element={<ProductsView />} />
+        <Route path='/shopview/:shopID' element={<ShopView />} />
       </Routes>
     </div>
   );
