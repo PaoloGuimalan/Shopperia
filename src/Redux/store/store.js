@@ -21,6 +21,7 @@ import { setcancelled } from "../actions/setcancelled";
 import { setshopresult } from "../actions/setshopresults";
 import { setsellerinfo } from "../actions/setsellerinfo";
 import { setordersadmin } from "../actions/setordersadmin";
+import { settogglechatbox } from "../actions/settogglechatbox";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -44,7 +45,8 @@ const combiner = combineReducers({
     cancelled: setcancelled,
     shopresult: setshopresult,
     sellerinfo: setsellerinfo,
-    ordersadmin: setordersadmin
+    ordersadmin: setordersadmin,
+    chatboxstatus: settogglechatbox
 })
 
 const store = createStore(combiner);

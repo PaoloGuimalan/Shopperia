@@ -11,14 +11,16 @@ import CartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MessagesIcon from '@material-ui/icons/MessageOutlined';
 import { motion } from 'framer-motion';
 import Axios from 'axios';
-import { SET_ID, SET_LOGIN, SET_PRODUCTS, SET_SEARCH } from '../Redux/types/types';
+import { SET_ID, SET_LOGIN, SET_PRODUCTS, SET_SEARCH, TOGGLE_CHAT_BOX } from '../Redux/types/types';
 import Messages from '../userComponents/Messages';
+import CloseIcon from '@material-ui/icons/Close';
 
 function Home() {
 
   const userName = useSelector(state => state.userID);
   const redirector = useSelector(state => state.statusLogin);
   const searchvalue = useSelector(state => state.searchvalue);
+  const statuschatbox = useSelector(state => state.chatboxstatus);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -63,6 +65,10 @@ function Home() {
       navigate(`/search/${searchUrl}`);
   }
 
+  const closeChatBox = (open, user) => {
+    dispatch({type: TOGGLE_CHAT_BOX, status: {open: open, user: user}});
+  }
+
   return (
     <div id='home_div'>
         <div id='navigation_div'>
@@ -94,6 +100,42 @@ function Home() {
             </li>
           </nav>
         </div>
+        <motion.div id='chat_box_div'
+        drag
+        dragConstraints={{
+          top: -100,
+          right: 700,
+          left: 0,
+          bottom: 0
+        }}
+        animate={{
+          height: statuschatbox.open? "400px" : "0px"
+        }}
+        >
+          <nav id='main_nav_chatbox'>
+            <li>
+              <nav id='header_chatbox'>
+                <li className='li_header_chatbox'>
+                  <p>{statuschatbox.user}</p>
+                </li>
+                <li className='li_header_chatbox'>
+                  <button id='btn_close_chatbox' onClick={() => closeChatBox(false, "")}><CloseIcon style={{color: "white"}} /></button>
+                </li>
+              </nav>
+            </li>
+            <li id='li_content_manager'>
+              <p className='content_messages sender'>Hello</p>
+              <p className='content_messages me'>Hello</p>
+              <p className='content_messages sender'>asdkhaskdjhkasjhdkja asdajhsgdhjasd asdhgafsdhgf</p>
+              <p className='content_messages sender'>Hello</p>
+              <p className='content_messages me'>asdkahsdk hjsgsd hashgdfas bbbshg</p>
+              <p className='content_messages sender'>asdkhaskdjhkasjhdkja asdajhsgdhjasd asdhgafsdhgf</p>
+            </li>
+            <li id='li_input_manager'>
+              Space for Input Field
+            </li>
+          </nav>
+        </motion.div>
         <motion.div id='messages_panel'
         animate={{
           height: messagespanel? "auto" : "0px"
