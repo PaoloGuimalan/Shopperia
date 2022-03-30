@@ -35,3 +35,7 @@ export const SET_SELLER_INFO = 'SET_SELLER_INFO';
 export const SET_ORDERS_ADMIN = 'SET_ORDERS_ADMIN';
 
 export const TOGGLE_CHAT_BOX = 'TOGGLE_CHAT_BOX';
+
+export const MINIMIZE_CHAT_BOX = 'MINIMIZE_CHAT_BOX';
+
+export const SHOP_PREVIEW = 'SHOP_PREVIEW';

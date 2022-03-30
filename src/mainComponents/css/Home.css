@@ -124,6 +124,7 @@
     box-shadow: 0px 0px 5px black;
     bottom: 5px;
     left: 50px;
+    z-index: 1;
     /* cursor: pointer; */
 }
 
@@ -166,6 +167,7 @@
 #li_input_manager{
     background: linear-gradient(#e10013, #D60789);
     color: white;
+    height: 60px;
 }
 
 #main_nav_chatbox{

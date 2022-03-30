@@ -6,3 +6,39 @@
   margin: 0;
   padding: 0;
 }
+
+#chat_head_icon{
+  display: none;
+  z-index: 1;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+#img_chat_head{
+  box-shadow: 0px 0px 5px black;
+  border-radius: 60px;
+  max-width: 60px;
+  max-height: 60px;
+}
+
+#div_send{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#msg_content{
+  width: 80%;
+  height: 25px;
+  margin-top: 7px;
+  border-radius: 5px;
+  border: solid 1px grey;
+}
+
+#btn_send_msg{
+  margin-top: 9px;
+  background-color: transparent;
+  border: none;
+}

@@ -22,6 +22,8 @@ import { setshopresult } from "../actions/setshopresults";
 import { setsellerinfo } from "../actions/setsellerinfo";
 import { setordersadmin } from "../actions/setordersadmin";
 import { settogglechatbox } from "../actions/settogglechatbox";
+import { setminimizechatbox } from "../actions/setminimizechatbox";
+import { setshoppreview } from "../actions/setshoppreview";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -46,7 +48,9 @@ const combiner = combineReducers({
     shopresult: setshopresult,
     sellerinfo: setsellerinfo,
     ordersadmin: setordersadmin,
-    chatboxstatus: settogglechatbox
+    chatboxstatus: settogglechatbox,
+    minimizestate: setminimizechatbox,
+    shoppreview: setshoppreview
 })
 
 const store = createStore(combiner);
