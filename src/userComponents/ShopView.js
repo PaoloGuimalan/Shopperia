@@ -8,7 +8,7 @@ import ViewLogo from '../mainComponents/imgs/home_logo.png';
 import { motion } from 'framer-motion';
 import Axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { SHOP_PREVIEW } from '../Redux/types/types';
+import { SHOP_PREVIEW, TOGGLE_CHAT_BOX } from '../Redux/types/types';
 
 function ShopView() {
 
@@ -25,6 +25,9 @@ function ShopView() {
     }).catch((err) => console.log(err));
   }, [shopID])
   
+  const chatBox = (open, user) => {
+    dispatch({type: TOGGLE_CHAT_BOX, status: {open: open, user: user}});
+  }
 
   return (
     <div id='div_shopview'>
@@ -63,7 +66,7 @@ function ShopView() {
                 <nav id='nav_info_shop'>
                   <li id='li_uno_btns'>
                     <button className='btns_shop_prev'>Follow</button>
-                    <button className='btns_shop_prev'>Chat</button>
+                    <button className='btns_shop_prev' onClick={() => chatBox(true, shoppreview.shopID)}>Chat</button>
                   </li>
                   <li>
                     Hello

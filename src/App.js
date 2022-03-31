@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes, Link, useNavigate, useLocation } from 'react-router-dom';
 import Login from './Authentication/Login';
@@ -6,7 +6,7 @@ import Register from './Authentication/Register';
 import Home from './mainComponents/Home';
 import Profile from './userComponents/Profile';
 import Dashboard from './sellerComponents/Dashboard';
-import { SET_LOGIN, SET_ID, SET_LOGIN_SELLER, SET_ID_SELLER, SET_PRODUCTS, TOGGLE_CHAT_BOX, MINIMIZE_CHAT_BOX } from './Redux/types/types';
+import { SET_LOGIN, SET_ID, SET_LOGIN_SELLER, SET_ID_SELLER, SET_PRODUCTS, TOGGLE_CHAT_BOX, MINIMIZE_CHAT_BOX, USER_MESSAGE_INBOX } from './Redux/types/types';
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
 import Search from '../src/userComponents/Search';
@@ -25,8 +25,12 @@ function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const statuschatbox = useSelector(state => state.chatboxstatus);
+  const messageInbox = useSelector(state => state.messageInbox);
   const minimizestatebox = useSelector(state => state.minimizestate);
+  const userName = useSelector(state => state.userID);
   const redirector = useSelector(state => state.statusLogin);
+
+  const [contentmsg, setcontentmsg] = useState("");
 
   useEffect(() => {
     // if(redirector == false){
@@ -40,6 +44,18 @@ function App() {
       navigate("/home");
     }
   }, [redirector])
+
+  useEffect(() => {
+    if(statuschatbox.user != ""){
+      Axios.get(`http://localhost:3001/messagesInbox/${userName}/${statuschatbox.user}`, {
+        headers: {
+          "x-access-token": localStorage.getItem("token")
+        },
+      }).then((response) => {
+        dispatch({type: USER_MESSAGE_INBOX, messageInbox: response.data});
+      }).catch((err) => {console.log(err)});
+    }
+  }, [messageInbox, statuschatbox.user]);
 
   const buyerGetter = () => {
     Axios.get("http://localhost:3001/loginsession", {
@@ -102,6 +118,23 @@ function App() {
     dispatch({type: TOGGLE_CHAT_BOX, status: {open: minimize, user: user}});
   }
 
+  const sendMessage = () => {
+    Axios.post("http://localhost:3001/sendMessage", {
+      message_content: contentmsg,
+      from: userName,
+      to: statuschatbox.user
+    }, {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      },
+    }).then((response) => {
+      //response reserve if there is
+      if(response.status){
+        setcontentmsg("");
+      }
+    }).catch((err) => console.log(err));
+  }
+
   return (
     <div className="App">
       <motion.div id='chat_head_icon' onClick={() => {openMinimizedChatBox(true, statuschatbox.user)}}
@@ -135,17 +168,18 @@ function App() {
               </nav>
             </li>
             <li id='li_content_manager'>
-              <p className='content_messages sender'>Hello</p>
-              <p className='content_messages me'>Hello</p>
-              <p className='content_messages sender'>asdkhaskdjhkasjhdkja asdajhsgdhjasd asdhgafsdhgf</p>
-              <p className='content_messages sender'>Hello</p>
-              <p className='content_messages me'>asdkahsdk hjsgsd hashgdfas bbbshg</p>
-              <p className='content_messages sender'>asdkhaskdjhkasjhdkja asdajhsgdhjasd asdhgafsdhgf</p>
+              {messageInbox.length > 0? messageInbox.map((inbox) => {
+                return(
+                  <p className={`content_messages ${inbox.from == userName? "me" : "sender"}`}>{inbox.message_content}</p>
+                )
+              }) : (
+                  <p>No Chats Yet</p>
+              )}
             </li>
             <li id='li_input_manager'>
               <div id='div_send'>
-                <input type='text' name='msg_content' id='msg_content' />
-                <button id='btn_send_msg'><SendIcon style={{fontSize: "20px", color: "white", cursor: "pointer"}} /></button>
+                <input type='text' name='msg_content' id='msg_content' value={contentmsg} onChange={(e) => {setcontentmsg(e.target.value)}} />
+                <button id='btn_send_msg' onClick={() => {sendMessage()}}><SendIcon style={{fontSize: "20px", color: "white", cursor: "pointer"}} /></button>
               </div>
             </li>
           </nav>

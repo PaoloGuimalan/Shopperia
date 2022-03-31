@@ -131,6 +131,8 @@
 .content_messages{
     border: solid 1px blue;
     width: fit-content;
+    /* height: 200px; */
+    word-wrap: break-word;
     min-width: 100px;
     max-width: 200px;
     text-align: left;
@@ -146,17 +148,20 @@
 
 .sender{
     margin-right: auto;
+    height: auto;
     color: blue;
 }
 
 .me{
     margin-left: auto;
+    /* height: 200px; */
     background-color: blue;
     color: white;
 }
 
 #li_content_manager{
     width: calc(100% - 20px);
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     overflow-x: auto;
