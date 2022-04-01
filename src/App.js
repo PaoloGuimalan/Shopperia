@@ -18,6 +18,8 @@ import { motion } from 'framer-motion';
 import CloseIcon from '@material-ui/icons/Close';
 import MinimizeIcon from '@material-ui/icons/Minimize';
 import SendIcon from '@material-ui/icons/Send';
+import OpenMessagesIcon from '@material-ui/icons/ArrowLeftOutlined';
+import CloseMessagesIcon from '@material-ui/icons/ArrowRightOutlined';
 
 function App() {
 
@@ -31,6 +33,7 @@ function App() {
   const redirector = useSelector(state => state.statusLogin);
 
   const [contentmsg, setcontentmsg] = useState("");
+  const [togglemsglist, settogglemsglist] = useState(false);
 
   useEffect(() => {
     // if(redirector == false){
@@ -153,34 +156,48 @@ function App() {
           height: statuschatbox.open? "400px" : "0px"
         }}
         >
-          <nav id='main_nav_chatbox'>
+          <nav id='nav_main_toggler_msg'>
+            {/* <motion.li id='primero_li_main_msg'
+            animate={{
+              display: togglemsglist? "block" : "none"
+            }}
+            >
+              <Messages />
+            </motion.li> */}
             <li>
-              <nav id='header_chatbox'>
-                <li className='li_header_chatbox'>
-                  <p>{statuschatbox.user}</p>
+              <nav id='main_nav_chatbox'>
+                <li>
+                  <nav id='header_chatbox'>
+                    <li className='li_primero'>
+                      <button id='btn_open_messages' onClick={() => {settogglemsglist(!togglemsglist)}}>{togglemsglist? <CloseMessagesIcon style={{color: "white", marginLeft: "-5px", fontSize: "30px"}} /> : <OpenMessagesIcon style={{color: "white", marginLeft: "-5px", fontSize: "30px"}} />}</button>
+                    </li>
+                    <li className='li_header_chatbox_uno'>
+                      <p>{statuschatbox.user}</p>
+                    </li>
+                    <li className='li_header_chatbox segundo'>
+                      <button id='btn_close_chatbox' onClick={() => minimizeChatBox(false, statuschatbox.user)}><MinimizeIcon style={{color: "white"}} /></button>
+                    </li>
+                    <li className='li_header_chatbox'>
+                      <button id='btn_close_chatbox' onClick={() => closeChatBox(false, "")}><CloseIcon style={{color: "white"}} /></button>
+                    </li>
+                  </nav>
                 </li>
-                <li className='li_header_chatbox'>
-                  <button id='btn_close_chatbox' onClick={() => minimizeChatBox(false, statuschatbox.user)}><MinimizeIcon style={{color: "white"}} /></button>
+                <li id='li_content_manager'>
+                  {messageInbox.length > 0? messageInbox.map((inbox) => {
+                    return(
+                      <p className={`content_messages ${inbox.from == userName? "me" : "sender"}`}>{inbox.message_content}</p>
+                    )
+                  }) : (
+                      <p>No Chats Yet</p>
+                  )}
                 </li>
-                <li className='li_header_chatbox'>
-                  <button id='btn_close_chatbox' onClick={() => closeChatBox(false, "")}><CloseIcon style={{color: "white"}} /></button>
+                <li id='li_input_manager'>
+                  <div id='div_send'>
+                    <input type='text' name='msg_content' id='msg_content' value={contentmsg} onChange={(e) => {setcontentmsg(e.target.value)}} />
+                    <button id='btn_send_msg' onClick={() => {sendMessage()}}><SendIcon style={{fontSize: "20px", color: "white", cursor: "pointer"}} /></button>
+                  </div>
                 </li>
               </nav>
-            </li>
-            <li id='li_content_manager'>
-              {messageInbox.length > 0? messageInbox.map((inbox) => {
-                return(
-                  <p className={`content_messages ${inbox.from == userName? "me" : "sender"}`}>{inbox.message_content}</p>
-                )
-              }) : (
-                  <p>No Chats Yet</p>
-              )}
-            </li>
-            <li id='li_input_manager'>
-              <div id='div_send'>
-                <input type='text' name='msg_content' id='msg_content' value={contentmsg} onChange={(e) => {setcontentmsg(e.target.value)}} />
-                <button id='btn_send_msg' onClick={() => {sendMessage()}}><SendIcon style={{fontSize: "20px", color: "white", cursor: "pointer"}} /></button>
-              </div>
             </li>
           </nav>
       </motion.div>

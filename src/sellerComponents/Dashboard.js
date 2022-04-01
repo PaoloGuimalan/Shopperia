@@ -241,7 +241,8 @@ function Dashboard() {
               <Route path='/shopadmin' element={<ProductsDashboard />} />
               <Route path='/shopadmin/:product_id' element={<ProductInfo />} />
               <Route path='/orders' element={<OrdersDashboard />} />
-              <Route path='/messages' element={<MessageDashboard />} />
+              <Route path='/messages/:user_id' element={<MessageDashboard />} />
+              <Route path='/messages/*' element={<MessageDashboard />} />
               <Route path='/account' element={<AccountDashboard />} />
             </Routes>
         </div>

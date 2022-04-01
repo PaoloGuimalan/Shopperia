@@ -87,3 +87,34 @@
     margin-left: 5px;
     font-size: 13px;
 }
+
+.message_content_preview_seller{
+    margin-top: 20px;
+}
+
+#username_label_seller{
+    margin-top: 10px;
+}
+
+#main_nav_chatbox_seller{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* max-width: 200px; */
+    /* min-width: 300px; */
+    height: 100%;
+    /* background-color: aqua; */
+}
+
+#li_content_manager_seller{
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-y: scroll;
+}
+
+.link_btns_seller_msg_list{
+    color: black;
+    text-decoration: none;
+}

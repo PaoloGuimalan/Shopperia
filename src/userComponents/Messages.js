@@ -9,6 +9,8 @@ function Messages() {
 
   const userName = useSelector(state => state.userID);
   const messagelist = useSelector(state => state.messagelist);
+  const messageInbox = useSelector(state => state.messageInbox);
+  const statuschatbox = useSelector(state => state.chatboxstatus);
   const dispatch = useDispatch();
 
   const chatBox = (open, user, conversation_id) => {
