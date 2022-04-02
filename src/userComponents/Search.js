@@ -7,6 +7,8 @@ import { SET_PRODRESULTS, SET_SEARCH, SET_SHOP_RESULT } from '../Redux/types/typ
 import ArrowBack from '@material-ui/icons/KeyboardArrowLeft';
 import Axios from 'axios';
 import { motion } from 'framer-motion';
+import StarIcon from '@material-ui/icons/StarBorderOutlined';
+import UnselStarIcon from '@material-ui/icons/Star';
 
 function Search() {
 
@@ -113,6 +115,15 @@ function Search() {
                             </li>
                             <li className='above_li'>
                               <p><b>{items.prname} | {items.prbrand}</b></p>
+                            </li>
+                            <li className='above_li'>
+                              <p id='display_stars'><b>{items.overall? Math.round(items.overall * 10) / 10 : 0}</b>
+                                {items.overall >= 1? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                                {items.overall >= 2? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                                {items.overall >= 3? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                                {items.overall >= 4? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                                {items.overall >= 5? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                              </p>
                             </li>
                             <li className='above_li'>
                               <p><b>&#8369;{items.minPrice} - &#8369;{items.maxPrice}</b></p>

@@ -14,8 +14,13 @@
     color: white;
 }
 
-.img_shop{
+/* .img_shop{
 
+} */
+
+#display_stars{
+    display: flex;
+    /* font: 30px; */
 }
 
 #btn_back{

@@ -328,6 +328,13 @@ function ProductsView() {
                       <td>
                         <p id='label_name'>{tbldetails.prname}</p>
                         <p id='label_shop'>{tbldetails.prbrand} | {tbldetails.shopname}</p>
+                        <p id='label_stars'>{tbldetails.overall? Math.round(tbldetails.overall * 10) / 10 : 0}
+                        {tbldetails.overall >= 1? <UnselStarIcon style={{fontSize: "32px", color: "yellow"}} /> : <StarIcon style={{fontSize: "32px", color: "yellow"}} />}
+                        {tbldetails.overall >= 2? <UnselStarIcon style={{fontSize: "32px", color: "yellow"}} /> : <StarIcon style={{fontSize: "32px", color: "yellow"}} />}
+                        {tbldetails.overall >= 3? <UnselStarIcon style={{fontSize: "32px", color: "yellow"}} /> : <StarIcon style={{fontSize: "32px", color: "yellow"}} />}
+                        {tbldetails.overall >= 4? <UnselStarIcon style={{fontSize: "32px", color: "yellow"}} /> : <StarIcon style={{fontSize: "32px", color: "yellow"}} />}
+                        {tbldetails.overall >= 5? <UnselStarIcon style={{fontSize: "32px", color: "yellow"}} /> : <StarIcon style={{fontSize: "32px", color: "yellow"}} />}
+                        </p>
                       </td>
                     </tr>
                     <tr>
