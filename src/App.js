@@ -20,6 +20,8 @@ import MinimizeIcon from '@material-ui/icons/Minimize';
 import SendIcon from '@material-ui/icons/Send';
 import OpenMessagesIcon from '@material-ui/icons/ArrowLeftOutlined';
 import CloseMessagesIcon from '@material-ui/icons/ArrowRightOutlined';
+import UserVerification from './userComponents/UserVerification';
+import SellerVerification from './sellerComponents/SellerVerification';
 
 function App() {
 
@@ -212,6 +214,8 @@ function App() {
         <Route path='/search/:query' element={<Search/>} />
         <Route path='/productsView/:queryID' element={<ProductsView />} />
         <Route path='/shopview/:shopID' element={<ShopView />} />
+        <Route path='/userverification/:userName/:usertoken' element={<UserVerification />} />
+        <Route path='/sellerverification/:shopID/:sellertoken' element={<SellerVerification />} />
       </Routes>
     </div>
   );

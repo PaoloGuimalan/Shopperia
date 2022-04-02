@@ -35,13 +35,26 @@ function Login() {
             // console.log(response.data);
             setloaderBar(response.data.status);
             if(response.data.status){
-                // console.log(response.data.token);
-                setTimeout(() => {
-                    localStorage.setItem("token", response.data.token);
-                    dispatch({type: SET_LOGIN, loginstatus: response.data.status});
-                    dispatch({type: SET_ID, userID: response.data.userName});
-                    navigate("/home");
-                }, 2000);
+               if(response.data.verified){
+                    // console.log(response.data.token);
+                    setTimeout(() => {
+                        localStorage.setItem("token", response.data.token);
+                        dispatch({type: SET_LOGIN, loginstatus: response.data.status});
+                        dispatch({type: SET_ID, userID: response.data.userName});
+                        navigate("/home");
+                    }, 2000);
+               }
+               else{
+                    setalertcontentresult(response.data.status);
+                    setmessageAlert(true);
+                    setalertcontent(response.data.message);
+                    setTimeout(() => {
+                        setalertcontent("");
+                        setmessageAlert(false);
+                        setalertcontentresult(response.data.status);
+                        navigate(`/userverification/${response.data.userName}/${response.data.token}`);
+                    }, 3000);
+               }
             }
             else{
                 setalertcontentresult(response.data.status);
@@ -66,13 +79,27 @@ function Login() {
             setloaderBar(response.data.status);
             if(response.data.status){
                 // console.log(response.data.token);
-                setTimeout(() => {
-                    localStorage.setItem("tokenseller", response.data.tokenseller);
-                    // console.log(response.data.tokenseller);
-                    dispatch({type: SET_LOGIN_SELLER, loginstatusseller: response.data.status});
-                    dispatch({type: SET_ID_SELLER, sellerID: response.data.userName});
-                    navigate("/dashboard");
-                }, 2000);
+                if(response.data.verified){
+                    // console.log(response.data.token);
+                    setTimeout(() => {
+                        // console.log(response.data.tokenseller);
+                        localStorage.setItem("tokenseller", response.data.tokenseller);
+                        dispatch({type: SET_LOGIN_SELLER, loginstatusseller: response.data.status});
+                        dispatch({type: SET_ID_SELLER, sellerID: response.data.userName});
+                        navigate("/dashboard");
+                    }, 2000);
+               }
+               else{
+                    setalertcontentresult(response.data.status);
+                    setmessageAlert(true);
+                    setalertcontent(response.data.message);
+                    setTimeout(() => {
+                        setalertcontent("");
+                        setmessageAlert(false);
+                        setalertcontentresult(response.data.status);
+                        navigate(`/sellerverification/${response.data.userName}/${response.data.tokenseller}`);
+                    }, 3000);
+               }
             }
             else{
                 setalertcontentresult(response.data.status);
