@@ -46,8 +46,8 @@ function Pending() {
                       <span>Quantity: {res.variety}</span>
                     </li>
                     <li>
-                        <span>Status: <span id='pending_text'><p className='p_tag_status'>{res.status}</p></span></span>
-                      </li>
+                        <span><span id='pending_text'><p className='p_tag_status'>{res.status} : {res.remarks}</p></span></span>
+                    </li>
                     <li>
                       <h4 id='total_var'>Order Total: {res.order_total}</h4>
                     </li>

@@ -26,6 +26,18 @@
     /* max-width: 700px; */
 }
 
+#div_background_drop{
+    z-index: -1;
+    display: block;
+    width: 75%;
+    height: 100%;
+    position: fixed;
+    background: url("../../userComponents/imgs/bg_logo_profile.png"), linear-gradient(#e10013, #D60789);
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: grayscale(50%);
+}
+
 #nav_messages_under{
     list-style-type: none;
     /* background-color: blue; */

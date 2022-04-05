@@ -45,13 +45,14 @@ function AccountDashboard() {
 
   return (
     <div id='div_account'>
+      <div id='background_drop'></div>
       <nav id='nav_account'>
-        <li>
-            <h4>Shop Preview</h4>
+        <li className='li_nav_preview'>
+            <h4 id='label_shop_account'>Shop Details Preview</h4>
         </li>
-        <li>
+        <li className='li_nav_preview'>
           <ul id='ul_account_prev'>
-            <li>
+            <li className='li_ul_prev uno_prev'>
               {sellerinfo.map((shop) => {
                 return(
                   <div className='div_account_prev'>
@@ -68,6 +69,19 @@ function AccountDashboard() {
                   </div>
                 )
               })}
+            </li>
+            <li className='li_ul_prev segundo_prev'>
+              <ul id='ul_details_shop'>
+                <li>
+                  <h4 id='label_details'>Shop Details</h4>
+                </li>
+                <li>
+                  <p className='label_indicators'><b>Full Address:</b> </p>
+                  <p className='label_indicators'><b>Contact Number:</b> </p>
+                  <p className='label_indicators'><b>Email:</b> {sellerinfo.map((email) => email.email)}</p>
+                  <p className='full_name_details'><b>Owner:</b> {sellerinfo.map((email) => email.full_name)}</p>
+                </li>
+              </ul>
             </li>
           </ul>
         </li>

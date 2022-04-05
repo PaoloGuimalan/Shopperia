@@ -9,20 +9,105 @@
     flex-direction: column;
     list-style-type: none;
     display: flex;
+    /* background-color: aqua; */
+    /* margin-left: -50px; */
 }
 
-#nav_account li{
+#background_drop{
+    z-index: -1;
+    display: block;
     width: 100%;
-    /* background-color: rebeccapurple; */
+    height: 310px;
+    /* background-color: aqua; */
+    position: fixed;
+    background: url("../../userComponents/imgs/bg_logo_profile.png"), linear-gradient(#e10013, #D60789);
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: grayscale(50%);
+    /* background: linear-gradient(#e10013, #D60789); */
 }
 
+/* #nav_account li{
+    width: 100%;
+    background-color: rebeccapurple;
+} */
+
+.li_nav_preview{
+    width: 100%;
+    /* margin-left: 50px; */
+    /* background-color: aqua; */
+}
+
+.li_ul_prev:first-of-type{
+    width: 100%;
+    max-width: 300px;
+    /* background-color: aqua; */
+}
+
+.li_ul_prev:last-of-type{
+    width: 100%;
+    max-width: 600px;
+    /* background-color: aqua; */
+}
+
+/* .uno_prev{
+    background-color: aqua;
+} */
 /* #nav_account li:first-of-type{
     background-color: aqua;
 } */
 
+.segundo_prev{
+    /* border: solid 1px grey; */
+    /* padding: 10px; */
+    padding-right: 50px;
+    padding-left: 20px;
+    height: 100%;
+    /* background-color: aqua; */
+}
+
+#label_details{
+    margin-top: 10px;
+    text-align: left;
+}
+
+.full_name_details{
+    margin: 5px;
+    margin-top: 25px;
+    margin-bottom: 0px;
+}
+
+#ul_details_shop{
+    /* border: solid 1px grey; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
+    padding-bottom: 40px;
+    min-height: 170px;
+    margin-left: auto;
+    margin-right: auto;
+    /* border: solid 1px black; */
+    box-shadow: 0px 0px 5px black;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.label_indicators{
+    margin: 5px;
+}
+
 #ul_account_prev{
     /* background-color: blue; */
-    margin-left: -45px;
+    margin-left: -50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .div_account_prev{
@@ -32,10 +117,11 @@
     padding-top: 20px;
     padding-bottom: 20px;
     max-height: 400px;
-    /* margin-left: -50px; */
+    margin-left: 55px;
     margin-right: auto;
+    margin-right: 20px;
     /* padding: 0; */
-    /* background-color: blue; */
+    background-color: white;
     box-shadow: 0px 0px 5px black;
     border-radius: 5px;
 }
@@ -51,8 +137,18 @@
     margin-left: 20px;
 }
 
+#label_shop_account{
+    color: white;
+}
+
 /* #ul_account_prev_inputs{
     background-color: blue;
     margin-left: -45px;
     width: 80%;
 } */
+
+@media screen and (max-width: 1022px) {
+    #background_drop{
+        height: 530px;
+    }
+}

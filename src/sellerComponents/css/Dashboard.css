@@ -46,7 +46,8 @@
 }
 
 #shopname{
-    font-size: 17px;
+    display: flex;
+    font-size: 20px;
     color: white;
     margin-bottom: 60px;
     margin-top: 50px;
@@ -73,6 +74,7 @@
 
 #span_id{
     font-size: 0px;
+    margin-left: 10px;
 }
 
 #btn_lgt{
@@ -116,6 +118,10 @@
     border: solid 1px white;
     cursor: pointer;
     margin-left: -5px;
+}
+
+.div_flexer{
+    display: flex;
 }
 
 /* .titletag_link{

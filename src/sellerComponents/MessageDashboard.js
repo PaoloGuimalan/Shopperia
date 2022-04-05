@@ -103,7 +103,8 @@ function MessageDashboard() {
           </nav>
         </li>
         <li id='li_nav_message_sec'>
-              <nav id='main_nav_chatbox_seller'>
+              {user_id? (
+                <nav id='main_nav_chatbox_seller'>
                 <li>
                   <nav id='header_chatbox'>
                     <li className='li_header_chatbox_uno'>
@@ -133,6 +134,9 @@ function MessageDashboard() {
                   </div>
                 </li>
               </nav>
+              ):(
+                <div id='div_background_drop'></div>
+              )}
         </li>
       </nav>
     </div>

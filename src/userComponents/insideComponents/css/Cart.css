@@ -56,8 +56,11 @@
 #cart_text{
     color: white;
     background-color: orangered;
-    width: 80px;
+    min-width: 80px;
+    width: auto;
     height: auto;
+    padding-left: 5px;
+    padding-right: 5px;
     /* padding-top: -20px; */
     display: inline-block;
     text-align: center;
@@ -68,8 +71,11 @@
 #pending_text{
     color: white;
     background-color: orange;
-    width: 80px;
+    min-width: 80px;
+    width: auto;
     height: auto;
+    padding-left: 5px;
+    padding-right: 5px;
     /* padding-top: -20px; */
     display: inline-block;
     text-align: center;
@@ -80,8 +86,11 @@
 #ondelivery_text{
     color: white;
     background-color: lime;
-    width: 100px;
+    min-width: 80px;
+    width: auto;
     height: auto;
+    padding-left: 5px;
+    padding-right: 5px;
     /* padding-top: -20px; */
     display: inline-block;
     text-align: center;
@@ -92,8 +101,11 @@
 #received_text{
     color: white;
     background-color: limegreen;
-    width: 80px;
+    min-width: 80px;
     height: auto;
+    width: auto;
+    padding-left: 5px;
+    padding-right: 5px;
     /* padding-top: -20px; */
     display: inline-block;
     text-align: center;
@@ -104,8 +116,11 @@
 #cancelled_text{
     color: white;
     background-color: red;
-    width: 80px;
+    min-width: 80px;
+    width: auto;
     height: auto;
+    padding-left: 5px;
+    padding-right: 5px;
     /* padding-top: -20px; */
     display: inline-block;
     text-align: center;

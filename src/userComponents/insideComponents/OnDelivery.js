@@ -46,7 +46,7 @@ function OnDelivery() {
                       <span>Quantity: {res.variety}</span>
                     </li>
                     <li>
-                        <span>Status: <span id='ondelivery_text'><p className='p_tag_status'>{res.status}</p></span></span>
+                        <span><span id='ondelivery_text'><p className='p_tag_status'>{res.status}: {res.remarks}</p></span></span>
                       </li>
                     <li>
                       <h4 id='total_var'>Order Total: {res.order_total}</h4>
