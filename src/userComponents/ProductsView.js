@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import Axios from 'axios';
 import { SET_ADDRESSES, SET_ADDRESSES_VIEW, SET_BROWSED_PROD, SET_COMMENTS, SET_VARIETY } from '../Redux/types/types';
+import PayPalOrder from './PayPalOrder';
 
 function ProductsView() {
 
@@ -42,9 +43,26 @@ function ProductsView() {
   const [alertprodstatus, setalertprodstatus] = useState(false);
   const [alertprodtrigger, setalertprodtrigger] = useState(false);
 
+  const [pmethod, setpmethod] = useState("none");
+  const [ppl, setppl] = useState(false);
+
+  const [emailcustomer, setemailcustomer] = useState("");
+
   const setStar = (number) => {
     setstarnum(number);
   }
+
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/getemailcustomer/${userName}`, {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      },
+    }).then((response) => {
+      setemailcustomer(response.data);
+      // console.log(emailcustomer);
+    }).catch((err) => console.log(err));
+  }, [emailcustomer, userName])
+  
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/getAddressesView/${userName}`, {
@@ -152,35 +170,94 @@ function ProductsView() {
     setsizeselector(size);
   }
 
+  const dataOrder = {
+    user_id: userName,
+    receiver: addresses.map((rec) => rec.receiver)[0],
+    full_address: addresses.map((rec) => rec.full_address)[0],
+    province: addresses.map((rec) => rec.province)[0],
+    postalCode: addresses.map((rec) => rec.postalCode)[0],
+    product_id: currentprod.map((pid) => pid.product_id)[0],
+    var_id: varietyresponse.map((vid) => vid.var_id)[0],
+    variety: varietycount,
+    status: floatvalue != ""? floatvalue == "add_cart"? "Cart" : "Pending" : "Cart",
+    order_total: varietyresponse.map((vid) => vid.var_price)[0] * varietycount,
+    pmethod: pmethod,
+    email: emailcustomer,
+    shopName: currentprod.map((name) => name.shopname).join("")
+  }
+
   const order_submit = (order_value) => {
-    Axios.post("http://localhost:3001/postorder", {
-      user_id: userName,
-      receiver: addresses.map((rec) => rec.receiver)[0],
-      full_address: addresses.map((rec) => rec.full_address)[0],
-      province: addresses.map((rec) => rec.province)[0],
-      postalCode: addresses.map((rec) => rec.postalCode)[0],
-      product_id: currentprod.map((pid) => pid.product_id)[0],
-      var_id: varietyresponse.map((vid) => vid.var_id)[0],
-      variety: varietycount,
-      status: order_value != ""? order_value == "add_cart"? "Cart" : "Pending" : "Cart",
-      order_total: varietyresponse.map((vid) => vid.var_price)[0] * varietycount
-    }, {
+    Axios.get(`http://localhost:3001/usercredsvalidation/${userName}`, {
       headers: {
         "x-access-token": localStorage.getItem("token")
       },
-    }).then((response) => {
-      // console.log(response.data);
-      setalertprod(response.data.message);
-      setalertprodstatus(response.data.status);
-      setTimeout(() => {
-        setalertprodtrigger(true);
-      }, 1000);
-      setTimeout(() => {
-        setalertprodtrigger(false);
-      }, 5000);
-      // setalertprod("");
-      setalertprodstatus(false);
+    }).then((responseuno) => {
+      if(responseuno.data.status == true){
+        if(pmethod != "COD" && pmethod != "none"){
+          if(pmethod == "PayPal"){
+            setppl(true);
+          }
+        }
+        else if(pmethod == "none"){
+          if(floatvalue != "" && floatvalue == "add_cart"){
+            Axios.post("http://localhost:3001/postorder", dataOrder, {
+              headers: {
+                "x-access-token": localStorage.getItem("token")
+              },
+            }).then((response) => {
+              // console.log(response.data);
+              setalertprod(response.data.message);
+              setalertprodstatus(response.data.status);
+              setTimeout(() => {
+                setalertprodtrigger(true);
+              }, 1000);
+              setTimeout(() => {
+                setalertprodtrigger(false);
+              }, 5000);
+              // setalertprod("");
+              setalertprodstatus(false);
+            }).catch((err) => console.log(err));
+          }
+          else{
+            alert("No Mode of Payment!");
+          }
+        }
+        else if(pmethod == "COD"){
+          Axios.post("http://localhost:3001/postorder", dataOrder, {
+            headers: {
+              "x-access-token": localStorage.getItem("token")
+            },
+          }).then((response) => {
+            // console.log(response.data);
+            setalertprod(response.data.message);
+            setalertprodstatus(response.data.status);
+            setTimeout(() => {
+              setalertprodtrigger(true);
+            }, 1000);
+            setTimeout(() => {
+              setalertprodtrigger(false);
+            }, 5000);
+            // setalertprod("");
+            setalertprodstatus(false);
+          }).catch((err) => console.log(err));
+        }
+        else{
+          alert("Hello")
+        }
+      }
+      else{
+        setalertprod(responseuno.data.message);
+        setalertprodstatus(responseuno.data.status);
+        setTimeout(() => {
+          setalertprodtrigger(true);
+        }, 1000);
+        setTimeout(() => {
+          setalertprodtrigger(false);
+        }, 5000);
+        setalertprodstatus(false);
+      }
     }).catch((err) => console.log(err));
+    // console.log(currentprod.map((name) => name.shopname).join(""));
   }
 
   return (
@@ -245,6 +322,18 @@ function ProductsView() {
             })}
           </li>
           <li>
+            {floatvalue != ""? floatvalue == "add_cart"? "" : (
+              <>
+                <h4>Payment Method</h4>
+                <select id='select_account_dd' onChange={(e) => {setpmethod(e.target.value)}}>
+                  <option default value="none">---select a method---</option>
+                  <option value="COD">Cash On Delivery</option>
+                  <option value="PayPal">PayPal</option>
+                </select>
+              </>
+            ) : ""}
+          </li>
+          <li>
             <h4>Quantity</h4>
             <div>
               <span><button onClick={() => {setvarietycount(varietycount + 1)}} className='btns_var_num'>+</button></span>
@@ -290,6 +379,11 @@ function ProductsView() {
             <button onClick={() => {order_submit(floatvalue)}} id={floatvalue != ''? floatvalue == 'add_cart'? "add_cart_btn" : "buy_pr_btn" : "..."} className='btns_float'>Confirm {floatvalue != ''? floatvalue == 'add_cart'? "Cart" : "Order" : "..."}</button>
             <button id='cancel_pr_btn' onClick={() => {setfloatbuy(true); setfloatvalue("");}} className='btns_float'>Cancel</button>
           </li>
+          {ppl? (
+            <li>
+              <PayPalOrder dataOrder={dataOrder} />
+            </li>
+          ) : ""}
         </ul>
       </motion.div>
       <div id='pr_content'

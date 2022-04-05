@@ -29,7 +29,7 @@ function Pending() {
   return (
     <div id='cart_div'>
       <nav id='nav_cart'>
-        <li>
+        <li id='li_cart_uno'>
         {cart.length >= 1? (
             cart.map((res) => {
               return(

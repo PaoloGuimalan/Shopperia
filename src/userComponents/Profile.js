@@ -8,6 +8,7 @@ import SavedAddresses from './insideComponents/SavedAddresses';
 import ContactDetails from './insideComponents/ContactDetails';
 import ProfileMain from './insideComponents/ProfileMain';
 import Pocket from './Pocket';
+import PaymentMethods from './insideComponents/PaymentMethods';
 
 function Profile() {
 
@@ -80,6 +81,9 @@ function Profile() {
                 <Link className='links des_links' to='/profile/pocket/cart'><button className='btns_prfff'>Cart</button></Link>
               </li>
               <li>
+                <Link className='links des_links' to='/profile/paymentmethods'><button className='btns_prfff'>Payment Accounts</button></Link>
+              </li>
+              <li>
                 <Link className='links des_links' to='/profile/contactdetails'><button className='btns_prfff'>Contact Details</button></Link>
               </li>
               <li>
@@ -97,6 +101,7 @@ function Profile() {
             <Routes>
               <Route path='/' element={<ProfileMain />}/>
               <Route path='/addresses' element={<SavedAddresses />}/>
+              <Route path='/paymentmethods' element={<PaymentMethods />} />
               <Route path='/contactdetails' element={<ContactDetails />}/>
               <Route path='/pocket/*' element={<Pocket />} />
             </Routes>

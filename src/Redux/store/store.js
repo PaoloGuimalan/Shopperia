@@ -28,6 +28,7 @@ import { setmessagelist } from "../actions/setmessagelist";
 import { setmessageinbox } from "../actions/setmessageinbox";
 import { setsellermessagelist } from "../actions/setsellermessagelist";
 import { setsellermessageinbox } from "../actions/setsellermessageinbox";
+import { setpaymentaccounts } from "../actions/setpaymentaccounts";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -58,7 +59,8 @@ const combiner = combineReducers({
     messagelist: setmessagelist,
     messageInbox: setmessageinbox,
     sellermessagelist: setsellermessagelist,
-    sellermessageInbox: setsellermessageinbox
+    sellermessageInbox: setsellermessageinbox,
+    paymentaccounts: setpaymentaccounts
 })
 
 const store = createStore(combiner);
