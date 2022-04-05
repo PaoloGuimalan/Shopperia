@@ -56,7 +56,7 @@ function Pending() {
               )
             })
           ) : (
-            <h4>No Pending Items</h4>
+            <h4 className='label_no_result'>No Pending Items</h4>
           )}
         </li>
       </nav>

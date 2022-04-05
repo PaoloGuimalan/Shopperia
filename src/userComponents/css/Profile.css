@@ -32,6 +32,20 @@
     /* background-color: aqua; */
 }
 
+#div_container_prff{
+    /* background-color: aqua; */
+    /* background: url('../imgs/bg_logo_profile.png'), linear-gradient(#e10013, #D60789); */
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 75%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    /* filter: grayscale(80%) blur(5px); */
+    transform: scale(1.2);
+}
+
 #img_prof{
     width: 50%;
     max-width: 200px;
@@ -84,5 +98,9 @@
     
     #li_creds_two{
         min-width: 100%;
+    }
+
+    #div_container_prff{
+        width: 100%;
     }
 }

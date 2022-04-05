@@ -37,7 +37,14 @@
     text-align: left;
     height: auto;
     margin-bottom: 10px;
+    background-color: white;
     /* background-color: aqua; */
+}
+
+.label_no_result{
+    /* color: white; */
+    font-family: Arial;
+    font-size: 15px;
 }
 
 #nav_list li:first-of-type{

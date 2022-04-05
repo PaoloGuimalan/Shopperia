@@ -56,7 +56,7 @@ function OnDelivery() {
               )
             })
           ) : (
-            <h4>No Items to Receive</h4>
+            <h4 className='label_no_result'>No Items to Receive</h4>
           )}
         </li>
       </nav>

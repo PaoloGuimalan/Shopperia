@@ -56,7 +56,7 @@ function Cancelled() {
               )
             })
           ) : (
-            <h4>No Cancelled Orders</h4>
+            <h4 className='label_no_result'>No Cancelled Orders</h4>
           )}
         </li>
       </nav>

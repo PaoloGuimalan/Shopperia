@@ -56,7 +56,7 @@ function Recieved() {
               )
             })
           ) : (
-            <h4>No Successful Orders Yet</h4>
+            <h4 className='label_no_result'>No Successful Orders Yet</h4>
           )}
         </li>
       </nav>

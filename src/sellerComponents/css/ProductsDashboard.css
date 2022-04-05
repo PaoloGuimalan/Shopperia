@@ -34,9 +34,10 @@
     background-color: white;
     /* linear-gradient(#e10013, #D60789) */
     border-image: linear-gradient(#e10013, #D60789) 1;
-    background: -webkit-linear-gradient(#e10013, #D60789);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #D60789;
+    /* background: -webkit-linear-gradient(#e10013, #D60789); */
+    /* -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
 }
 
 #div_float{

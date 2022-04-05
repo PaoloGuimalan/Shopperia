@@ -68,7 +68,7 @@ function PaymentMethods() {
                 <button id='add_btn' onClick={() => {setfloat(!float)}}>Add Method</button>
             </li>
             <li>
-                <h4>Payment Informations</h4>
+                <h4 id='label_pmethods'>Payment Informations</h4>
             </li>
             <li>
                 {paymentaccounts.map((accounts) => {

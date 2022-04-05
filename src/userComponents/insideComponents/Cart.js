@@ -74,7 +74,7 @@ function Cart() {
               )
             })
           ) : (
-            <h4>No Items on your Cart</h4>
+            <h4 className='label_no_result'>No Items on your Cart</h4>
           )}
         </li>
       </nav>

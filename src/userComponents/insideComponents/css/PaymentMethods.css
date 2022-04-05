@@ -9,6 +9,10 @@
     text-align: left;
 }
 
+/* #label_pmethods{
+    color: white;
+} */
+
 #select_account_dd{
     width: 100%;
     height: 30px;
@@ -35,6 +39,7 @@
     display: flex;
     flex-direction: row;
     max-height: 150px;
+    background-color: white;
 }
 
 .table_accounts_return{
@@ -77,6 +82,7 @@
     width: 78%;
     color: white;
     background-color: white;
+    border-radius: 2px;
 }
 
 .img_accounts_return{
