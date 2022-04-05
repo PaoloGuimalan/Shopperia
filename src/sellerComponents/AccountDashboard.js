@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import { SET_DASHBOARD, SET_ID_SELLER, SET_LOGIN_SELLER, SET_PRODUCTS, SET_SELLER_INFO } from '../Redux/types/types';
+import { SET_DASHBOARD, SET_ID_SELLER, SET_LOGIN_SELLER, SET_PRODUCTS, SET_SELLER_INFO, SET_SHOP_ADDRESS } from '../Redux/types/types';
 import { useNavigate, Link, Route, Routes } from 'react-router-dom';
 import Axios from 'axios';
 import { motion } from 'framer-motion';
 import './css/AccountDashboard.css';
+import barangay from 'barangay';
 
 
 function AccountDashboard() {
@@ -18,12 +19,56 @@ function AccountDashboard() {
   const dashstats = useSelector(state => state.dashboardstatus);
   const sellerID = useSelector(state => state.sellerID);
   const sellerinfo = useSelector(state => state.sellerinfo);
+  const shopaddress = useSelector(state => state.shopaddress);
 
   const [shopico, setshopico] = useState();
 
+  const [selectedregion, setselectedregion] = useState("");
+  const [selectedprovince, setselectedprovince] = useState("");
+  const [selectedtowncit, setselectedtowncit] = useState("");
+  const [selectedbrgys, setselectedbrgys] = useState("");
+  const [houseno, sethouseno] = useState("");
+  const [street, setstreet] = useState("");
+  const [postalCode, setpostalCode] = useState("");
+
+  const [provinces, setprovinces] = useState([]);
+  const [towncit, settowncit] = useState([]);
+  const [brgys, setbrgys] = useState([]);
+  // const [first, setfirst] = useState(second)
+
+  const region = barangay();
+  // const provinces = barangay(selectedregion);
+  // const towncit = barangay(selectedregion, selectedprovince);
+
   useEffect(() => {
     // console.log(sellerinfo);
+    // console.log(region);
   }, [sellerinfo])
+
+  useEffect(() => {
+    setprovinces(barangay(selectedregion));
+    // setselectedtowncit("");
+  }, [selectedregion])
+
+  useEffect(() => {
+    settowncit(barangay(selectedregion, selectedprovince));
+    // setselectedbrgys("");
+  }, [selectedprovince])
+
+  useEffect(() => {
+    setbrgys(barangay(selectedregion, selectedprovince, selectedtowncit));
+  }, [selectedtowncit])
+  
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/shopaddressget/${shopID}`, {
+      headers: {
+        "x-access-tokenseller": localStorage.getItem("tokenseller")
+      },
+    }).then((response) => {
+      dispatch({type: SET_SHOP_ADDRESS, shopaddress: response.data});
+    }).catch((err) => console.log(err));
+  }, [shopID, shopaddress])
+  
 
   const upload = () => {
     // alert("Hello");
@@ -41,6 +86,33 @@ function AccountDashboard() {
 
       }).catch(err => console.log(err));
     }
+  }
+
+  const confAddress = () => {
+    Axios.post('http://localhost:3001/confirmshopaddress', {
+      shopID: shopID,
+      houseno: houseno,
+      street: street,
+      barangay: selectedbrgys,
+      city_town: selectedtowncit,
+      province: selectedprovince,
+      region: selectedregion,
+      postalCode: postalCode
+    },{
+      headers: {
+        "x-access-tokenseller": localStorage.getItem("tokenseller")
+      },
+    }).then((response) => {
+      if(response.data.status){
+        sethouseno("");
+        setstreet("");
+        setselectedbrgys("")
+        setselectedtowncit("");
+        setselectedprovince("");
+        setselectedregion("");
+        setpostalCode("");
+      }
+    }).catch((err) => console.log(err));
   }
 
   return (
@@ -76,7 +148,7 @@ function AccountDashboard() {
                   <h4 id='label_details'>Shop Details</h4>
                 </li>
                 <li>
-                  <p className='label_indicators'><b>Full Address:</b> </p>
+                  <p className='label_indicators'><b>Full Address: </b>{shopaddress}</p>
                   <p className='label_indicators'><b>Contact Number:</b> </p>
                   <p className='label_indicators'><b>Email:</b> {sellerinfo.map((email) => email.email)}</p>
                   <p className='full_name_details'><b>Owner:</b> {sellerinfo.map((email) => email.full_name)}</p>
@@ -91,6 +163,113 @@ function AccountDashboard() {
               <li>
                 <input type='file' name='shop_icon' id='shop_icon' files={shopico} onChange={(e) => {setshopico(e.target.files[0])}}/>
                 <button disabled={shopico == undefined? true:false} onClick={upload}>Upload</button>
+              </li>
+            </ul>
+        </li>
+        <li className='li_lever_account_inputs'>
+            <h4 id='label_account_info'>Shop Address</h4>
+            <ul id='ul_account_prev_inputs'>
+              {/* <li>
+                <p>{houseno}, {street}, {selectedbrgys}, {selectedtowncit}, {selectedprovince}, {selectedregion}, {postalCode}</p>
+              </li> */}
+              <li>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span><b>House No/ Bldg.</b> </span>
+                      </td>
+                      <td>
+                        <input type='text' name='houseno' id='houseno' value={houseno} onChange={(e) => {sethouseno(e.target.value)}} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span><b>Street</b> </span>
+                      </td>
+                      <td>
+                        <input type='text' name='street' id='street' value={street} onChange={(e) => {setstreet(e.target.value)}} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span><b>Region</b> </span>
+                      </td>
+                      <td>
+                        <select id='select_regions' onChange={(e) => {setselectedregion(e.target.value)}}>
+                          <option default value=''>---select a region---</option>
+                          {region.map((reg) => {
+                            return(
+                              <option key={reg} value={reg}>{reg}</option>
+                            )
+                          })}
+                        </select>
+                      </td>
+                    </tr>
+                    {selectedregion != ""? (
+                      <tr>
+                        <td>
+                          <span><b>Province</b> </span>
+                        </td>
+                        <td>
+                          <select id='select_regions' onChange={(e) => {setselectedprovince(e.target.value)}}>
+                            <option default value=''>---select a province---</option>
+                            {provinces.map((prov) => {
+                              return(
+                                <option key={prov} value={prov}>{prov}</option>
+                              )
+                            })}
+                          </select>
+                        </td>
+                      </tr>
+                    ):""}
+                    {selectedprovince != ""? (
+                      <tr>
+                        <td>
+                          <span><b>City/Town</b> </span>
+                        </td>
+                        <td>
+                          <select id='select_regions' onChange={(e) => {setselectedtowncit(e.target.value)}}>
+                            <option default value=''>---select a city/town---</option>
+                            {towncit.map((tc) => {
+                              return(
+                                <option key={tc} value={tc}>{tc}</option>
+                              )
+                            })}
+                          </select>
+                        </td>
+                      </tr>
+                    ):""}
+                    {selectedtowncit != ""? (
+                      <tr>
+                        <td>
+                          <span><b>Barangay</b> </span>
+                        </td>
+                        <td>
+                          <select id='select_regions' onChange={(e) => {setselectedbrgys(e.target.value)}}>
+                            <option default value=''>---select a barangay---</option>
+                            {brgys.map((bg) => {
+                              return(
+                                <option key={bg} value={bg}>{bg}</option>
+                              )
+                            })}
+                          </select>
+                        </td>
+                      </tr>
+                    ):""}
+                    <tr>
+                      <td>
+                        <span><b>Postal Code</b> </span>
+                      </td>
+                      <td>
+                        <input type='text' name='postalCode' id='postalCode' value={postalCode} onChange={(e) => {setpostalCode(e.target.value)}} />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>
+                <button onClick={confAddress}>Confirm Address</button>
               </li>
             </ul>
         </li>
