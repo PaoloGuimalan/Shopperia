@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import { SET_DASHBOARD, SET_ID_SELLER, SET_LOGIN_SELLER, SET_PRODUCTS, SET_SELLER_INFO, SET_SHOP_ADDRESS } from '../Redux/types/types';
+import { SET_DASHBOARD, SET_ID_SELLER, SET_LOGIN_SELLER, SET_PRODUCTS, SET_SELLER_INFO, SET_SHOP_ADDRESS, SET_SHOP_NUMBER } from '../Redux/types/types';
 import { useNavigate, Link, Route, Routes } from 'react-router-dom';
 import Axios from 'axios';
 import { motion } from 'framer-motion';
@@ -20,6 +20,7 @@ function AccountDashboard() {
   const sellerID = useSelector(state => state.sellerID);
   const sellerinfo = useSelector(state => state.sellerinfo);
   const shopaddress = useSelector(state => state.shopaddress);
+  const shopnumber = useSelector(state => state.shopnumber);
 
   const [shopico, setshopico] = useState();
 
@@ -35,6 +36,7 @@ function AccountDashboard() {
   const [towncit, settowncit] = useState([]);
   const [brgys, setbrgys] = useState([]);
   // const [first, setfirst] = useState(second)
+  const [conumber, setconumber] = useState("");
 
   const region = barangay();
   // const provinces = barangay(selectedregion);
@@ -60,14 +62,23 @@ function AccountDashboard() {
   }, [selectedtowncit])
   
   useEffect(() => {
-    Axios.get(`http://localhost:3001/shopaddressget/${shopID}`, {
-      headers: {
-        "x-access-tokenseller": localStorage.getItem("tokenseller")
-      },
-    }).then((response) => {
-      dispatch({type: SET_SHOP_ADDRESS, shopaddress: response.data});
-    }).catch((err) => console.log(err));
-  }, [shopID, shopaddress])
+    Axios.all([
+      Axios.get(`http://localhost:3001/shopaddressget/${shopID}`, {
+        headers: {
+          "x-access-tokenseller": localStorage.getItem("tokenseller")
+        },
+      }).then((response) => {
+        dispatch({type: SET_SHOP_ADDRESS, shopaddress: response.data});
+      }).catch((err) => console.log(err)),
+      Axios.get(`http://localhost:3001/getshopcontactnumber/${shopID}`,{
+        headers: {
+          "x-access-tokenseller": localStorage.getItem("tokenseller")
+        },
+      }).then((response) => {
+        dispatch({type: SET_SHOP_NUMBER, shopnumber: response.data});
+      }).catch((err) => console.log(err)),
+    ])
+  }, [shopID, shopaddress, shopnumber])
   
 
   const upload = () => {
@@ -115,6 +126,22 @@ function AccountDashboard() {
     }).catch((err) => console.log(err));
   }
 
+  const sendSMS = () => {
+    // alert(conumber);
+    Axios.post('http://localhost:3001/sendSMSseller', {
+      shopID: shopID,
+      conumber: conumber
+    },{
+      headers: {
+        "x-access-tokenseller": localStorage.getItem("tokenseller")
+      },
+    }).then((response) => {
+      if(response.data.status){
+        setconumber("");
+      }
+    }).catch((err) => {console.log(err)});
+  }
+
   return (
     <div id='div_account'>
       <div id='background_drop'></div>
@@ -149,7 +176,7 @@ function AccountDashboard() {
                 </li>
                 <li>
                   <p className='label_indicators'><b>Full Address: </b>{shopaddress}</p>
-                  <p className='label_indicators'><b>Contact Number:</b> </p>
+                  <p className='label_indicators'><b>Contact Number: </b>{shopnumber.contactNumber}</p>
                   <p className='label_indicators'><b>Email:</b> {sellerinfo.map((email) => email.email)}</p>
                   <p className='full_name_details'><b>Owner:</b> {sellerinfo.map((email) => email.full_name)}</p>
                 </li>
@@ -270,6 +297,15 @@ function AccountDashboard() {
               </li>
               <li>
                 <button onClick={confAddress}>Confirm Address</button>
+              </li>
+            </ul>
+        </li>
+        <li className='li_lever_account_inputs'>
+          <h4 id='label_account_info'>Contact Number</h4>
+            <ul id='ul_account_prev_inputs'>
+              <li>
+                <input type='number' name='shop_icon' id='shop_icon' value={conumber} onChange={(e) => {setconumber(e.target.value)}}/>
+                <button onClick={() => sendSMS()}>Verify Number</button>
               </li>
             </ul>
         </li>

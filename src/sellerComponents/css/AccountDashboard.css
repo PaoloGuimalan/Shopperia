@@ -9,6 +9,7 @@
     flex-direction: column;
     list-style-type: none;
     display: flex;
+    padding-bottom: 50px;
     /* background-color: aqua; */
     /* margin-left: -50px; */
 }
