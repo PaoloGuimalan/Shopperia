@@ -128,18 +128,23 @@ function AccountDashboard() {
 
   const sendSMS = () => {
     // alert(conumber);
-    Axios.post('http://localhost:3001/sendSMSseller', {
-      shopID: shopID,
-      conumber: conumber
-    },{
-      headers: {
-        "x-access-tokenseller": localStorage.getItem("tokenseller")
-      },
-    }).then((response) => {
-      if(response.data.status){
-        setconumber("");
-      }
-    }).catch((err) => {console.log(err)});
+    if(conumber == ""){
+      // alert("HELLO")
+    }
+    else{
+      Axios.post('http://localhost:3001/sendSMSseller', {
+        shopID: shopID,
+        conumber: conumber
+      },{
+        headers: {
+          "x-access-tokenseller": localStorage.getItem("tokenseller")
+        },
+      }).then((response) => {
+        if(response.data.status){
+          setconumber("");
+        }
+      }).catch((err) => {console.log(err)});
+    }
   }
 
   return (

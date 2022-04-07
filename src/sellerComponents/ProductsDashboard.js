@@ -3,7 +3,7 @@ import './css/ProductsDashboard.css'
 import { motion } from 'framer-motion';
 import Axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { SET_PRODUCTS } from '../Redux/types/types';
+import { SET_PRODUCTS, SET_VERTWO_STATUS } from '../Redux/types/types';
 import { Link } from 'react-router-dom';
 
 function ProductsDashboard() {
@@ -20,6 +20,7 @@ function ProductsDashboard() {
 
   const proDs = useSelector(state => state.products);
   const shopID = useSelector(state => state.sellerID);
+  const vertwostatus = useSelector(state => state.vertwostatus);
   const dispatch = useDispatch();
 
   const [blur, setblur] = useState(false);
@@ -30,6 +31,9 @@ function ProductsDashboard() {
 
   const [btnstatus, setbtnstatus] = useState(true);
   const [btnstatustype, setbtnstatustype] = useState(false);
+
+  const [notifier, setnotifier] = useState(false);
+  const [messagenotifier, setmessagenotifier] = useState("");
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/getProducts/${shopID.shopName}`, {
@@ -104,27 +108,38 @@ function ProductsDashboard() {
       }
     }
 
-    try{
-      await Axios.all([
-        Axios.post('http://localhost:3001/createPostProduct', form, {
-          headers: {
-            "x-access-tokenseller": localStorage.getItem("tokenseller"),
-            "Content-Type": 'multipart/form-data'
-          },
-        }).then((response) => {
-          const { fileName, filePath } = response.data;
-          setimgdatapath({fileName, filePath});
-          // console.log(imgdatapath);
-        }),
-        Axios.post('http://localhost:3001/subproducts', subForm, {
-          headers: {
-            "x-access-tokenseller": localStorage.getItem("tokenseller"),
-            "Content-Type": 'multipart/form-data'
-          },
-        }).catch((err) => {
-          console.log(err);
-        })
-      ])
+  try{
+      if(vertwostatus != "verified" || vertwostatus == undefined){
+        // alert("No");
+        setmessagenotifier("Not verified yet!");
+        setnotifier(true);
+        setTimeout(() => {
+          setnotifier(false);
+          setmessagenotifier("");
+        }, 2500);
+      }
+      else{
+        await Axios.all([
+          Axios.post('http://localhost:3001/createPostProduct', form, {
+            headers: {
+              "x-access-tokenseller": localStorage.getItem("tokenseller"),
+              "Content-Type": 'multipart/form-data'
+            },
+          }).then((response) => {
+            const { fileName, filePath } = response.data;
+            setimgdatapath({fileName, filePath});
+            // console.log(imgdatapath);
+          }),
+          Axios.post('http://localhost:3001/subproducts', subForm, {
+            headers: {
+              "x-access-tokenseller": localStorage.getItem("tokenseller"),
+              "Content-Type": 'multipart/form-data'
+            },
+          }).catch((err) => {
+            console.log(err);
+          })
+        ])
+      }
   }
   catch(err){
     console.log(err);
@@ -229,8 +244,28 @@ function ProductsDashboard() {
   //   )
   // }
 
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/verificationTwoStatus/${shopID.shopID}`, {
+      headers: {
+        "x-access-tokenseller": localStorage.getItem("tokenseller")
+      },
+    }).then((response) => {
+      dispatch({type: SET_VERTWO_STATUS, vertwostatus: response.data});
+      // console.log(vertwostatus);
+    }).catch((err) => console.log(err)); 
+  }, [shopID, vertwostatus]);
+
   return (
     <div id='div_productsdash'>
+      <motion.div id='notifier_label'
+      animate={{
+        paddingRight: notifier? "10px" : "0px",
+        paddingLeft: notifier? "10px" : "0px",
+        minWidth: notifier? "200px" : "0px"
+      }}
+      >
+        <p>{messagenotifier}</p>
+      </motion.div>
       <motion.div 
       animate={{
         height: inputsprod? "0px" : "auto",
@@ -241,6 +276,13 @@ function ProductsDashboard() {
         <nav id='nav_inputsprod'>
           <li>
             <h3 id='label_nav_pro'>Fill Up Product Information.</h3>
+          </li>
+          <li>
+            <motion.p id='label_alert'
+            animate={{
+              display: vertwostatus.map((st) => st.ver_status_two) == "verified"? "none" : "block"
+            }}
+            >Note: You are not verified to post products yet.</motion.p>
           </li>
           <li id='li_navigations'>
             <button className='btns_navigations' onClick={firstInputs}>Product</button><button className='btns_navigations' onClick={secondInputs}>Varieties</button>
