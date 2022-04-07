@@ -23,7 +23,7 @@ function Pending() {
       // console.log(response.data);
       dispatch({type: SET_PENDING, pending: response.data});
       // console.log(cart);
-    }).catch((err) => console.log(err));
+    }).catch((err) => {console.log(err)});
   }, [userName, cart]);
 
   return (
@@ -33,7 +33,7 @@ function Pending() {
         {cart.length >= 1? (
             cart.map((res) => {
               return(
-                <nav id='nav_list' key={res.product_id}>
+                <nav id='nav_list' key={res.order_id}>
                   <li>
                     <img src={res.var_img} className='pr_var_prev'/>
                   </li>

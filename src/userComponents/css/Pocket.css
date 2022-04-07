@@ -1,5 +1,6 @@
 #pocket_div{
     width: 100%;
+    /* overflow-y: scroll; */
     /* background-color: aqua; */
 }
 
@@ -9,6 +10,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     background: linear-gradient(#e10013, #D60789);
+    /* position: sticky; */
+    /* overflow-y: scroll; */
 }
 
 #label_pocket{

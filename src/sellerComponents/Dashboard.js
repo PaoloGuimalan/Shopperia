@@ -125,33 +125,33 @@ function Dashboard() {
                 <li>
                   <ul id='nav_links_closed'>
                     <li id={dashstats? "openned" : "closed"}>
-                      <p id='shopname'><StarIcon /></p>
+                      <p id='shopname'><StarIcon style={{fontSize: "20px"}} /></p>
                     </li>
                     <li id={dashstats? "openned" : "closed"} className='li_links'>
-                      <Link className='links_dash_icons' to='/dashboard'><HomeIcon /></Link>
+                      <Link className='links_dash_icons' to='/dashboard'><HomeIcon style={{fontSize: "20px"}} /></Link>
                     </li>
                     <li id={dashstats? "openned" : "closed"} className='li_links'>
-                      <Link className='links_dash_icons' to='/dashboard/shopadmin'><ProductsIcon /></Link>
+                      <Link className='links_dash_icons' to='/dashboard/shopadmin'><ProductsIcon style={{fontSize: "20px"}} /></Link>
                     </li>
                     <li id={dashstats? "openned" : "closed"} className='li_links'>
-                      <Link className='links_dash_icons' to='/dashboard/orders'><OrdersIcon /></Link>
+                      <Link className='links_dash_icons' to='/dashboard/orders'><OrdersIcon style={{fontSize: "20px"}} /></Link>
                     </li>
                     <li id={dashstats? "openned" : "closed"} className='li_links'>
-                      <Link className='links_dash_icons' to='/dashboard/messages'><MessagesIcon /></Link>
+                      <Link className='links_dash_icons' to='/dashboard/messages'><MessagesIcon style={{fontSize: "20px"}} /></Link>
                     </li>
                     <li id={dashstats? "openned" : "closed"} className='li_links'>
-                      <Link className='links_dash_icons' to='/dashboard/account'><AccountIcon /></Link>
+                      <Link className='links_dash_icons' to='/dashboard/account'><AccountIcon style={{fontSize: "20px"}} /></Link>
                     </li>
                     <li id={dashstats? "openned" : "closed"} className='li_links logout_btn_menu_closed'>
                       <button id='btn_lgt_closed' onClick={logout}><LogoutIcon /></button>
                     </li>
 
                     <li id={dashstats? "closed" : "openned"}>
-                      <p id='shopname'><StarIcon />
+                      <p id='shopname'><StarIcon style={{fontSize: "20px"}} />
                       <motion.span
                       id='span_id'
                       animate={{
-                        fontSize: dashstats? "0px" : "18px"
+                        fontSize: dashstats? "0px" : "15px"
                       }}
 
                       transition={{
@@ -160,11 +160,11 @@ function Dashboard() {
                       >{shopID}</motion.span></p>
                     </li>
                     <li id={dashstats? "closed" : "openned"} className='li_links'>
-                      <Link className='links_dash' to='/dashboard'><div className='div_flexer'><HomeIcon/>
+                      <Link className='links_dash' to='/dashboard'><div className='div_flexer'><HomeIcon style={{fontSize: "20px"}} />
                       <motion.span
                       id='span_id'
                       animate={{
-                        fontSize: dashstats? "0px" : "18px"
+                        fontSize: dashstats? "0px" : "15px"
                       }}
 
                       transition={{
@@ -175,11 +175,11 @@ function Dashboard() {
                       </Link>
                     </li>
                     <li id={dashstats? "closed" : "openned"} className='li_links'>
-                      <Link className='links_dash' to='/dashboard/shopadmin'><div className='div_flexer'><ProductsIcon />
+                      <Link className='links_dash' to='/dashboard/shopadmin'><div className='div_flexer'><ProductsIcon style={{fontSize: "20px"}} />
                       <motion.span
                       id='span_id'
                       animate={{
-                        fontSize: dashstats? "0px" : "18px"
+                        fontSize: dashstats? "0px" : "15px"
                       }}
 
                       transition={{
@@ -196,7 +196,7 @@ function Dashboard() {
                       <motion.span
                       id='span_id'
                       animate={{
-                        fontSize: dashstats? "0px" : "18px"
+                        fontSize: dashstats? "0px" : "15px"
                       }}
 
                       transition={{
@@ -207,11 +207,11 @@ function Dashboard() {
                       </Link>
                     </li>
                     <li id={dashstats? "closed" : "openned"} className='li_links'>
-                      <Link className='links_dash' to='/dashboard/messages'><div className='div_flexer'><MessagesIcon />
+                      <Link className='links_dash' to='/dashboard/messages'><div className='div_flexer'><MessagesIcon style={{fontSize: "20px"}} />
                       <motion.span
                       id='span_id'
                       animate={{
-                        fontSize: dashstats? "0px" : "18px"
+                        fontSize: dashstats? "0px" : "15px"
                       }}
 
                       transition={{
@@ -222,11 +222,11 @@ function Dashboard() {
                       </Link>
                     </li>
                     <li id={dashstats? "closed" : "openned"} className='li_links'>
-                      <Link className='links_dash' to='/dashboard/account'><div className='div_flexer'><AccountIcon />
+                      <Link className='links_dash' to='/dashboard/account'><div className='div_flexer'><AccountIcon style={{fontSize: "20px"}} />
                       <motion.span
                       id='span_id'
                       animate={{
-                        fontSize: dashstats? "0px" : "18px"
+                        fontSize: dashstats? "0px" : "15px"
                       }}
 
                       transition={{

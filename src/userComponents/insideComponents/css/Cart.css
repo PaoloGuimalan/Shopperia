@@ -10,6 +10,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
+    /* overflow-y: scroll; */
     /* background-color: aqua; */
 }
 
@@ -206,6 +207,10 @@
     /* width: 100%; */
     text-align: right;
 }
+
+/* #li_cart_uno{
+    overflow-y: scroll;
+} */
 
 /* .li_image_container{
     width: 30%;

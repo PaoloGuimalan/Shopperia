@@ -33,7 +33,7 @@ function Cancelled() {
           {cart.length >= 1? (
             cart.map((res) => {
               return(
-                <nav id='nav_list' key={res.product_id}>
+                <nav id='nav_list' key={res.order_id}>
                   <li>
                     <img src={res.var_img} className='pr_var_prev'/>
                   </li>
