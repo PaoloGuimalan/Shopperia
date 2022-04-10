@@ -29,7 +29,7 @@ import { setmessageinbox } from "../actions/setmessageinbox";
 import { setsellermessagelist } from "../actions/setsellermessagelist";
 import { setsellermessageinbox } from "../actions/setsellermessageinbox";
 import { setpaymentaccounts } from "../actions/setpaymentaccounts";
-import { setshopaddress, setshopcontactnumber, setvertwostatus } from "../actions/setshopaddress";
+import { setchatsupportlist, setshopaddress, setshopcontactnumber, setvertwostatus } from "../actions/setshopaddress";
 
 const combiner = combineReducers({
     statusLogin: setLogin,
@@ -64,7 +64,8 @@ const combiner = combineReducers({
     paymentaccounts: setpaymentaccounts,
     shopaddress: setshopaddress,
     shopnumber: setshopcontactnumber,
-    vertwostatus: setvertwostatus
+    vertwostatus: setvertwostatus,
+    chatsupportlist: setchatsupportlist
 })
 
 const store = createStore(combiner);

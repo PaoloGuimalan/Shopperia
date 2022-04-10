@@ -38,6 +38,35 @@
     filter: grayscale(50%);
 }
 
+#header_chatbox_dash{
+    /* background-color: aqua; */
+    display: flex;
+    list-style-type: none;
+    height: 50px;
+    width: 100%;
+    /* flex-wrap: wrap; */
+    background: linear-gradient(#e10013, #D60789);
+    flex-direction: row;
+    color: white;
+    border-bottom: solid 1px white;
+    cursor: pointer;
+    justify-content: center;
+}
+
+/* .dash_li_header{
+    height: 50px;
+    background-color: aqua;
+} */
+
+#chat_label_user{
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    text-align: center;
+    /* background-color: aqua; */
+    /* margin: 0; */
+    /* margin-left: 100px; */
+}
+
 #nav_messages_under{
     list-style-type: none;
     /* background-color: blue; */
@@ -116,6 +145,9 @@
     /* max-width: 200px; */
     /* min-width: 300px; */
     height: 100%;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    /* background-color: #D60789; */
     /* background-color: aqua; */
 }
 

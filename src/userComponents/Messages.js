@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './css/Messages.css';
 import SearchIcon from '@material-ui/icons/Search';
 import { useSelector, useDispatch } from 'react-redux';
-import { TOGGLE_CHAT_BOX, USER_MESSAGE_LIST } from '../Redux/types/types.js'
+import { CHAT_SUPPORT_LIST, TOGGLE_CHAT_BOX, USER_MESSAGE_LIST } from '../Redux/types/types.js'
 import Axios from 'axios';
 
 function Messages() {
@@ -11,10 +11,23 @@ function Messages() {
   const messagelist = useSelector(state => state.messagelist);
   const messageInbox = useSelector(state => state.messageInbox);
   const statuschatbox = useSelector(state => state.chatboxstatus);
+  const chatsupportlist = useSelector(state => state.chatsupportlist);
   const dispatch = useDispatch();
 
   const chatBox = (open, user, conversation_id) => {
     dispatch({type: TOGGLE_CHAT_BOX, status: {open: open, user: user, conversation_id: conversation_id}});
+  }
+
+  const chatBoxSupport = (open) => {
+    Axios.get(`http://localhost:3001/chatSupportMessageList/${userName}`, {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      },
+    }).then(async (response) => {
+      // alert(await response.data.employeeID)
+      // console.log(response.data);
+      dispatch({type: TOGGLE_CHAT_BOX, status: {open: open, user: response.data.map((id) => id.employeeID)}});
+    }).catch((err) => console.log(err));
   }
 
   useEffect(() => {
@@ -26,6 +39,16 @@ function Messages() {
       dispatch({type: USER_MESSAGE_LIST, messagelist: response.data});
     }).catch((err) => console.log(err));
   }, [messagelist, userName])
+  
+  // useEffect(() => {
+  //   Axios.get(`http://localhost:3001/chatSupportMessageList/${userName}`, {
+  //     headers: {
+  //       "x-access-token": localStorage.getItem("token")
+  //     },
+  //   }).then((response) => {
+  //     // dispatch({type: CHAT_SUPPORT_LIST, chatsupportlist: response.data});
+  //   }).catch((err) => console.log(err));
+  // }, [userName])
   
 
   return (
@@ -65,6 +88,23 @@ function Messages() {
                   <h4 id='no_messages_label'>No Messages</h4>
               </li>
             )}
+                <li className='li_message_chat_user' onClick={() => chatBoxSupport(true)}>
+                  <nav id='message_chat_user'>
+                    <li>
+                      <img src={'http://localhost:3001/adminImgs/default_icon.jpg'} className='img_chat_head' />
+                    </li>
+                    <li>
+                      <nav className='nav_message_head_class'>
+                        <li>
+                          <h4 id='username_label'>Chat Support</h4>
+                        </li>
+                        <li>
+                          <p className='message_content_preview'>We Fix things for you.</p>
+                        </li>
+                      </nav>
+                    </li>
+                  </nav>
+                </li>
         </nav>
     </div>
   )

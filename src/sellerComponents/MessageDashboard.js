@@ -106,9 +106,9 @@ function MessageDashboard() {
               {user_id? (
                 <nav id='main_nav_chatbox_seller'>
                 <li>
-                  <nav id='header_chatbox'>
+                  <nav id='header_chatbox_dash'>
                     <li className='li_header_chatbox_uno'>
-                      <p>{user_id}</p>
+                      <p id='chat_label_user' className='dash_li_header'>{user_id}</p>
                     </li>
                     {/* <li className='li_header_chatbox segundo'>
                       <button id='btn_close_chatbox' onClick={() => minimizeChatBox(false, statuschatbox.user)}><MinimizeIcon style={{color: "white"}} /></button>
