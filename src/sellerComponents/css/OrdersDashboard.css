@@ -71,6 +71,7 @@
     max-width: 98%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
 }
 
 #th_one, #th_two, #th_three, #th_four, #th_five{
@@ -136,8 +137,53 @@
 
 .link_orders{
     text-align: left;
-    text-decoration: underline;
+    text-decoration: none;
     color: black;
+}
+
+#no_orders_label{
+    position: absolute;
+    /* left: auto; */
+    top: 55vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: grey;
+    font-size: 15px;
+}
+
+.tbl_ordercontent{
+    /* background-color: aqua; */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.labels_status{
+    /* background-color: black; */
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+    border-radius: 5px;
+    
+}
+
+.pending{
+    background-color: orange;
+}
+
+.ondelivery{
+    background-color: lime;
+}
+
+.delivered{
+    background-color: limegreen;
+}
+
+.cancelled{
+    background-color: red;
 }
 
 @media screen and (max-width: 720px) {
