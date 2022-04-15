@@ -174,6 +174,7 @@ function ProductsView() {
     user_id: userName,
     receiver: addresses.map((rec) => rec.receiver)[0],
     full_address: addresses.map((rec) => rec.full_address)[0],
+    city_town: addresses.map((rec) => rec.city_town)[0],
     province: addresses.map((rec) => rec.province)[0],
     postalCode: addresses.map((rec) => rec.postalCode)[0],
     product_id: currentprod.map((pid) => pid.product_id)[0],
