@@ -1,6 +1,7 @@
 #home_div{
     width: 100%;
     height: auto;
+    z-index: -1;
 }
 
 #navigation_div{
@@ -93,6 +94,7 @@
     height: 0px;
     /* max-height: 50vh; */
     overflow-y: hidden;
+    z-index: 1;
 }
 
 #messages_panel{
@@ -109,7 +111,7 @@
     height: 0px;
     left: 61%;
     border-radius: 0px 0px 5px 5px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .content_messages{
@@ -211,6 +213,16 @@
 .links{
     text-decoration: none;
     color: black;
+}
+
+#carousel_div{
+    z-index: -5;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 2px black;
 }
 
 @media screen and (max-width: 720px) {

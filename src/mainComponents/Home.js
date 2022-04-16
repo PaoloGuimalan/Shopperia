@@ -13,7 +13,13 @@ import { motion } from 'framer-motion';
 import Axios from 'axios';
 import { SET_ID, SET_LOGIN, SET_PRODUCTS, SET_SEARCH, TOGGLE_CHAT_BOX } from '../Redux/types/types';
 import Messages from '../userComponents/Messages';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 import CloseIcon from '@material-ui/icons/Close';
+import Banner1 from './imgs/banners/banner1.jpg';
+import Banner2 from './imgs/banners/banner2.jpg';
+import Banner3 from './imgs/banners/banner3.jpg';
+import Banner4 from './imgs/banners/banner4.jpg';
 
 function Home() {
 
@@ -175,6 +181,24 @@ function Home() {
             </li>
           </motion.ul>
         </motion.div>
+        <div>
+          <div id='carousel_div'>
+            <Carousel width="100%" autoPlay={true} infiniteLoop={true} interval={2000} showThumbs={false} showStatus={false}>
+              <div>
+                <img src={Banner1} />
+              </div>
+              <div>
+                <img src={Banner2} />
+              </div>
+              <div>
+                <img src={Banner3} />
+              </div>
+              <div>
+                <img src={Banner4} />
+              </div>
+            </Carousel>
+          </div>
+        </div>
     </div>
   )
 }
