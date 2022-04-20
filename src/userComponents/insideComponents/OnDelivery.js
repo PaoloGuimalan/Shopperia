@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
 import './css/Cart.css'
 import { useNavigate } from 'react-router-dom';
-import { SET_CART, SET_ON_DELIVERY } from '../../Redux/types/types';
+import { SET_CART, SET_ON_DELIVERY, TOGGLE_CHAT_BOX } from '../../Redux/types/types';
 
 function OnDelivery() {
   const navigate = useNavigate();
@@ -25,6 +25,18 @@ function OnDelivery() {
       // console.log(cart);
     }).catch((err) => console.log(err));
   }, [userName, cart]);
+
+  const chatBox = (open, user) => {
+    Axios.get(`http://localhost:3001/getRiderInfo/${user}`, {
+      headers:{
+        "x-access-token": localStorage.getItem('token')
+      }
+    }).then((response) => {
+      dispatch({type: TOGGLE_CHAT_BOX, status: {open: open, user: response.data.rider_id}});
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
   return (
     <div id='cart_div'>
@@ -50,6 +62,10 @@ function OnDelivery() {
                       </li>
                     <li>
                       <h4 id='total_var'>Order Total: {res.order_total}</h4>
+                    </li>
+                    <li className='btn_handler_confirm'>
+                      <button className='btn_confirm_from_ond'>View Order</button>
+                      <button className='btn_confirm_from_ond' onClick={() => chatBox(true, res.order_id)}>Chat Rider</button>
                     </li>
                   </li>
                 </nav>

@@ -202,6 +202,39 @@
     color: white;
 }
 
+.btn_confirm_from_ond{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 30px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.btn_confirm_from_ond:first-of-type{
+    background-color: white;
+    border: solid 1px black;
+    color: black;
+}
+
+.btn_confirm_from_ond:first-of-type:hover{
+    background-color: black;
+    border: solid 1px black;
+    color: white;
+}
+
+.btn_confirm_from_ond:last-of-type{
+    background-color: white;
+    border: solid 1px black;
+    color: black;
+}
+
+.btn_confirm_from_ond:last-of-type:hover{
+    background-color: black;
+    border: solid 1px black;
+    color: white;
+}
+
 .btn_handler_confirm{
     /* background-color: aqua; */
     /* width: 100%; */
