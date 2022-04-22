@@ -129,6 +129,13 @@
 
 }
 
+#btn_conchat{
+    background-color: white;
+    border: solid 1px black;
+    color: black;
+
+}
+
 #btn_can{
     background-color: red;
     border: none;

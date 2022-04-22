@@ -64,7 +64,7 @@ function OnDelivery() {
                       <h4 id='total_var'>Order Total: {res.order_total}</h4>
                     </li>
                     <li className='btn_handler_confirm'>
-                      <button className='btn_confirm_from_ond'>View Order</button>
+                      <button className='btn_confirm_from_ond' onClick={() => {navigate(`/profile/pocket/viewOrder/${res.order_id}`)}}>View Order</button>
                       <button className='btn_confirm_from_ond' onClick={() => chatBox(true, res.order_id)}>Chat Rider</button>
                     </li>
                   </li>

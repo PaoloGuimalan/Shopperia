@@ -64,14 +64,14 @@ function Profile() {
             <nav>
             {user_creds.map((creds) => {
                     return(
-                      <>
+                      <React.Fragment key={creds.userName}>
                         <li className='li_creds' key={creds.userName}>
                           <img src={creds.profile_pic} id='img_prof'/>
                         </li>
                         <li className='li_creds' key={creds.email}>
                           <p id='label_username_prfff'>{creds.userName}</p>
                         </li>
-                      </>
+                      </React.Fragment>
                     )
                   })}
               <li>

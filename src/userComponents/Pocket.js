@@ -9,6 +9,7 @@ import OnDelivery from './insideComponents/OnDelivery.js';
 import Recieved from './insideComponents/Recieved.js';
 import Cancelled from './insideComponents/Cancelled.js';
 import './css/Pocket.css';
+import ViewOrder from './insideComponents/ViewOrder.js';
 
 function Pocket() {
 
@@ -69,6 +70,7 @@ function Pocket() {
             <Route path='/onDelivery' element={<OnDelivery />} />
             <Route path='/received' element={<Recieved />} />
             <Route path='/cancelled' element={<Cancelled />} />
+            <Route path='/viewOrder/:order_id' element={<ViewOrder />} />
         </Routes>
     </div>
   )

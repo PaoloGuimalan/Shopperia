@@ -69,8 +69,20 @@ function OrdersDashboard() {
         "x-access-tokenseller": localStorage.getItem("tokenseller")
       },
     }).then((response) => {
-
+      
     }).catch(err => console.log(err));
+  }
+
+  const conchat = (order_id_chat) => {
+    Axios.get(`http://localhost:3001/conchatRider/${order_id_chat}`, {
+      headers:{
+        "x-access-tokenseller": localStorage.getItem("tokenseller")
+      }
+    }).then((response) => {
+      navigate(`/dashboard/messages/${response.data.rider_id}`);
+    }).catch((err) => {
+      console.log(err);
+    })
   }
 
   return (
@@ -259,7 +271,8 @@ function OrdersDashboard() {
                           {items.date_ordered}
                         </td>
                         <td>
-                          <button style={{display: items.status != "Pending"? "none" : items.remarks == "For Ship Out"? "none" : "block"}} className='btns_order' id='btn_conf' onClick={() => {confOrder(items.order_id ,"Pending", items.remarks == "Confirming Order"? "Preparing Order":"For Ship Out")}}>{items.remarks == "Preparing Order"? "Ready to Ship":"Confirm Order"}</button>
+                        <button style={{display: items.status != "Pending"? "none" : items.remarks != "On Pick Up"? "none" : "block"}} className='btns_order' id='btn_conchat' onClick={() => {conchat(items.order_id)}}>Chat Rider</button>
+                          <button style={{display: items.status != "Pending"? "none" : items.remarks == "For Ship Out" || items.remarks == "On Pick Up"? "none" : "block"}} className='btns_order' id='btn_conf' onClick={() => {confOrder(items.order_id ,"Pending", items.remarks == "Confirming Order"? "Preparing Order":"For Ship Out")}}>{items.remarks == "Preparing Order"? "Ready to Ship":"Confirm Order"}</button>
                           <button style={{display: items.status != "Pending"? "none" : items.remarks != "Confirming Order"? "none" : "block"}} className='btns_order' id='btn_can' onClick={() => {confOrder(items.order_id, "Cancelled", "Order was Cancelled")}}>Deny Order</button>
                         </td>
                       </motion.tr>
