@@ -4,12 +4,17 @@ import './css/ViewOrder.css';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_ORDER_VIEW } from '../../Redux/types/types';
-import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps';
+import { GoogleMap, withScriptjs, withGoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
+import Circle from 'react-google-maps/lib/components/Circle';
+import PersonMarker from '../marker/person_marker.png';
 
 function Map(){
 
     const [lat, setlat] = useState(0);
     const [long, setlong] = useState(0);
+
+    const [latlangsetter, setlatlangsetter] = useState({lat: "", lng: "" });
+    const [directions, setdirections] = useState({directions: ""});
 
     useEffect(() => {
         navigator.geolocation.watchPosition((position)=> {
@@ -20,14 +25,53 @@ function Map(){
         })
     }, [lat, long])
 
+    const google = window.google;
+    
+    useEffect(() => {
+        
+    }, [])
+
+    const clicker = (ev) => {
+        const DirectionsService = new google.maps.DirectionsService();
+
+        DirectionsService.route({
+          origin: { lat: lat, lng: long }, 
+          destination: {lat: ev.latLng.lat(), lng: ev.latLng.lng()}, 
+          travelMode: google.maps.TravelMode.DRIVING,
+        }, (result, status) => {
+          if (status === google.maps.DirectionsStatus.OK) {
+            // setdirections({directions: result})
+            console.log(result);
+          } else {
+            console.error(result);
+          }
+        });
+    }
+
     return(
         <>
             {lat != 0 && long != 0? (
                 <GoogleMap 
                     defaultZoom={15} 
                     defaultCenter={{ lat: lat, lng: long }} 
+                    onClick={(ev) => {
+                        setlatlangsetter({lat: ev.latLng.lat(), lng: ev.latLng.lng()})
+                        // clicker(ev);
+                    }}
                 >
-                    <Marker position={{ lat: lat, lng: long }} title='Your Location' />
+                    {latlangsetter.lat != "" && latlangsetter.lng != ""? (
+                        <>
+                            <Marker position={latlangsetter} title='Pinned Location' onClick={() => {setlatlangsetter({lat: "", lng: ""})}}/>
+                            <Circle center={latlangsetter} radius={20} />
+                        </>
+                    ) : ""}
+                    <Marker 
+                    icon={{
+                        url: PersonMarker,
+                        anchor: new google.maps.Point(17, 46),
+                        scaledSize: new google.maps.Size(60, 70),
+                    }}  
+                    position={{ lat: lat, lng: long }} title='Your Location' />
                 </GoogleMap>
             ) : ""}
         </>
