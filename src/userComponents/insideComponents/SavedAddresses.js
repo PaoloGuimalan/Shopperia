@@ -72,6 +72,23 @@ function SavedAddresses() {
         // console.log(addresses);
     }).catch(err => console.log(err));
   }, [userName, addresses])
+
+  const setDefaultAddress = (id, status) => {
+    if(status == 'Reserved'){
+        Axios.post('http://localhost:3001/setdefaultadd', {
+            id: id,
+            status: status
+        },{
+            headers:{
+                "x-access-token": localStorage.getItem('token')
+            }
+        }).then((response) => {
+            //alert response
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+  }
   
 
   return (
@@ -137,7 +154,7 @@ function SavedAddresses() {
                           <span><b>Postal Code:</b> {adds.postalCode}</span>
                       </li>
                       <li>
-                          <p id='status_check' style={{backgroundColor: adds.status == "Default"? "limegreen" : "red"}}>{adds.status} Address</p>
+                          <p id='status_check' title={adds.status != "Default"? "Set as Default" : ""} style={{backgroundColor: adds.status == "Default"? "limegreen" : "red"}} onClick={() => {setDefaultAddress(adds.id, adds.status)}} >{adds.status} Address</p>
                       </li>
                     </ul>
                 )

@@ -10,7 +10,7 @@ import { setprodsresultsstate } from "../actions/setprodresults";
 import { setbrowsedprod } from "../actions/setbrowsedprod";
 import { setvariety } from "../actions/setVariety";
 import { setcomments } from "../actions/setComments";
-import { setUserCreds } from "../actions/setuser_creds";
+import { setsavedcontacts, setUserCreds } from "../actions/setuser_creds";
 import { setaddresses } from "../actions/setaddresses";
 import { setaddressesview } from "../actions/setaddressesview";
 import { setcart } from "../actions/setcart";
@@ -71,7 +71,8 @@ const combiner = combineReducers({
     shopnumber: setshopcontactnumber,
     vertwostatus: setvertwostatus,
     chatsupportlist: setchatsupportlist,
-    orderview: setorderview
+    orderview: setorderview,
+    savedcontacts: setsavedcontacts
 })
 
 const store = createStore(combiner);
