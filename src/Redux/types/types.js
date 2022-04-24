@@ -62,3 +62,6 @@ export const CHAT_SUPPORT_LIST = 'CHAT_SUPPORT_LIST';
 export const SET_ORDER_VIEW = 'SET_ORDER_VIEW';
 
 export const SET_SAVED_CONTACTS = 'SET_SAVED_CONTACTS';
+
+export const SET_PRBR_SHOP = 'SET_PRBR_SHOP';
+export const SET_SHOP_PR = 'SET_SHOP_PR';

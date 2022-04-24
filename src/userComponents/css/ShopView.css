@@ -1,7 +1,11 @@
 #div_shopview{
     width: 100%;
-    background: linear-gradient(#e10013, #D60789);
     /* background-color: aqua; */
+}
+
+#div_container{
+    background: linear-gradient(#e10013, #D60789);
+    width: 100%;
 }
 
 #div_nav_shopview{
@@ -111,6 +115,89 @@
     text-align: left;
 }
 
+#address_label{
+    font-size: 15px;
+    margin-top: 0px;
+}
+
+#tbl_shopview{
+    margin-top: 10px;
+    text-align: left;
+    margin-bottom: -10px;
+}
+
+#div_content_shopview{
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 50px);
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#nav_content_shopview{
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    /* border: solid 1px black; */
+    flex-wrap: wrap;
+}
+
+.li_nav_content:first-of-type{
+    width: 20%;
+    height: fit-content;
+    background-color: white;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 5px;
+}
+
+.li_nav_content:nth-of-type(2){
+    width: 70%;
+    /* background-color: blue; */
+}
+
+.links_label_shop{
+    font-size: 15px;
+}
+
+#label_fnav{
+    text-align: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0px;
+}
+
+#table_prcat{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    width: 60%;
+}
+
+#table_prcat:last-of-type{
+    margin-bottom: 20px;
+}
+
+#ul_products_results_shop{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav_products_shop{
+    width: fit-content;
+}
+
+.nav_products_shop li{
+    width: fit-content;
+}
+
 @media screen and (max-width: 850px) {
     #nav_shopview_sec{
         flex-direction: column;
@@ -122,5 +209,17 @@
     
     .li_shopview_sec:last-of-type{
         width: 100%;
+    }
+
+    #nav_content_shopview li:first-of-type{
+        width: 100%;
+    }
+    
+    #nav_content_shopview li:nth-of-type(2){
+        width: 100%;
+    }
+
+    #table_prcat{
+        text-align: center;
     }
 }
