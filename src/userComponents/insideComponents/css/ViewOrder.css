@@ -85,6 +85,16 @@
     border-radius: 5px;
 }
 
+#delivery_nav_rec{
+    width: calc(95% - 20px);
+    box-shadow: 0px 0px 5px black;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
 #label_payment{
     padding-top: 10px;
     margin-bottom: 5px;
@@ -118,6 +128,61 @@
     font-size: 20px;
     margin-top: -7px;
     font-weight: bold;
+}
+
+.btn_refund{
+    width: 150px;
+    height: 30px;
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+#textarea_feedback{
+    width: 100%;
+    max-width: 600px;
+    min-width: 100%;
+    height: 80px;
+    min-height: 50px;
+    max-height: 100px;
+}
+
+.btn_refund:hover{
+    color: white;
+    background-color: black;
+    border: solid 1px black;
+}
+
+#btn_submit_feedback{
+    width: 100px;
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: limegreen;
+    color: white;
+    border: solid 1px limegreen;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tr_modifier{
+    width: 100%;
+    background-color: aqua;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#tbl_id_textarea{
+    width: 100%;
+    height: 0px;
+    overflow-y: hidden;
+    /* background-color: aqua; */
+}
+
+#tbl_id_refund{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media screen and (max-width: 720px) {

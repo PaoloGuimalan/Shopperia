@@ -51,6 +51,9 @@ function Recieved() {
                     <li>
                       <h4 id='total_var'>Order Total: {res.order_total}</h4>
                     </li>
+                    <li className='btn_handler_confirm'>
+                        <button className='btn_confirm_from_ond' onClick={() => {navigate(`/profile/pocket/viewOrder/${res.order_id}`)}}>View Order</button>
+                      </li>
                   </li>
                 </nav>
               )

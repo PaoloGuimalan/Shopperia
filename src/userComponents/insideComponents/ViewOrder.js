@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom';
 import './css/ViewOrder.css';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_ORDER_VIEW } from '../../Redux/types/types';
+import { SET_ORDER_VIEW, TOGGLE_CHAT_BOX } from '../../Redux/types/types';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
 import Circle from 'react-google-maps/lib/components/Circle';
 import PersonMarker from '../marker/person_marker.png';
+import { motion } from 'framer-motion';
 
 function Map(){
 
@@ -22,7 +23,9 @@ function Map(){
             // console.log(p.latitude,p.longitude);
             setlat(p.latitude);
             setlong(p.longitude);
-        })
+        }, (err) => {
+            //alert error
+        }, {enableHighAccuracy: true, timeout: 20000, maximumAge: 0, distanceFilter: 1})
     }, [lat, long])
 
     const google = window.google;
@@ -83,9 +86,12 @@ const WrappedMap = withScriptjs(withGoogleMap(Map));
 function ViewOrder() {
 
   const { order_id } = useParams();
+  const userName = useSelector(state => state.userID);
 
   const orderview = useSelector(state => state.orderview);
   const dispatch = useDispatch();
+
+  const [ratingToggle, setratingToggle] = useState(false);
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/getviewOrderDetails/${order_id}`, {
@@ -98,6 +104,22 @@ function ViewOrder() {
         console.log(err);
     })
   }, [order_id]);
+
+  const chatBoxSupport = (open) => {
+    Axios.get(`http://localhost:3001/chatSupportMessageList/${userName}`, {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      },
+    }).then(async (response) => {
+      // alert(await response.data.employeeID)
+      // console.log(response.data);
+      dispatch({type: TOGGLE_CHAT_BOX, status: {open: open, user: response.data.map((id) => id.employeeID)}});
+    }).catch((err) => console.log(err));
+  }
+
+  const setRate = () => {
+    setratingToggle(!ratingToggle);
+  }
 
   return (
     <div id='div_viewOrder'>
@@ -163,6 +185,48 @@ function ViewOrder() {
                            </li>
                        </nav>
                    </li>
+                   {dets.status == "Received"? (
+                        <li>
+                            <h4>Are you satisified with our service? Rate or leave a feedback.</h4>
+                            <nav id='delivery_nav_rec'>
+                                <li>
+                                    <table id='tbl_id_refund'>
+                                        <tbody>
+                                            <tr>
+                                                <motion.td>
+                                                    <motion.table id='tbl_id_textarea'
+                                                        animate={{
+                                                            height: ratingToggle? "0px" : "auto"
+                                                        }}
+                                                    >
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <textarea id='textarea_feedback'></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <button id='btn_submit_feedback'>Submit</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </motion.table>
+                                                </motion.td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <button className='btn_refund' onClick={() => {setRate()}}>{ratingToggle? "Cancel" : "Rate"}</button>
+                                                    <button className='btn_refund'onClick={() => chatBoxSupport(true)}>Chat Support</button>
+                                                    <button className='btn_refund'>Request Refund</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                            </nav>
+                        </li>
+                   ) : ""}
                    {dets.remarks == "Out for Delivery"? (
                         <li>
                             <nav id='delivery_nav'>
