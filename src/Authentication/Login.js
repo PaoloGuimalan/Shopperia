@@ -120,55 +120,61 @@ function Login() {
 
   return (
     <div id='login_div'>
-        <motion.div
-            animate={{
-                width: loaderBar? "100%" : "0%"
-            }}
-            transition={{
-                duration: 1
-            }}
-         id='loader_bar'></motion.div>
-         <motion.div id='alert_prompts'
-            animate={{
-                width: messageAlert? "200px" : "0px",
-                backgroundColor: alertcontentresult? "lime" : "red"
-            }}
-            transition={{
-                delay: messageAlert? 0 : 0
-            }}
-        >
-            <motion.p
-                animate={{
-                    opacity: messageAlert? 1 : 0
-                }}
+        <motion.div id='alert_prompts'
+                    animate={{
+                        width: messageAlert? "200px" : "0px",
+                        backgroundColor: alertcontentresult? "lime" : "red"
+                    }}
+                    transition={{
+                        delay: messageAlert? 0 : 0
+                    }}
+                >
+                    <motion.p
+                        animate={{
+                            opacity: messageAlert? 1 : 0
+                        }}
 
-                transition={{
-                    delay: 0
-                }}
-             id='alert_label'>{alertcontent}</motion.p>
-        </motion.div>
-        <nav id='login_nav'>
-            <li>
-                <h2>Login</h2>
+                        transition={{
+                            delay: 0
+                        }}
+                    id='alert_label'>{alertcontent}</motion.p>
+                </motion.div>
+        <nav id='nav_login_overall'>
+            <li className='li_login_overall'>
             </li>
-            <li>
-                <input type='text' name='email' id='email' className='inputs_login' value={email} onChange={(e) => {setemail(e.target.value)}} placeholder='Email Address' />
-            </li>
-            <li>
-                <input type='password' name='password' id='password' className='inputs_login' value={password} onChange={(e) => {setpassword(e.target.value)}} placeholder='Password' />
-            </li>
-            <li>
-                <select id='inputs_dropdown' onChange={(e) => {setacc(e.target.value)}}>
-                    <option default value={null}>Select Account Type</option>
-                    <option value='buyer'>Login as Buyer</option>
-                    <option value='seller'>Login as Seller</option>
-                </select>
-            </li>
-            <li>
-                <button onClick={loginCredentials}>Login</button>
-            </li>
-            <li>
-                <p id='register_link'>Not registered yet? <Link to='/register' >Register here</Link></p>
+            <li className='li_login_overall'>
+                <motion.div
+                    animate={{
+                        width: loaderBar? "100%" : "0%"
+                    }}
+                    transition={{
+                        duration: 1
+                    }}
+                id='loader_bar'></motion.div>
+                <nav id='login_nav'>
+                    <li>
+                        <h2>Login</h2>
+                    </li>
+                    <li>
+                        <input type='text' name='email' id='email' className='inputs_login' value={email} onChange={(e) => {setemail(e.target.value)}} placeholder='Email Address' />
+                    </li>
+                    <li>
+                        <input type='password' name='password' id='password' className='inputs_login' value={password} onChange={(e) => {setpassword(e.target.value)}} placeholder='Password' />
+                    </li>
+                    <li>
+                        <select id='inputs_dropdown' onChange={(e) => {setacc(e.target.value)}}>
+                            <option default value={null}>Select Account Type</option>
+                            <option value='buyer'>Login as Buyer</option>
+                            <option value='seller'>Login as Seller</option>
+                        </select>
+                    </li>
+                    <li>
+                        <button onClick={loginCredentials}>Login</button>
+                    </li>
+                    <li>
+                        <p id='register_link'>Not registered yet? <Link to='/register' >Register here</Link></p>
+                    </li>
+                </nav>
             </li>
         </nav>
     </div>

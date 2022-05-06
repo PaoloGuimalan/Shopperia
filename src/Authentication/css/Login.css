@@ -1,6 +1,8 @@
 #login_div{
     padding: 0;
     margin: 0;
+    height: 100vh;
+    width: 100%;
 }
 
 h2{
@@ -13,7 +15,9 @@ h2{
     list-style-type: none;
     padding: 0;
     margin: 0;
-    background-color: beige;
+    height: calc(100% - 30px);
+    padding-top: 30px;
+    background-color: white;
 }
 
 .inputs_login{
@@ -43,5 +47,39 @@ h2{
     height: 5px;
     width: 0%;
     background-color: green;
-    position: absolute;
+    position: fixed;
+}
+
+#nav_login_overall{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: none;
+    height: 100%;
+    background-color: aqua;
+}
+
+.li_login_overall:first-of-type{
+    width: 100%;
+    max-width: 70%;
+    background: url('../../userComponents/imgs/bg_logo_profile.png'), linear-gradient(#e10013, #D60789);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.li_login_overall:last-of-type{
+    width: 100%;
+    max-width: 30%;
+}
+
+@media screen and (max-width: 720px) {
+    .li_login_overall:first-of-type{
+        width: 100%;
+        max-width: none;
+    }
+    
+    .li_login_overall:last-of-type{
+        width: 100%;
+        max-width: none;
+    }
 }

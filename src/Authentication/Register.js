@@ -240,40 +240,46 @@ function Register() {
   }
 
   return (
-    <div>
+    <div id='login_div'>
         <motion.div id='alert_prompts'
-            animate={{
-                width: messageAlert? "200px" : "0px",
-                backgroundColor: alertcontentresult? "lime" : "red"
-            }}
-            transition={{
-                delay: messageAlert? 1 : 1
-            }}
-        >
-            <motion.p
-                animate={{
-                    opacity: 1
-                }}
+                    animate={{
+                        width: messageAlert? "200px" : "0px",
+                        backgroundColor: alertcontentresult? "lime" : "red"
+                    }}
+                    transition={{
+                        delay: messageAlert? 1 : 1
+                    }}
+                >
+                    <motion.p
+                        animate={{
+                            opacity: 1
+                        }}
 
-                transition={{
-                    delay: 1.2
-                }}
-             id='alert_label'>{alertcontent}</motion.p>
+                        transition={{
+                            delay: 1.2
+                        }}
+                    id='alert_label'>{alertcontent}</motion.p>
         </motion.div>
-        <nav id='login_nav'>
-            <li>
-                <h2>Register</h2>
+        <nav id='nav_login_overall'>
+            <li className='li_login_overall'>
             </li>
-            <li>
-                <select id='inputs_dropdown' onChange={(e) => {setacc(e.target.value)}}>
-                    <option default value={null}>Select Account Type</option>
-                    <option value='buyer'>Buyer</option>
-                    <option value='seller'>Seller</option>
-                </select>
-            </li>
-            <UserSetup />
-            <li>
-                <p id='register_link'>Already have an account? <Link to='/login' >Log In here</Link></p>
+            <li className='li_login_overall'>
+                <nav id='login_nav'>
+                    <li>
+                        <h2>Register</h2>
+                    </li>
+                    <li>
+                        <select id='inputs_dropdown' onChange={(e) => {setacc(e.target.value)}}>
+                            <option default value={null}>Select Account Type</option>
+                            <option value='buyer'>Buyer</option>
+                            <option value='seller'>Seller</option>
+                        </select>
+                    </li>
+                    <UserSetup />
+                    <li>
+                        <p id='register_link'>Already have an account? <Link to='/login' >Log In here</Link></p>
+                    </li>
+                </nav>
             </li>
         </nav>
     </div>

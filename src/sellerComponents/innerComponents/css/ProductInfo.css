@@ -14,6 +14,7 @@
     width: 180px;
     height: 180px;
     border-radius: 5px;
+    margin: 5px;
 }
 
 #background_prev{
@@ -31,9 +32,139 @@
 
 #nav_details_prod{
     /* background-color: #e10013; */
+    width: calc(100% - 20px);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.li_main_details:first-of-type{
+    width: 100%;
+    max-width: auto;
+    /* background-color: #D60789; */
+}
+
+.li_main_details:last-of-type{
+    width: 100%;
+    max-width: auto;
+    /* background-color: #e10013; */
+}
+
+#desc_p{
+    text-align: justify;
+}
+
+#imgs_nav{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    /* background-color: #D60789; */
+}
+
+.var_product_prev{
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 5px;
+    position: relative;
+    top: calc(100% - 100px);
+}
+
+#nav_info_details{
+    /* background-color: aqua; */
+    width: 95%;
+    text-align: left;
+    padding: 10px;
+}
+
+#star_label{
+    display: flex;
+}
+
+#nav_main_view{
+    display: flex;
+    flex-direction: row;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
+    gap: 5px;
+    margin-bottom: 50px;
+}
+
+.li_nav_prd:first-of-type{
+    width: 70%;
+}
+
+.li_nav_prd:last-of-type{
+    width: 30%;
+}
+
+#nav_side_details{
+    width: 100%;
+    height: calc(100% - 10px);
+    max-height: calc(100% - 165px);
     margin-top: 10px;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 5px;
+}
+
+#cmts_label{
+    margin: 0;
+    padding: 15px;
+    border-bottom: solid 1px rgb(177, 177, 177);
+}
+
+.li_comments_inside_array{
+    /* background-color: aqua; */
+    height: calc(90% - 30px);
+    overflow-y: scroll;
+}
+
+#each_comment_nav{
+    /* background-color: #D60789; */
+    border-bottom: solid 1px rgb(177, 177, 177);
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -10px;
+}
+
+.user_label{
+    text-align: left;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.user_comment_class{
+    margin-top: 0px;
+    margin-bottom: -10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.user_date_class{
+    font-size: 13px;
+    margin: 0px;
+    text-align: left;
+}
+
+@media screen and (max-width: 720px) {
+    #nav_main_view{
+        flex-direction: column;
+    }
+
+    .li_nav_prd:first-of-type{
+        width: 100%;
+    }
+    
+    .li_nav_prd:last-of-type{
+        width: 100%;
+    }
 }

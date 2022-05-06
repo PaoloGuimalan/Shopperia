@@ -35,10 +35,27 @@ function UserVerification() {
   }
 
   return (
-    <div id='div_user_ver'>
-        <input type='text' name='user_ver_text' id='user_ver_text' value={codever} onChange={(e) => {setcodever(e.target.value)}}/>
-        <button onClick={verifyAccount}>Submit</button>
-    </div>
+    <React.Fragment>
+      <div id='div_user_ver'>
+      </div>
+
+      <div id='div_user_ver_input'>
+        <nav id='nav_inputs_ver'>
+          <li>
+            <p id='note_label_ver'>Please check your email that were used in the registration for the verification code.</p>
+          </li>
+          <li>
+            <input type='text' name='user_ver_text' id='user_ver_text' placeholder='Verification Code' value={codever} onChange={(e) => {setcodever(e.target.value)}}/>
+          </li>
+          <li>
+            <button onClick={verifyAccount} id='btn_user_ver'>Submit</button>
+          </li>
+          <li>
+            <p id='note_label'>This code will be verifying if the account is really yours and for future security of your account.</p>
+          </li>
+        </nav>
+      </div>
+    </React.Fragment>
   )
 }
 

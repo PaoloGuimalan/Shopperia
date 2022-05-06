@@ -1,4 +1,4 @@
-import { SET_PRBR_SHOP, SET_PRODUCT_DETAILS_ADMIN, SET_SHOP_PR, SHOP_PREVIEW } from "../types/types";
+import { SET_COMMENTS_PRODUCT, SET_PRBR_SHOP, SET_PRODUCT_DETAILS_ADMIN, SET_SHOP_PR, SHOP_PREVIEW } from "../types/types";
 
 export const setshoppreview = (state = {shop_preview: "", shopName: "", shopID: "", shopEmail: "",  shopAddress: "", shopRating: 0, contactNumber: ""}, action) => {
     switch(action.type){
@@ -49,6 +49,15 @@ export const setproductdetailsadmin = (state = productState, action) => {
     switch(action.type){
         case SET_PRODUCT_DETAILS_ADMIN:
             return action.productdetailsadmin;
+        default:
+            return state;
+    }
+}
+
+export const setcommentsproduct = (state = [], action) => {
+    switch(action.type){
+        case SET_COMMENTS_PRODUCT:
+            return action.commentsproduct;
         default:
             return state;
     }

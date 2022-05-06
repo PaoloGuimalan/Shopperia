@@ -7,6 +7,7 @@ import { SET_ORDER_VIEW, TOGGLE_CHAT_BOX } from '../../Redux/types/types';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
 import Circle from 'react-google-maps/lib/components/Circle';
 import PersonMarker from '../marker/person_marker.png';
+import RiderIcon from '../marker/ridericonbg.png';
 import { motion } from 'framer-motion';
 
 function Map(){
@@ -16,6 +17,9 @@ function Map(){
 
     const [latlangsetter, setlatlangsetter] = useState({lat: "", lng: "" });
     const [directions, setdirections] = useState({directions: ""});
+
+    const [latrider, setlatrider] = useState(14.688430);
+    const [lngrider, setlngrider] = useState(121.074532);
 
     useEffect(() => {
         navigator.geolocation.watchPosition((position)=> {
@@ -72,9 +76,16 @@ function Map(){
                     icon={{
                         url: PersonMarker,
                         anchor: new google.maps.Point(17, 46),
-                        scaledSize: new google.maps.Size(60, 70),
+                        scaledSize: new google.maps.Size(50, 60),
                     }}  
                     position={{ lat: lat, lng: long }} title='Your Location' />
+                    <Marker 
+                    icon={{
+                        url: RiderIcon,
+                        anchor: new google.maps.Point(17, 46),
+                        scaledSize: new google.maps.Size(60, 70),
+                    }}  
+                    position={{ lat: latrider, lng: lngrider }} title='Rider Location' />
                 </GoogleMap>
             ) : ""}
         </>
