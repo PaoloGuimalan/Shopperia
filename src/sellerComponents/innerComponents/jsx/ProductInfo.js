@@ -4,7 +4,7 @@ import '../css/ProductInfo.css';
 import BgLogo from '../imgs/bg_logo_profile.png';
 import Axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_COMMENTS, SET_COMMENTS_PRODUCT, SET_PRODUCT_DETAILS_ADMIN } from '../../../Redux/types/types';
+import { SET_COMMENTS, SET_COMMENTS_PRODUCT, SET_PRODUCT_DETAILS_ADMIN, SET_VARIETY_VIEW } from '../../../Redux/types/types';
 import StarIcon from '@material-ui/icons/Star';
 
 function ProductInfo() {
@@ -14,6 +14,7 @@ function ProductInfo() {
   const shopID = useSelector(state => state.sellerID.shopID);
   const productdetailsadmin = useSelector(state => state.productdetailsadmin);
   const commentsproduct = useSelector(state => state.commentsproduct);
+  const varietyview = useSelector(state => state.varietyview);
 
   useEffect(() => { 
     if(product_id != "" && shopID != ""){
@@ -41,6 +42,18 @@ function ProductInfo() {
       console.log(err);
     })
   }, [product_id, shopID]);
+
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/getproductvarietyadmin/${product_id}`, {
+      headers:{
+        "x-access-tokenseller": localStorage.getItem('tokenseller')
+      }
+    }).then((response) => {
+      dispatch({type: SET_VARIETY_VIEW, varietyview: response.data});
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [product_id]);
 
   return (
     <div id='div_productinfo'>
@@ -76,11 +89,8 @@ function ProductInfo() {
                       <p id='star_label'><StarIcon style={{fontSize: "21px", color: "yellow"}} />{productdetailsadmin.product.rate}</p>
                     </li>
                     <li>
-                      <summary>
-                        <details>
-                          <p id='desc_p'>{productdetailsadmin.product.prdesc}</p>
-                        </details>
-                      </summary>
+                      <h4>Description</h4>
+                      <p id='desc_p'>{productdetailsadmin.product.prdesc}</p>
                     </li>
                   </nav>
                 </li>
@@ -114,6 +124,58 @@ function ProductInfo() {
                 </li>
               </nav>
             </li>
+          </nav>
+        </li>
+        <li id='variety_li'>
+          <h4>Product Variety</h4>
+          <nav id='variety_container'>
+              {varietyview.map((vw) => {
+                return(
+                  <li>
+                  <nav className='nav_variety_list'>
+                    <li className='li_cont_details'>
+                      <img src={vw.var_preview} className='img_var_prod' />
+                    </li>
+                    <li className='li_cont_details'>
+                      <table className='tbl_variety'>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <h4 className='label_values_var'>{vw.var_id}</h4>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className='label_values_var'>Type: {vw.var_typename}</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className='label_values_var'>Size: {vw.var_size}</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className='label_values_var'>Price: &#8369;{vw.var_price}</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p className='label_values_var'>Stocks: {vw.var_stocks}</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <button className='btn_variety_func'>Edit</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </li>
+                  </nav>
+                  </li>
+                )
+              })}
           </nav>
         </li>
       </nav>
