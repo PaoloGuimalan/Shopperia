@@ -23,7 +23,7 @@ import { setsellerinfo } from "../actions/setsellerinfo";
 import { setordersadmin, setorderscancelled, setordersdelivered, setordersondelivery, setorderspreparing, setorderswaiting } from "../actions/setordersadmin";
 import { settogglechatbox } from "../actions/settogglechatbox";
 import { setminimizechatbox } from "../actions/setminimizechatbox";
-import { setcommentsproduct, setproductdetailsadmin, setshopprbr, setshoppreview, setshopproducts } from "../actions/setshoppreview";
+import { setcommentsproduct, sethomeprodview, sethomeshopview, setproductdetailsadmin, setshopprbr, setshoppreview, setshopproducts } from "../actions/setshoppreview";
 import { setmessagelist } from "../actions/setmessagelist";
 import { setmessageinbox } from "../actions/setmessageinbox";
 import { setsellermessagelist } from "../actions/setsellermessagelist";
@@ -76,7 +76,9 @@ const combiner = combineReducers({
     prbrshop: setshopprbr,
     shoppr: setshopproducts,
     productdetailsadmin: setproductdetailsadmin,
-    commentsproduct: setcommentsproduct
+    commentsproduct: setcommentsproduct,
+    homeshopview: sethomeshopview,
+    homeprodview: sethomeprodview
 })
 
 const store = createStore(combiner);

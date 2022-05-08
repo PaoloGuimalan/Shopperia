@@ -11,7 +11,7 @@ import CartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MessagesIcon from '@material-ui/icons/MessageOutlined';
 import { motion } from 'framer-motion';
 import Axios from 'axios';
-import { SET_ID, SET_LOGIN, SET_PRODUCTS, SET_SEARCH, TOGGLE_CHAT_BOX } from '../Redux/types/types';
+import { SET_HOMEPROD_VIEW, SET_HOMESHOP_VIEW, SET_ID, SET_LOGIN, SET_PRODUCTS, SET_SEARCH, TOGGLE_CHAT_BOX } from '../Redux/types/types';
 import Messages from '../userComponents/Messages';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
@@ -20,6 +20,8 @@ import Banner1 from './imgs/banners/banner1.jpg';
 import Banner2 from './imgs/banners/banner2.jpg';
 import Banner3 from './imgs/banners/banner3.jpg';
 import Banner4 from './imgs/banners/banner4.jpg';
+import StarIcon from '@material-ui/icons/StarBorderOutlined';
+import UnselStarIcon from '@material-ui/icons/Star';
 
 function Home() {
 
@@ -27,6 +29,8 @@ function Home() {
   const redirector = useSelector(state => state.statusLogin);
   const searchvalue = useSelector(state => state.searchvalue);
   const statuschatbox = useSelector(state => state.chatboxstatus);
+  const homeshopview = useSelector(state => state.homeshopview);
+  const homeprodview = useSelector(state => state.homeprodview);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -64,6 +68,22 @@ function Home() {
       }
     })
   }, [redirector, userName]);
+
+  useEffect(() => {
+    Axios.get('http://localhost:3001/homeshopview').then((response) => {
+      dispatch({type: SET_HOMESHOP_VIEW, homeshopview: response.data});
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
+
+  useEffect(() => {
+    Axios.get('http://localhost:3001/homeproductsview').then((response) => {
+      dispatch({type: SET_HOMEPROD_VIEW, homeprodview: response.data});
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
 
   const searchbtnTrigger = () => {
       // alert(searchvalue);
@@ -198,7 +218,76 @@ function Home() {
               </div>
             </Carousel>
           </div>
+          <div id='div_suggested_stores'>
+              <h3>Suggested Stores</h3>
+              <ul id='ul_products_results'>
+                  {homeshopview.map((shop) => {
+                    return(
+                      <Link to={`/shopview/${shop.shopID}`} className='link_products'>
+                        <li>
+                          <div className='div_shop'>
+                            <motion.img
+                            whileHover={{
+                              rotate: 360,
+                              scale: 1.1
+                            }} 
+                            transition={{
+                              duration: 0.3
+                            }}
+                            src={shop.shop_preview} className='img_shop'/>
+                            <p id='tag_shopname'>{shop.shopName}</p>
+                          </div>
+                        </li>
+                      </Link>
+                    )
+                  })}
+              </ul>
+          </div>
+          <div id='div_suggested_products'>
+            <h3>Suggested Products</h3>
+            <ul id='ul_products_results'>
+              {homeprodview.map((items) => {
+                  return(
+                  <Link className='link_products' key={items.product_id} to={`/productsView/${items.product_id}`} >
+                    <motion.li
+                    className='under_li_res' key={items.product_id}>
+                      <nav
+                      className='nav_products'>
+                        <li>
+                          <img src={items.base_preview} className='imgs_handler' alt={items.product_id}/>
+                        </li>
+                        <li className='above_li'>
+                          <p><b>{items.prname} | {items.prbrand}</b></p>
+                        </li>
+                        <li className='above_li'>
+                          <p id='display_stars'><b>{items.overall? Math.round(items.overall * 10) / 10 : 0}</b>
+                            {items.overall >= 1? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                            {items.overall >= 2? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                            {items.overall >= 3? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                            {items.overall >= 4? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                            {items.overall >= 5? <UnselStarIcon style={{fontSize: "16px", color: "yellow"}} /> : <StarIcon style={{fontSize: "16px", color: "yellow"}} />}
+                          </p>
+                        </li>
+                        <li className='above_li'>
+                          <p><b>&#8369;{items.minPrice} - &#8369;{items.maxPrice}</b></p>
+                        </li>
+                        <li className='above_li'>
+                          <p><b>{items.shopname}</b></p>
+                        </li>
+                        <li className='above_li'>
+                          <p>{items.prcat}</p>
+                        </li>
+                      </nav>
+                    </motion.li>
+                  </Link>
+                  )
+                })}
+            </ul>
+          </div>
         </div>
+        <footer>
+          <p>Hello</p>
+        </footer>
     </div>
   )
 }

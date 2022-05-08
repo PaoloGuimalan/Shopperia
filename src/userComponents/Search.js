@@ -73,7 +73,7 @@ function Search() {
             <div id='div_results'>
               <ul id='ul_results'>
                 <li style={{display: searchshopresult.length >= 1? "block" : "none"}}>
-                  <h3>Shops</h3>
+                  <h3>Stores</h3>
                   <ul id='ul_products_results'>
                     {searchshopresult.map((shop) => {
                       return(
@@ -97,9 +97,9 @@ function Search() {
                     })}
                   </ul>
                 </li>
-                <li>
+                {/* <li>
                   <h3>Brands</h3>
-                </li>
+                </li> */}
                 <li style={{display: searchprodresult.length >= 1? "block" : "none"}}>
                   <h3>Products</h3>
                   <ul id='ul_products_results'>

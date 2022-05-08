@@ -225,6 +225,41 @@
     box-shadow: 0px 0px 2px black;
 }
 
+#div_suggested_stores{
+    text-align: left;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+
+#div_suggested_stores ul{
+    /* justify-content: center; */
+    /* box-shadow: 0px 0px 2px black; */
+    border-radius: 2px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#div_suggested_products{
+    text-align: left;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#div_suggested_products ul{
+    justify-content: center;
+}
+
+footer{
+    background: linear-gradient(#e10013, #D60789);
+    color: white;
+    min-height: 200px;
+    margin-top: 50px;
+}
+
 @media screen and (max-width: 720px) {
     #messages_panel{
         max-width: none;

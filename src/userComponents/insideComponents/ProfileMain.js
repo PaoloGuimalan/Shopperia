@@ -39,6 +39,9 @@ function ProfileMain() {
     <div id='div_profilemain'>
         <ul id='ul_profilemain'>
             <li>
+                <div id='div_profilemain_cover'></div>
+            </li>
+            <li>
                 <h4>Change Profile Picture</h4>
             </li>
             <li>

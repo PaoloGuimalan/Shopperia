@@ -24,3 +24,15 @@
 #btn_names_submit{
     margin-left: 5px;
 }
+
+#div_profilemain_cover{
+    display: block;
+    height: 250px;
+    width: 100%;
+    background: url('../../imgs/bg_logo_profile.png'), linear-gradient(#e10013, #D60789);
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: grayscale(60%);
+    border-radius: 5px;
+    background-size: auto;
+}
