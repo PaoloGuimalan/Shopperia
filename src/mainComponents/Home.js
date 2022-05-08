@@ -219,7 +219,7 @@ function Home() {
             </Carousel>
           </div>
           <div id='div_suggested_stores'>
-              <h3>Suggested Stores</h3>
+              <h3 className='labels_home_h3'>Suggested Stores</h3>
               <ul id='ul_products_results'>
                   {homeshopview.map((shop) => {
                     return(
@@ -244,7 +244,7 @@ function Home() {
               </ul>
           </div>
           <div id='div_suggested_products'>
-            <h3>Suggested Products</h3>
+            <h3 className='labels_home_h3'>Suggested Products</h3>
             <ul id='ul_products_results'>
               {homeprodview.map((items) => {
                   return(
@@ -286,7 +286,70 @@ function Home() {
           </div>
         </div>
         <footer>
-          <p>Hello</p>
+          <nav id='nav_footer'>
+            <li id='li_img_footer'>
+              <img src={HomeLogo} id='img_footer'/>
+            </li>
+            <li id='li_links_footer'>
+              <nav id='nav_links_footer'>
+                <li className='li_links_footer_indv'>
+                  <h4>About</h4>
+                  <nav>
+                    <li>
+                      <p className='links_footer_tag'>About Shopperia</p>
+                    </li>
+                    <li>
+                      <p className='links_footer_tag'>About the Team</p>
+                    </li>
+                    <li>
+                      <p className='links_footer_tag'>Contacts</p>
+                    </li>
+                    <li>
+                      <p className='links_footer_tag'>History</p>
+                    </li>
+                  </nav>
+                </li>
+                <li className='li_links_footer_indv'>
+                  <h4>Technology</h4>
+                  <nav>
+                    <li>
+                      <p className='links_footer_tag'>Documentations</p>
+                    </li>
+                    <li>
+                      <p className='links_footer_tag'>Micro Services</p>
+                    </li>
+                    <li>
+                      <p className='links_footer_tag'>Developer Services</p>
+                    </li>
+                    <li>
+                      <p className='links_footer_tag'>API's</p>
+                    </li>
+                  </nav>
+                </li>
+                <li className='li_links_footer_indv'>
+                  <h4>Legal</h4>
+                  <nav>
+                    <li>
+                      <p className='links_footer_tag'>Terms and Conditions</p>
+                    </li>
+                    <li>
+                      <p className='links_footer_tag'>Privacy Policy</p>
+                    </li>
+                    <li>
+                      <p className='links_footer_tag'>Sitemap</p>
+                    </li>
+                  </nav>
+                </li>
+              </nav>
+            </li>
+          </nav>
+          <div class="legal">
+            <p>&copy; 2019 Something. All rights reserved.</p>
+            
+            <div class="legal__links">
+              <span>Made with <span class="heart">♥</span> remotely from Anywhere</span>
+            </div>
+          </div>
         </footer>
     </div>
   )
